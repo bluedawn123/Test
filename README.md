@@ -1,5 +1,4 @@
-쥬피터 노트북으로 작성된 파일이 많아서 
-불러오지 못하고 sorry something went wrong. Reload라는 오류 발생시, 
+혹시 쥬피터 노트북으로 작성된 파일을 불러올때, sorry something went wrong. Reload라는 오류 발생시, 
 
 https://nbviewer.jupyter.org/
 
