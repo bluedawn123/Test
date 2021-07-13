@@ -22,7 +22,6 @@ def btncmd():
     print(read_only_combobox.get())  #12일 선택 => 12일
 
 
-
 btn = Button(root, text="선택", command=btncmd)
 btn.pack()
 
