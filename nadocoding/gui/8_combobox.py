@@ -14,11 +14,11 @@ combobox.set("카드 결제일")  #최조 목록 제목 + 버튼 클릭을 통�
 
 #2
 read_only_combobox = ttk.Combobox(root, height=10, values=values, state="readonly")  #readonly => 입력불가. 선택만 가능.
-read_only_combobox.current(0)         #0번째 인덱스 값 선택
+read_only_combobox.current(0)         #0번째 인덱스 값 선택해서 보이게 한다.
 read_only_combobox.pack()
 
 def btncmd():
-    print(combobox.get())  #12일 선택 => 12일
+    print(combobox.get())            #선택된 값 출력. ex)12일 선택 => 12일
     print(read_only_combobox.get())  #12일 선택 => 12일
 
 

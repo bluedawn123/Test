@@ -12,7 +12,7 @@ frame = Frame(root)
 frame.pack()
 
 scrollbar = Scrollbar(frame)
-scrollbar.pack(side="right", fill="y")    #y축으로 채우기
+scrollbar.pack(side="right", fill="y")    #y축 설정
 
 #리스트박스 생성. set이 없으면 스크롤을 내려도 다시 올라온다. 
 listbox = Listbox(frame, selectmode="extended", height=8, yscrollcommand=scrollbar.set)  #스크롤바 매핑1
