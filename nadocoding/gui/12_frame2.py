@@ -9,6 +9,7 @@ root.geometry("640x580")
 #메뉴 위 레이블 만들기
 Label(root, text="메뉴를 선택해주세요").pack(side="top")
 
+#아래 주문 버튼 만들기
 Button(root, text="주문하기").pack(side="bottom")
 
 #메뉴 프레임

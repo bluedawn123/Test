@@ -21,7 +21,7 @@ for i in range(32):  #1~31
 
 listbox.pack(side="left")
 
-scrollbar.config(command=listbox.yview)  ##스크롤바 매핑2                    서로를 매핑 해줘야 한다. 
+scrollbar.config(command=listbox.yview)  ##스크롤바 매핑2                    #서로를 매핑 해줘야 한다. 
 
 #
 
