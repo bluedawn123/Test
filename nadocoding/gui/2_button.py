@@ -13,6 +13,7 @@ root.geometry("640x580")  #가로크기x세로크기
 btn1 = Button(root, text="버튼1")
 btn1.pack()  #실제로 보이게
 
+print(btn1)
 btn2 = Button(root, padx=5, pady=10, text="버튼2")
 btn2.pack()
 

@@ -2,6 +2,7 @@ from tkinter import *
 import tkinter.ttk as ttk
 from tkinter import filedialog  #서브 모듈이므로 별도의 import 필요
 import tkinter.messagebox as msgbox
+from PIL import Image
 
 root = Tk()
 #제목 설정
@@ -16,11 +17,16 @@ file_frame = Frame(root)
 file_frame.pack(fill="x", padx=5, pady=5)    #가로로 펼쳐지게. padx, pady 를 통해 간격조정
 
 
+
+
+##########################################################   함수들   ##########################################################################
+
+
 #파일 추가 함수  => 버튼 선택 시 어디에 있는 파일을 선택할 것인지? (file dialog도 떠야한다.)
 def add_file():
     files = filedialog.askopenfilenames(title="이미지 파일을 선택하세요", \
         filetypes=(("PNG파일", "*.png"), ("모든 파일", "*.*")), \
-        initialdir=r"C:\Users\YOONJUNHO\Documents\Test\nadocoding\gui")  
+        initialdir=r"C:\Users\YOONJUNHO\Documents\Test")  
     #"C:/" 라면, 최초에 C:/ 경로를 보여줌
     #r이라 적으면 그대로 쓰겠다라는 뜻
     #창이 닫히면 실제로 파일을 선택해서 확인버튼을 누르면 files에 그 목록이 들어가게 된다. 아래는 print로 확인
@@ -73,6 +79,42 @@ def start():
         msgbox.showwarning("경고", "저장 경로를 선택하시오")
         return
 
+    ####이미지 통합작업
+    merge_image()
+
+
+#이미지 통합함수(merge_image)
+def merge_image():
+    #print(list_file.get(0, END))       #모든 파일 목록 가져오기 'C:/Users/YOONJUNHO/Documents/Test/image1.png', \
+                                        #C:/Users/YOONJUNHO/Documents/Test/image2.png', \
+                                        #'C:/Users/YOONJUNHO/Documents/Test/image3.png'    .... 이런식으로 출력된다.
+    
+    #list_file에 있는 이미지 객체를 저장
+    images = [Image.open(x) for x in list_file.get(0, END)]  #list_file.get()의 모든 내용을 불러와서 하나씩 이미지를 열고 images에 저장
+    
+    #이렇게 생성된 이미지 객체에는, size -> size[0] : witdh 이고, size[1] : height. ==> 즉 해당 이미지의 가로와 높이를 가지고 있다.
+    #이미지를 합치기 위해서, width와 height를 알아야 한다.
+    
+    #list로 width 저장
+    widths = [x.size[0] for x in images]     
+    heights = [x.size[1] for x in images]
+
+    print("width : ", widths)
+    print("height : ", heights)   #다 다들 수 있다는 것을 확인!!
+    
+    ###IDEA => 우리가 만드려는 건 큰 스케치북에 우리가 원하는 파일을 합쳐서 하나로 만드는 것. 즉, width는 제일 큰 것 기준, height는 다 더해야한다.
+    max_widths, total_heights = max(widths), sum(heights)
+    print("max width : ", max_widths)
+    print("max_height : ", total_heights)
+
+    #스케치북 준비
+    result_img = Image.new("RGB", (max_widths, total_heights), (255, 255, 255))   #max_widths, total_heights 크기에 맞춰서 스케치북 준비. 배경은 흰색
+    y_offset = 0   #연속적으로 이어서 붙이기 위해서
+
+
+
+
+##########################################################   함수들 끝   ##########################################################################
 
 
 #파일추가 버튼
