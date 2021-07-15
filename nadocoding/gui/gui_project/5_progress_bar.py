@@ -112,14 +112,33 @@ def merge_image():
     result_img = Image.new("RGB", (max_widths, total_heights), (255, 255, 255))   #max_widths, total_heights 크기에 맞춰서 스케치북 준비. 배경은 흰색
     y_offset = 0   #연속적으로 이어서 붙이기 위해서. y의 위치정보
     
-    for img in images:                                          #실제로 불러온 이미지들중에서
-        result_img.paste(img, (0, y_offset))                    #그것을 하나씩 result_img(스케치북)에 붙인다. x좌표는 0, y좌표는 추가된다.
-        y_offset = y_offset + img.size[1]                       #높이를 더해간다.
+    #프로그래스 바를 만들기 위해 생략
+    #for img in images:                                          #실제로 불러온 이미지들중에서
+    #    result_img.paste(img, (0, y_offset))                    #그것을 하나씩 result_img(스케치북)에 붙인다. x좌표는 0, y좌표는 추가된다.
+    #    y_offset = y_offset + img.size[1]                       #높이를 더해간다.
+
+
+    #########################################프로그래스 바 추가########################################
+    # 해당순서 이미지 / 전체 이미지숫자 * 100 = ___ %    예를들어, 2번째 이미지면, 2/10*100=20%
+
+    for idx, img in enumerate(images):              #순회하면서 인덱스와 실제이미지데이터를 갖고 올 것이다.
+        result_img.paste(img, (0, y_offset))        #result_img에다 img를 집어넣고, 위치는 0, y_offset으로
+        y_offset = y_offset + img.size[1] 
+
+        progress = (idx + 1) / len(images) * 100         #idx는 0부터 시작하기 때문에. (첫번째를 0으로 할순 없자너) 
+        p_var.set(progress)
+        progress_bar.update()
+
 
     #실제로 이미지가 저장되는 경로
     dest_path = os.path.join(txt_dest_path.get(), "nado_photo.jpg")   #현재 경로 + 파일명
     result_img.save(dest_path)
     msgbox.showinfo("알림", "작업이 완료되었습니다.")
+
+
+
+
+
 
 
 ##########################################################   함수들 끝   ##########################################################################
