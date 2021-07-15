@@ -88,23 +88,29 @@ def start():
 def merge_image():
     #print(list_file.get(0, END))       #모든 파일 목록 가져오기 'C:/Users/YOONJUNHO/Documents/Test/image1.png', \
                                         #C:/Users/YOONJUNHO/Documents/Test/image2.png', \
-                                        #C:/Users/YOONJUNHO/Documents/Test/image3.png'    .... 이런식으로 파일 경로가 출력된다.
+                                        #'C:/Users/YOONJUNHO/Documents/Test/image3.png'    .... 이런식으로 출력된다. 즉 이미지 의미
     
     #list_file에 있는 이미지 객체를 저장
     images = [Image.open(x) for x in list_file.get(0, END)]  #list_file.get()의 모든 내용을 불러와서 하나씩 이미지를 열고 images에 저장
     
-    #이렇게 생성된 이미지 객체에는, size가 있는데 size[0] : witdh 이고, size[1] : height. ==> 즉 해당 이미지의 가로와 높이를 가지고 있다.
+    #이렇게 생성된 이미지 객체에는, size의 특징 : size[0] : witdh 이고, size[1] : height. ==> 즉 해당 이미지의 가로와 높이를 가지고 있다.
     #이미지를 합치기 위해서, width와 height를 알아야 한다.
     
-    #list로 width 저장
-    widths = [x.size[0] for x in images]     
-    heights = [x.size[1] for x in images]
+    #list로 widths, heights 저장
+    #widths = [x.size[0] for x in images]     
+    #heights = [x.size[1] for x in images]
 
-    print("width : ", widths)
-    print("height : ", heights)   #다 다들 수 있다는 것을 확인!!
+    #print("width : ", widths)
+    #print("height : ", heights)   #다 다들 수 있다는 것을 확인!!
     
     ########    
-    ######## 위 코드를 뜯어보면, 예를들면, 리스트형으로 각 저장이 되므로, [(10, 10), (20, 20), (30, 30)...] 형태로 저장되어있다.
+    ######## 위 코드를 다르게 뜯어보면, 예를들면, 리스트형으로 각 저장이 되므로, [(11, 10), (21, 20), (31, 30)...] 형태로 저장되어있다. 위 주석처리하고,
+    widths, heights = zip(*(x.size for x in images))
+
+    ###★★★★ => images리스트에 있는 값을 x에 넣고 다시 x.size, (예를들면, (10, 10)이런 정보들.)를 list형으로 만들고
+    ###########=> [(11, 10), (21, 20), (31, 30)...]이런 것들을 다시 잘라서 (즉, *를 통한 언집)
+    ###########=> 11, 21, 31 이런것들을 widths에 10, 20, 30 이런것들을 heights에 넣는다.
+
 
     ###IDEA => 우리가 만드려는 건 큰 스케치북에 우리가 원하는 파일을 합쳐서 하나로 만드는 것. 즉, width는 제일 큰 것 기준, height는 다 더해야한다.
     max_widths, total_heights = max(widths), sum(heights)
