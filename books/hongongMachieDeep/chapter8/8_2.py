@@ -26,6 +26,7 @@ model.summary()
 model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', 
               metrics='accuracy')
 
+'''
 checkpoint_cb = keras.callbacks.ModelCheckpoint('best-cnn-model.h5', 
                                                 save_best_only=True)
 early_stopping_cb = keras.callbacks.EarlyStopping(patience=2,
@@ -42,3 +43,4 @@ plt.xlabel('epoch')
 plt.ylabel('loss')
 plt.legend(['train', 'val'])
 plt.show()
+'''

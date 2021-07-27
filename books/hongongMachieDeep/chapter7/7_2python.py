@@ -25,4 +25,4 @@ model.summary()
 #######뭐 편한 거 골라서 하자.
 #모델 훈련 시키기
 model.compile(loss='sparse_categorical_crossentropy', metrics='accuracy')
-model.fit(train_scaled, train_target, epochs=5)
+model.fit(train_scaled, train_target, epochs=15)
