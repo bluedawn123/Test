@@ -8,9 +8,7 @@ def read_review_data(filename):
     with open(filename, 'r', encoding='UTF8') as f:
         data = [line.split('\t') for line in f.read().splitlines()]
         data = data[1:] # header 제거
-    
     return data
-
 
 # 측정 시작
 start = time.time()
