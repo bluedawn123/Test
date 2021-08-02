@@ -7,6 +7,19 @@ from tensorflow.keras import preprocessing
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, Embedding, Dense, Dropout, Conv1D, GlobalMaxPool1D, concatenate
 import os
+import tensorflow as tf
+gpus = tf.config.experimental.list_physical_devices('GPU')
+if gpus:
+  # Restrict TensorFlow to only allocate 4GB of memory on the first GPU
+  try:
+    tf.config.experimental.set_virtual_device_configuration(
+        gpus[0],
+        [tf.config.experimental.VirtualDeviceConfiguration(memory_limit=4096)])
+    logical_gpus = tf.config.experimental.list_logical_devices('GPU')
+    print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPUs")
+  except RuntimeError as e:
+    # Virtual devices must be set before GPUs have been initialized
+    print(e)
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 os.environ['TF_XLA_FLAGS'] = '--tf_xla_enable_xla_devices'
@@ -94,7 +107,7 @@ predictions = Dense(3, activation=tf.nn.softmax)(logits)
 model = Model(inputs=input_layer, outputs=predictions)
 model.summary()
 
-'''
+
 model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
 # 모델 학습
@@ -107,4 +120,3 @@ print('loss: %f' % (loss))
 
 # 모델 저장
 model.save('cnn_model.h5')
-'''
