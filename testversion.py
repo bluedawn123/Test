@@ -30,6 +30,7 @@ print(out)
 
 #mecab_python-0.996_ko_0.9.2_msvc-cp38-cp38-win_amd64.whl
 
+'''
 #main 카테고리 정보 가져오기
 import requests
 from bs4 import BeautifulSoup
@@ -40,3 +41,4 @@ soup = BeautifulSoup(res.content, 'html.parser')
 categories = soup.select('div.gbest-cafe ul.by-group li a')
 for category in categories:  #하나씩 가져와서 출력을 해보자
     print(category['href'], category.get_text())                         #링크 속성 가져오기, 문자데이터 가져오기(카테고리 이름)
+    '''
