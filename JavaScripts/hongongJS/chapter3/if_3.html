@@ -1,0 +1,20 @@
+<script>
+    
+    const month = (new Date()).getMonth() + 1 //현재 월을 가져오지만, 0~11로 표현되므로 + 1을 해주기
+    
+    //봄
+    if (3 <= month && month <= 5) {
+        alert('봄')
+    }
+    if (6 <= month && month <= 8) {
+        alert('여름')
+    }
+    if (9 <= month && month <= 11) {
+        alert('가을')
+    }
+    if ((1 <= month && month <= 2) || (month === 2)) {
+        alert('겨울')
+    }
+
+
+</script>
