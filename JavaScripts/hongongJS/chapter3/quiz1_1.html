@@ -1,0 +1,18 @@
+<script>
+    // 방법1
+    // 홀수 짝수 구분해서 만들기 => 끝자리에 따라 홀,짝
+    const inputs = prompt('정수를 입력해주세요.', '')
+    const last_inputs = Number(inputs[inputs.length - 1])   // a= '123456789' 일때, a[8]을 구하려면 (즉, 마지막자리)는 a.length - 1 하면 마지막 글자 추출가능
+                                                    // 그러므로, [inputs.length - 1] 로 a[8]을 만드는것
+
+    if (last_inputs === 1 ||
+        last_inputs === 3 ||
+        last_inputs === 5 ||
+        last_inputs === 7 ||
+        last_inputs === 9){
+            alert('입력한 숫자는 홀수이다.')
+    }
+        else{
+            alert('입력한 숫자는 짝수이다.')
+    }    
+</script>
