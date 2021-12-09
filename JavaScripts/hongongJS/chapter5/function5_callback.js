@@ -42,6 +42,8 @@ const 함수 = function(콜백함수의매개변수){
 /////////////////////////////////////////////////
 //콜백함수 예2
 const 테스트2 = function(콜백함수2){
+    console.log("먼저 테스트2번 함수 실행")
+    
     for (let i = 0; i < 5; i++){
         콜백함수2(i)
     }
@@ -66,6 +68,47 @@ const fx3 = function(callback_parameter){
 }
 
 Test([52, 273, 103, 32], fx3)
+
+/////////////////////////////////////////////////////////////////////////////////
+//예4번. 예3번과 같다
+const Test = function (array, callback){
+    for (const value of array){
+        callback(value)
+    }
+}
+
+Test([52, 273, 103, 32], function (callback_parameter){
+    console.log(`${callback_parameter}th hello`)
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -29,5 +29,53 @@ let 새배열 = [273, 52, 103, 100, 50]
 console.log(새배열)
 
 /////////////////////////////////////////////////////////////////////////////////////////
-//3. map함수 =<
+//3. map => 기존의 배열요소를 기반으로 새로운 배열을 만들어 return
+let array = [273, 52, 103, 100, 50]
+array = array.map(function(value, index)  {
+    return value + "!!"                      
+})
+console.log(array)  //(5) ['273!!', '52!!', '103!!', '100!!', '50!!']
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//4. => function 대신 => 사용
+                    //=> 함수내부가 return 1개라면, 중괄호와 리턴까지 생략가능
+
+let array = [273, 52, 103, 100, 50]
+array = array.filter((value, index) => {
+    return value % 2 === 0                      
+})
+console.log(array)
+
+
+let array = [273, 52, 103, 100, 50]
+array = array.filter((value, index) => 
+     value % 2 === 0                      
+)
+console.log(array)
+
+//3개는 다 같은 코드
+
+
+
+
+
+
+
+
+
 
