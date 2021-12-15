@@ -1,0 +1,6 @@
+문서 객체 모델?
+Document Object Model = DOM. 자바스크립트를 활용해서 html요소들을 조작하는 방법을 모아둔 객체들의 집합
+
+DOMContentLoaded 이벤트를 활용한다.
+왜?
+어떻게?
