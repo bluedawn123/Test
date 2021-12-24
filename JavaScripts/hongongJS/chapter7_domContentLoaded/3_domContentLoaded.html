@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            //문서객체 조작가능! 
+
+
+        })
+
+
+    </script> <!---->
+  </head>
+  <body>                                                    
+    <h1>안녕하세요</h1>
+    <script></script>
+  </body>
+  이것은 body 바깥의 내용으로 그냥 한번 쳐 본 것 입니다.
+  html 문서를 보게되면 script태크는 최대한 head태그 안에 넣어달라는 표현이 있다. 그래서 head태그 안에서 문서객체조작을 하고 싶어한다
+  그래서 head안에서 조작을 할 수 있게 문서 객체가 모두 만들어진 이후에 이 함수를 실행해 달라는 함수를 사용하게 된다.
+  그게 바로 
+  
+  document.addEventListener('DOMContentLoaded', () => {
+
+  }) 이다. 
+  
+  즉, 문서객체를 조작할 수 있는 위치는 1. head태그내의 DOMContentLoaded 2.body태그 마지막. 이렇게 2군데이다. 
+</html>
+

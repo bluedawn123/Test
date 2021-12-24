@@ -4,3 +4,9 @@ Document Object Model = DOM. 자바스크립트를 활용해서 html요소들을
 DOMContentLoaded 이벤트를 활용한다.
 왜?
 어떻게?
+
+
+
+---------------
+document.body.innerHTML += '<h1></h1>'  
+==> 문서객체의.body객체아래의.innerHTML(문자열 속성)의 +=을 활용해 문자열을 출력하는 것. 즉 body안의 html을 추가가능

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const h1 = document.querySelector('h1')  
+            h1.style.color = 'red' //태그선택자
+
+            document.querySelector('#header').style.backgroundColor = 'orange'//아이디선택자
+            document.querySelector('.center.head').style.textAlign = 'center'//클래스선택자
+            document.querySelector('[type=text]').style.borderRadius = '50px' //속성선택자.
+            document.querySelector('body input').style.backgroundColor = 'blue' //후손선택자. input태그가 여러개 있어도 가장 처음 선택되는 녀석이 먼저 적응된다.!
+
+        })
+
+
+    </script> <!---->
+  </head>
+  <body>                                                    
+    <h1 id="header" class="center head">안녕하세요</h1>
+    <input type="text">
+    <input>
+    <p>1강.html 문서를 보게되면 script태크는 최대한 head태그 안에 넣어달라는 표현이 있다. 그래서 head태그 안에서 문서객체조작을 하고 싶어한다
+        그래서 head안에서 조작을 할 수 있게 문서 객체가 모두 만들어진 이후에 이 함수를 실행해 달라는 함수를 사용하게 된다.
+        그게 바로 
+        
+        document.addEventListener('DOMContentLoaded', () => {       
+      
+        })    이다. 
+        즉, 문서객체를 조작할 수 있는 위치는 1. head태그내의 DOMContentLoaded 2.body태그 마지막. 이렇게 2군데이다.
+
+
+    <p>2강.자바스크립트 코드 내에서 document객체를 활용하면 html문서 내부의 특정 태그에 접근할 수 있다. 예를들어, document.head면 head태그에 
+        document.body면 head, body에 접근할 수 있다. 하지만 이럴 경우는 거의 없고 body태그 내의 h1들을 조작하는 경우가 많다. 
+        다른 태그를 조작하려면 일단 태그를 읽어야한다
+        이를 위해서는, 
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector()
+        })
+        라는 매서드가 필요하다. 이 매서드의 매개변수는 선택하고자 하는 태그(선택자)를 입력하면 태그를 읽어올 수 있다. 
+    
+        <p> 태그선택자 : 태그의 이름을 사용해서 태그의 이름 선택한다. h1태그라고 하면 document.querySelector('h1')으로! 이 녀석을 변수에 넣게되면 활용이 가능하다
+    
+        <p> 아이디 선택자 : document.querySelector('#아이디선택자'). 선택자는 샾을 사용한다!
+    
+        <p> 클래스 선택자 : 클래스 속성 기준으로 가져온다. 참고로 클래스 여러개 지정시 띄어쓰기 활용. document.querySelector('.center'). 선택자로 .을 쓴다. 
+        두개이상 쓰려면 document.querySelector('.center.head'). 와 같이 쓴다.
+    
+        <p> 속성 선택자 : 특정한 속성을 갖고 있는지 확인. input계열 태그에서 많이 쓰인다. ex)input type='textsss'가 있다면, 얘한테 접근할때는, 
+            document.querySelector('[type=textsss]') 이런식. 
+        
+        <p> 후손 선택자 : 무슨 태그 아래의 무슨 태그를 선택시 활용한다. 예를들어, body태그 아래의 모든 input을 잡는 경우 =>  document.querySelector('body input')
+            해당 태그가 여러개 있어도 가장 처음 선택되는 녀석이 먼저 적응된다.!
+        
+        <p> querySelectorAll : 여러 개의 태그를 잡고 싶은 경우 사용. 태그를 여러개 집어서 추출..! for문과 같이 쓰인다.
+            예를들어, input 모든 태그들의 배경을 red로 바꾸고 싶은경우에는, addEventListener함수 안에 
+            for (const ele of document.querySelectorAll('input')){
+                ele.style.backgroundcolor = 'red' 
+            } 
+            를 넣어주면 된다.
+
+    </p>
+    
+    
+    </p>
+    
+    
+    
+
+
+
+        <script></script>
+
+  </body>
+</html>

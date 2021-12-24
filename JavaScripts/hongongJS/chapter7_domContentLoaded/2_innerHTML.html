@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <script>document.body.innerHTML += '<h1>A</h1>'</script> <!--a추가 시점엔 body태그가 없어서 이것이 추가되지 않는다.-->
+  </head>
+  <body>                                                     <!-- body태그가 있어서 위와같은 에러가 생기지 않음-->
+    <script>document.body.innerHTML += '<h1>B</h1>'</script> <!--이래하면 body태그 내부에 h1태그가 추가된다.html내용으로 -->
+    <h1>안녕하세요</h1>
+    <script>document.body.innerHTML += '<h1>C</h1>'</script>
+  </body>
+  이것은 body 바깥의 내용으로 그냥 한번 쳐 본 것 입니다.
+  html 문서를 보게되면 script태크는 최대한 head태그 안에 넣어달라는 표현이 있다. 그래서 head태그 안에서 조작을 하고 싶어한다
+  그래서 head안에서 조작을 할 수 있게 문서 객체가 모두 만들어진 이후에 이 함수를 실행해 달라는 함수를 사용하게 된다.
+  그게 바로 
+  
+  document.addEventListener('DOMContentLoaded', () => {
+
+  }) 이다. 
+
+</html>
+
