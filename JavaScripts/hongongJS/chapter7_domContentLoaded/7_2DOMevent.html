@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+  </head>
+  <body>
+    <script>
+        //removeEventListener사용하기 위해 변수 생성
+        
+        let counter = 0
+        const listener = () => {
+            header.textContent = `클릭 횟수:${++counter}`
+        }
+
+        const header = document.createElement('h1')
+        header.textContent = '클릭횟수 : 0 '
+
+        const p = document.createElement('p')
+        p.textContent = '이벤트 연결 상태 : 해제 '
+
+
+        const connectButton = document.createElement('button')
+        connectButton.textContent = '이벤트 연결 버튼'
+        connectButton.addEventListener('click', () => {              //connectbutton을 클릭할때 
+            header.addEventListener('click', listener)                //header에다가 click연결
+            p.textContent = '이벤트 연결 상태 : 연결'
+        })
+
+        const disconnectButton = document.createElement('button')
+        disconnectButton.textContent = '이벤트 해제 버튼'
+        disconnectButton.addEventListener('click', () => {          //disconnectbutton을 클릭할때 
+            header.removeEventListener('click', listener)              //removeEventListener활용해서 click이벤트 제거
+            p.textContent = '이벤트 연결 상태 : 해제'
+      
+        })
+
+
+
+        document.body.appendChild(header)
+        document.body.appendChild(connectButton)
+        document.body.appendChild(disconnectButton)
+        document.body.appendChild(p)
+
+
+
+
+
+
+    </script>
+  </body>
+  <p>----------------------------------------------------------------------------------------------------------------------------------</p>
+  <p>수업내용 정리</p>
+  <p>document.addEventListener('DOMContendLoaded', () => }) 에서 첫번째괄호=>이벤트의이름 . 두번째괄호=>이벤트발생시 호출할 함수 지정</p>
+  <p>removeEventListener를 사용하려면 click연결시 사용한 eventlistener을 별도의 변수로 만들어줘야 한다.</p>
+
+  <p>수업 목표</p>
+  <p>1. 클릭횟수 누르면 증가하는 거 만들기</p>
+  <p>2. 이벤트 연결, 이벤트 제거 만들어보기</p>
+</html>

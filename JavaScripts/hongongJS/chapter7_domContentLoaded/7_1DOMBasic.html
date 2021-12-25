@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.createElement('h1')  //h1태그 생성
+            document.body.appendChild(header)   //바디에 붙힘
+
+            let count = 0
+
+            header.style.userSelect = 'none'
+            
+            header.textContent = `클릭 횟수:${count}`
+            header.addEventListener('click', () =>{    //header클릭시, eventlistener가 실행된다.
+                count++
+                header.innerHTML = `클릭 횟수:${count}`
+
+
+            })
+
+        })
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+  <p>document.addEventListener('DOMContendLoaded', () => }) 에서 첫번째괄호=>이벤트의이름 . 두번째괄호=>이벤트발생시 호출할 함수 지정</p>
+  <p>1. 클릭횟수 누르면 증가하는 거 만들기</p>
+  <p>2. 이벤트 연결, 이벤트 제거 만들어보기</p>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            //1.
+            //선택(혹은 변수 지정)
+            const header1 = document.querySelector('#textContent')   //아이디 선택자이므로 #활용
+            const header2 = document.querySelector('#innerHTML')
+
+            //값을 추출한다.
+            console.log(header1.textContent)
+            console.log(header2.innerHTML)
+
+            //값을 넣는다.
+            header1.textContent = '<h1>textContent 속성</h1>'
+            header2.innerHTML = '<h1>innerHTML 속성</h1>'
+
+            //2=========================================================================
+            //속성 조작
+            const img = document.querySelector('img')
+            //값을 넣는다.
+            img.setAttribute('src', 'http://placekitten.com/200/200')
+
+            //추출
+            console.log(img.getAttribute('src'))
+        
+            //3스타일조작=========================================================================
+            const divs = document.querySelectorAll('div')
+            divs.forEach((div, key) => {
+                console.log(key)  //0~9까지의 인덱스
+                div.style.backgroundColor = 'red'
+                div.style.height = '10px'
+
+
+            })
+        })
+
+
+    </script>
+  </head>
+  <body>
+    <h1 id="textContent">zzzzzzzzzzzzz</h1>
+    <h1 id="innerHTML">bbbbbbbbbbbbb</h1>
+    <img src="" alt="">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+  
+
+  </body>
+
+  <p>1. 글자 조작(추출 or 조작) 하는 방법 => 크게 2가지. 1.textContent  2. innerHTML 두 속성은 내부에 html의 유무에 따라 달라진다. textContent는 그대로 나오고 innerHTML은 적용돼서 나타난다.
+  <p>2. 속성 조작 => 역시 값을 넣거나 조작한다. 값을 넣을때는 setAttribute('속성이름', '값'). 
+  <p>==========>표준인 경우는 img.src등과 같이 간단하게 바로 사용할 수 있다. 표준에 없는 속성을 조작할때는 사용자정의속성(데이터속성) ex)img src="" alt="" 정보=""에서
+      정보를 활용하게 된다. 일단 표준에 없으면 get, set을 활용한다고 알아두자.
+  
+  <p>3. 스타일 조작
+  <p>4. 정리 : 글자조작 => textContent, innerHTML. /// 속성 조작 : setAttribute('이름', '값'), getAttribute('이름'), 표준에있으면 그냥 입력 /////////
+      스타일 조작 : style.backgroundColor, sytle.기타속성입력
+  </p>
+
+
+
+
+
+</html>
