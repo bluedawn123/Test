@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+            const a = document.querySelector('a')
+            a.addEventListener('click', (event) => {
+                event.preventDefault()
+            })
+
+            //콘텍스트 메뉴 사용못하게
+            a.addEventListener('contextmenu', (event) => {
+                event.preventDefault()
+            })
+        })
+    
+    </script>
+  </head>
+  <body>
+    <a href="http://hanbit.co.kr">링크</a>
+
+  </body>
+  <p>이벤트 막기? => preventdefault사용. 예를들어, 링크 클릭시 이동 못하게 + 불법다운로드 못하게 막는것
+  <p>
+  <p>   
+  <p>
+</html>

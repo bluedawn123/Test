@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.addEventListener('keydown', (event) => {
+                document.body.innerHTML = `<h1>keydown ${event.code}</h1>`
+            })
+
+            document.addEventListener('keyup', () => {
+                document.body.innerHTML = '<h1>keyup</h1>'
+                
+            })
+
+        })
+
+    </script>
+  </head>
+  <body>
+    
+  </body>
+  이벤트가 발생되면 이벤트의 콜백함수로 이벤트객체가 전달된다. 이벤트 객체에 . 을 찍으면 다양한 정보를 사용할 수 있다. 
+  이벤트객체.code속성는 입력한 키를 나타내는 것이다. keydown 이벤트가 발생시 뒤에 추가하여 만들어봤을때 실행해보면, 어떠한 키가 눌렸는지 화면에 출력할 수 있다. 
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+            const buttonA = document.querySelector('button')
+            const buttonB = document.querySelector('input[type=button]')  //input중에서 타입이 버튼인 녀석을 들어오기 
+
+            //클릭을 했을때 내부의 글자를 간단히 바뀌도록 만들어보자
+            buttonA.addEventListener('click', (event) => {
+              event.currentTarget.textContent += '글자1'
+            })
+
+            //내부의 글자를 변경하기 위해 textcontent가 아니라 value속성을 직접 변환시켜야 한다.
+            buttonB.addEventListener('click', (event) => {
+              event.currentTarget.value = '글자2'         //누를시 2번째 방법.글자 => 글자2  로 바뀌는것을 알수있다.
+            })
+           
+            const form = document.querySelector('form')
+            //submit을 눌렀을때 이벤트가 발생하는 것이므로!!
+            form.addEventListener('submit', () => {
+              const text = document.querySelector('input[type=text]')  //이메일을 맞게 입력했는지 보려고 input[type=text]를 가져와 text변수에 넣고
+              if (text.value.indexOf('@') >=0 ){           //text벨류 추출하고 @가 있는지 없는지 알아보는것
+                alert('정상제출')
+              } 
+              else {
+                alert('이메일 형식이 아닙니다.')
+                event.preventDefault()
+              }                
+
+
+            })
+        })
+    
+    </script>
+  </head>
+  <body>
+
+    <button>글자</button>
+    <input type="button" value="2번째 방법. 글자">
+    <input type="submit" value="3번째 방법. 글자">
+    
+    <br>이메일 형식을 입력해 주세요.<br>
+    <form action="">
+      <input type="text" name="test" id="">
+      <input type="submit" value="글자dd">
+    </form>
+
+  </body>
+  <p><br></p>
+  <p>아래는 수업 요약, 정리</p>
+  <p>입력양식은 버튼, 글자입력, 선택, 체크박스, 라디오 등이 있다.
+  <p>버튼으로 사용할 수 있는 것은 크게 3가지. 1. 버튼태그  2.인풋 타입중 버튼이라는 타입의 태그  3. 인풋태그 중 서밋이라는 태그
+  <p>1, 2번째 방식은 클릭이벤트를 활용하고 3번째는 submit 이벤트를 활용한다.    
+  <p>input type submit??
+  <p>form이라는 것은 입력양식이다. form을 만들때 form태그를 사용하고 제출시 submit 버튼을 사용한다. form태그 입력양식에 입력하고 submit버튼을 누르면 주소가 바뀐다. 즉 데이터를 다른 페이지(서버)로 넘긴다.</p>
+  <p>submit이벤트는 input 타입 submit에 연결하는 것이 아니라 document.queryselector로 form태그를 잡고 form태그에 연결을 해준다. </p>
+</html>

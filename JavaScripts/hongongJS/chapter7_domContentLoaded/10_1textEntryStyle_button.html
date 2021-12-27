@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            //input먼저
+            const input = document.querySelector('input')
+            const button1 = document.querySelector('button1')
+            const p1 = document.querySelector('p1')
+        
+            //input태그의 버튼 눌렀을시 
+            button1.addEventListener('click', () =>{
+                p1.textContent = `${(input.value) * 2.54}cm로 변환되었습니다.!`
+
+            })
+        
+            //textarea
+            const textarea = document.querySelector('textarea')
+            const button2 = document.querySelector('button2')
+            const p2 = document.querySelector('p2')
+            
+            //textarea의 버튼 눌렀을 시
+            button2.addEventListener('click', () =>{
+                p2.textContent = `${(textarea.value) * 2.54}cm로 변환되었습니다.!`
+
+            })
+        })
+    
+    </script>
+  </head>
+  <body>
+    <p>1.input태그를 활용한 간단한 인치 변환 프로그램을 만들어보자</p>
+    <p>인치를 입력하시오</p>
+    <input type="text" name="" id=""> inch<br>
+    <button1>계산</button1><br>
+    <p1>아직 공란입니다.</p1>
+
+    <p>2.textarea태그를 활용한 간단한 인치 변환 프로그램을 만들어보자</p>
+    <p>인치를 입력하시오</p>
+    <textarea type="text" name="" id=""></textarea>inch<br>
+    <button2>계산</button2><br>
+    <p2>아직 공란입니다.</p2>
+
+    <br>
+    <p>-------------------------------------------------아래는 처음 설명예시--------------------------------------------</p>
+    <input type="text" name="" id="">  1.input text                   <!--한줄입력 가능-->
+    <textarea name="" cols="10" rows="5"></textarea>  2.textarea   <!--여러줄입력 가능-->
+    
+    
+    <p contenteditable="true">3.contenteditable 활용. 클릭하여 수정가능하다.</p> <!--글자를 변경해서 글자를 수정할 수 있다. 이건 오늘 안함-->
+
+  </body>
+  <p><br>
+  <p>이 페이지에서는 텍스트 입력 양식에 대해 알아본다.
+  <p>input text, textarea, p태그에 conteneditable등이 있다. 
+  <p>input text, textarea 내부 값을 가져올때는 value속성을 활용한다. change이벤트, keydown keyup keypress등등이 쓰인다. 
+</html>

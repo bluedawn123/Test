@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const h1 = document.querySelector('h1')
+            const textarea = document.querySelector('textarea')
+
+            //이벤트연결. 키가 떨어질때니깐 keyup사용. 즉!! keyup 이벤트가 일어날때 해당매소드(글자수출력)이 일어난다. 상자로 입력받는 부분! 여기선 동작 정의
+            //textarea가 이벤트 발생 객체가 되고 아래서 활용되는 것을 볼 수 있다.
+            textarea.addEventListener('keyup', () => {
+                h1.textContent = `글자 갯수 : ${textarea.value.length}`  //textarea.value.length 사용. 얘는 해당태그의 글자수 
+            })  
+
+            //이벤트 객체의 current target활용하기.
+            textarea.addEventListener('keyup', () => {
+                h1.textContent = `글자 갯수 : ${event.currentTarget.value.length}`  //textarea.value.length 사용. 얘는 해당태그의 글자수 
+            })
+
+            //일반함수와 this사용
+            textarea.addEventListener('keyup', function(){
+                h1.textContent = `글자 갯수 : ${this.value.length}`  //textarea.value.length 사용. 얘는 해당태그의 글자수 
+            })
+        })
+
+    </script>
+  </head>
+  <body>
+    <h1>글자 수 : 0</h1>
+    <textarea></textarea>   <!--이 부분이 괄호가 돼서 입력을 받는 부분!-->
+
+
+  </body>
+  <p>현재 입력된 글자가 몇 자 인지 출력하는 예제 
+  <p>1. textarea가 이벤트 발생 객체가 된다.</p>
+  <p>2. 이벤트 객체의 currentTarget활용하기. currentTarget은 이벤트를 발생시킨 객체, 즉 textarea를 의미한다.</p>
+  <p>3. 화살표 함수가 아닌 function함수를 만들고 this키워드 사용 => this가 이벤트 객체를 의미하기 때문에 textarea를 역시 의미한다.</p>
+  <p></p>
+</html>

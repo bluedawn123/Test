@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            //input먼저
+            const input = document.querySelector('input')
+            const p1 = document.querySelector('p1')
+        
+            //input태그의 버튼 눌렀을시 
+            input.addEventListener('keyup', () =>{
+                p1.textContent = `${(input.value) * 2.54}cm로 변환되었습니다.!`
+
+            })
+        
+           
+        })
+    
+    </script>
+  </head>
+  <body>
+    <p>1.input태그를 활용한 간단한 인치 변환 프로그램을 만들어보자</p>
+    <p>인치를 입력하시오</p>
+    <input type="text" name="" id=""> inch<br>
+    <p1>아직 공란입니다.</p1>
+
+   
+
+    <br>
+    <p>-------------------------------------------------기타 내용--------------------------------------------</p>
+    
+  </body>
+  <p>10_1을 응용해서 버튼을 누르지 않고 키를 입력만하면 바로 바뀌는 것을 만들어본다. => button지우고, keyup활용!
+  <p>키보드를 누르면 keydown이벤트가 발생한다. => 무엇을 인식하면 keypress이벤트가 발생하고 입력양식에 값이 들어간다. => 키보드를 뗄떼 keyup이 발생한다.
+    따라서 keydown, keypress시 아직 입력양식에 값이 들어가지 않은 상태이다.
+  <p>그러므로, 입력양식 내부의 값을 추출해서 활용하는 경우에는 keyup이벤트를 활용해야 한다. </p> 
+  <p>change이벤트는 입력 양식 전체에 값 입력을 마친 경우 실행이 된다. keyup같은 경우는 그냥 입력하는 즉시지만, change는 커서를 떼는 순간(or엔터) 값 입력이 된다.
+</html>
