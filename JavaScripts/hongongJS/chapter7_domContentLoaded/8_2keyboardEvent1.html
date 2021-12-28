@@ -12,9 +12,11 @@
             //textarea가 이벤트 발생 객체가 되고 아래서 활용되는 것을 볼 수 있다.
             textarea.addEventListener('keyup', () => {
                 h1.textContent = `글자 갯수 : ${textarea.value.length}`  //textarea.value.length 사용. 얘는 해당태그의 글자수 
+                //console.log(event)
+
             })  
 
-            //이벤트 객체의 current target활용하기.
+            //이벤트 객체의 current target활용하기.    ★★textarea가 event발생 객체이다.
             textarea.addEventListener('keyup', () => {
                 h1.textContent = `글자 갯수 : ${event.currentTarget.value.length}`  //textarea.value.length 사용. 얘는 해당태그의 글자수 
             })

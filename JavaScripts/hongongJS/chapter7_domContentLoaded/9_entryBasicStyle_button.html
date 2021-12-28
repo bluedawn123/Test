@@ -11,11 +11,14 @@
             //클릭을 했을때 내부의 글자를 간단히 바뀌도록 만들어보자
             buttonA.addEventListener('click', (event) => {
               event.currentTarget.textContent += '글자1'
+              console.log(event) //pointerEvent가 발생한다.
             })
 
             //내부의 글자를 변경하기 위해 textcontent가 아니라 value속성을 직접 변환시켜야 한다.
             buttonB.addEventListener('click', (event) => {
               event.currentTarget.value = '글자2'         //누를시 2번째 방법.글자 => 글자2  로 바뀌는것을 알수있다.
+              console.log(event) //역시 pointerEvent발생
+
             })
            
             const form = document.querySelector('form')

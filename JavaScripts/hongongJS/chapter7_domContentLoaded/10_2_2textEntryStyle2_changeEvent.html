@@ -10,9 +10,9 @@
             const p1 = document.querySelector('p1')
         
             //input태그의 버튼 눌렀을시 
-            input.addEventListener('change', () =>{
+            input.addEventListener('change', (event) =>{
                 p1.textContent = `${(input.value) * 2.54}cm로 변환되었습니다.!`
-
+                console.log(event)
             })
         
            
