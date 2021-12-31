@@ -22,11 +22,11 @@ console.log(배열.filter(function(value, index){
 
 //2-1 filter응용
 let 새배열 = [273, 52, 103, 100, 50]
-새배열 = 새배열.filter(function(value, index){
+새배열이다 = 새배열.filter(function(value, index){
     return value % 2 === 0                      //value % 2 === 0 (즉 짝수) 인 것들만 return 한다.
 })
 
-console.log(새배열)
+console.log(새배열이다)
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //3. map => 기존의 배열요소를 기반으로 새로운 배열을 만들어 return

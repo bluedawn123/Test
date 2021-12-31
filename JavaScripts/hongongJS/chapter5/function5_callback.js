@@ -27,6 +27,17 @@ test2(fx2)
 하아 피곤하다      ===> test2안 a에 함수 fx2가 들어오고 a()가 함수이기 때문에 글자를 출력하는 것
                   ===> test2(10), test2(ㄹㄴㄹ) 같은 것은 함수가 아니므로 오류가 발생한다.
 `
+//콜백함수 예0
+function add(num1, num2){
+    return num1+num2
+}
+
+function surprise(operator){
+    const result = operator(2,3)   //add를 수행하는 것과 동일하다.
+    console.log(result)
+}
+
+surprise(add)
 
 //////////////////////////////////////////////////////
 //콜백함수 예1
