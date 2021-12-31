@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const select = document.querySelector('select')
+            const p = document.querySelector('p')
+            
+            select.addEventListener('change', (event) => {
+                //추출하기
+                //event.currentTarget.options 옵션들을 활용하기 위해서
+                const options = event.currentTarget.options  //4개를 다 가져온다.
+            
+                
+                //다중선택 결과를 위해서
+                const list = []
+                for (const option of options){
+                    if (option.selected){
+                        list.push(option.textContent)       //list에 넣어준다.
+                    }
+                }
+                p.textContent = `선택 : ${list.join('')}`   //list.join(',')   //list요소들을 쉼표로 구분하기 위해서
+                
+                console.log(event)   //Event {isTrusted: true, type: 'change', target: select, currentTarget: select, eventPhase: 2, …}
+                console.log(index)   //떡 선택시 0, 오뎅선택시 1 이런식으로...!
+                console.log(options) //HTMLOptionsCollection(4) [option, option, option, option, selectedIndex: 1]  개발자 도구를 활용하면 더 자세히 알수있따.
+
+
+            })
+        })
+    
+    </script>
+  </head>
+  <body>
+    <select name="" id="" multiple>  <!--multiple추가시 다중선택 가능-->
+        <option>떡</option>
+        <option>오뎅</option>
+        <option>튀김</option>
+        <option>순대</option>
+
+    </select>
+    <p>선택 : 아직 선택 이전입니다.</p>
+   
+
+    <br>
+    <p>---------------------------------------------------------수업 내용----------------------------------------------------------</p>
+    
+  </body>
+  <p>11_1을 활용해서 다중선택을 해보자.
+  <p>1. multiple 추가하기 
+  <p>2.  </p>    
+  <p>3. </p>
+  
+</html>

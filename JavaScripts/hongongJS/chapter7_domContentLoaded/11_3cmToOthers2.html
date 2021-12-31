@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const input = document.querySelector('input')
+      const select = document.querySelector('select')
+      const span = document.querySelector('span')
+      
+      const handler = () => {
+        const value = Number(input.value)                                //들어간 숫자값을 숫자화 시키기 위해서
+        const selected = select.options[select.options.selectedIndex]    //선택된 옵션 = select의옵션[인덱스].  이렇게 해야 글자로 선택가능해진다. 11_1참조
+        span.textContent = value * Number(selected.value)                //(최종결과)span의 글자 = 숫자값 X 
+      }
+      
+      input.addEventListener('keyup', handler)
+      select.addEventListener('change', handler)
+    })
+
+  </script>
+</head>
+<body>
+  <input type="text" name="" id="" value="0"> cm =
+  <span>0</span>                                    <!--최종적인 결과를 위해서 만든 span태그-->
+  <select name="" id="">                            <!--선택을 하기 위해서-->
+    <option value="10">mm</option>                  <!--옵션들의 value값을 미리 지정해주자-->
+    <option value="0.01">m</option>
+    <option value="0.393701">inch</option>
+  </select>
+</body>
+<p>----------------------------------------------------학습목표-----------------------------------------------</p>
+<p>11_3_1의 코드를 더 깔끔하게 만들어보자
+</html>
+  

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+            //타이머 설정
+            let seconds = 0
+            let timerId = 0  //timer을 시작, 정지할 수 있게       let [seconds, timerId] = [0,0] 으로 사용해도 된다.
+
+            //체크박스
+            const checkbox = document.querySelector('input[type=checkbox]')
+            const checkboxResult = document.querySelector('h1#checkbox')           //아이디선택자
+            
+            checkbox.addEventListener('change', () => {
+              if (checkbox.checked){
+                timerId = setInterval(() => {                  //아래에 else의 부분에서 정지시키기 위해 변수를 이렇게 만들어준다.
+                    seconds = seconds + 1
+                    checkboxResult.textContent = `${seconds}초`
+                }, 2000)   //2초마다 콜백함수 실행되도록
+
+              }
+              else{
+                clearInterval(timerId)
+              }
+            })
+        })
+    
+    </script>
+  </head>
+  <body>
+    <!--어떤 대상의 true 또는 false-->
+    <input type="checkbox" name="" id="">타이머 활성화<br>
+    <h1 id="checkbox">아직 시작 이전입니다. (시간을 측정하고 싶으면 위의 버튼을 누르시오)</h1>                      <!--무엇을 선택했는지 알수있게 하려고-->
+    
+    <p>-------------------------------------------------기타 내용--------------------------------------------</p>
+  </body>
+  <p>12_1의 체크박스를 타이머와 같이 활용해보자
+  
+</html>

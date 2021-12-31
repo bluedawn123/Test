@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const select = document.querySelector('select')
+            const p = document.querySelector('p')
+            
+            select.addEventListener('change', (event) => {   //★★select가 이벤트의 객체이다!!
+                //추출하기
+                //event.currentTarget.options 옵션들을 활용하기 위해서
+                const options = event.currentTarget.options  //4개를 다 가져와서 options에 저장
+
+                const index = options.selectedIndex          //4개중 무엇을 선택했는지 알수있기위해서. 즉, index = 옵션들중 선택된 인덱스 (0,1,2,3중 하나겠지?)
+                                                             //options.currentTarget.options.selectedIndex 혹은 select.options[select.options.selectedIndex] 
+                
+                p.textContent = `선택: ${options[index].textContent}`  //옵션들의 인덱스에 있는 것.  ${options[index]만 하면 객체만 나오므로 .textcontent가 필요
+                
+                console.log(event)   //Event {isTrusted: true, type: 'change', target: select, currentTarget: select, eventPhase: 2, …}
+                console.log(index)   //떡 선택시 0, 오뎅선택시 1 이런식으로...!
+                console.log(options) //HTMLOptionsCollection(4) [option, option, option, option, selectedIndex: 1]  개발자 도구를 활용하면 더 자세히 알수있따.
+
+
+            })
+        })
+    
+    </script>
+  </head>
+  <body>
+    <select name="" id="">  <!--multiple추가시 다중선택 가능-->
+        <option>떡</option>
+        <option>오뎅</option>
+        <option>튀김</option>
+        <option>순대</option>
+
+    </select>
+    <p>선택 : 아직 선택 이전입니다.</p>
+   
+
+    <br>
+    <p>---------------------------------------------------------수업 내용----------------------------------------------------------</p>
+    
+  </body>
+  <p>선택할수 있는 박스로 드롭박스라고도 한다 => select태그를 활용한다.. 활용해서 간단한 분식 프로그램을 만들어보자
+  <p>
+  
+</html>

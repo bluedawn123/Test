@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+            //체크박스
+            const checkbox = document.querySelector('input[type=checkbox]')
+            const checkboxResult = document.querySelector('h1#checkbox')           //아이디선택자
+            
+            checkbox.addEventListener('change', () => {
+              if (checkbox.checked){
+                checkboxResult.textContent = '체크'
+              }
+              else{
+                checkboxResult.textContent = '해제'
+              }
+            })
+
+            //라디오버튼
+            const radios = document.querySelectorAll('input[type=radio][name=gender]')   //라디오가 여러개인 경우 지정해놓은 name = gender임을 활용
+            const radioResult = document.querySelector('h1#radiobutton')
+
+            radios.forEach((radioz) => {
+              radioz.addEventListener('change', (event) => {
+                //event.currentTarget.value 무엇을 눌렀는지 확인해보려고
+                radioResult.textContent = `${event.currentTarget.value}이 지정되었습니다.`
+              })
+            })
+        })
+    
+    </script>
+  </head>
+  <body>
+    <!--어떤 대상의 true 또는 false-->
+    <input type="checkbox" name="" id=""><br>
+    <h1 id="checkbox"></h1>                      <!--무엇을 선택했는지 알수있게 하려고-->
+    
+
+    <!--여러 대상 중에서 하나를 선택-->
+    <input type="radio" name="gender" id="" value="여성">여성<br>
+    <input type="radio" name="gender" id="" value="남성">남성<br>
+    <input type="radio" name="gender" id="" value="직접지정">직접 지정<br>
+    <h1 id="radiobutton"></h1>                   <!--무엇을 선택했는지 알수있게 하려고-->
+    
+    
+    <p>-------------------------------------------------기타 내용--------------------------------------------</p>
+  </body>
+  <p>체크박스는 인풋 타입이 checkbox이고 라디오버튼은 인풋타입이 radio이다.
+  <p>체크박스는 대상이 true false속성을 지닐때 사용된다. 즉 어떤 해당사항을 yes or no할 때 사용. chage이벤트와 checked 속성을 자주 쓴다.
+  <p>radio는 여러 대상 중 하나를 선택할 때 사용된다. 반드시 name속성이 있어야 하며 즉 여러개를 만들어서 사용한다. 하나의 그룹임을 나타내기 위해선 name에 같은 값을 입력하면 된다.
+  
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const input = document.querySelector('input')
+        const select = document.querySelector('select')
+        const span = document.querySelector('span')
+      
+        //입력값 => 결과값 변환하는 것
+        input.addEventListener('keyup', () => {
+            const 현재값 = Number(input.value)
+            const 선택된단위 = select.options[select.options.selectedIndex]       //(셀렉트의, 옵션들 즉,)전체4개의옵션 중 [인덱스 값] 
+        //console.log(`${선택된단위.textContent}`)                              //이걸로 뭐가 선택된지 확인가능  11_1처럼 선택된단위만 하면 객체만 나오므로 .textContent가 필요하다.
+
+            span.textContent = 현재값 * Number(선택된단위.value)                  //현재값 X 숫자화(mm혹은, m혹은 인치에 저장한 값) 이것을 최종결과인 span에 넣고 텍스트화 한다.
+        })
+        
+        //결과값 => 입력값 변환하는 것
+        select.addEventListener('change', () => {
+            const 현재값 = Number(input.value)
+            const 선택된단위 = select.options[select.options.selectedIndex]      
+                                      
+            span.textContent = 현재값 * Number(선택된단위.value)               
+        })
+    })
+  </script>
+</head>
+<body>
+  <input type="text" name="" id="" value="0"> cm =
+  <span></span>                                    <!--최종적인 결과를 위해서 만든 span태그-->
+  <select name="" id="">                            <!--선택을 하기 위해서-->
+    <option value="10">mm</option>                  <!--옵션들의 value값을 미리 지정해주자-->
+    <option value="0.01">m</option>
+    <option value="0.393701">inch</option>
+  </select>
+</body>
+<p>----------------------------------------------------학습목표-----------------------------------------------</p>
+<p>cm 입력시 다른 3가지 단위로 변경할 수 있도록 만들어보자.
+</html>
+  
