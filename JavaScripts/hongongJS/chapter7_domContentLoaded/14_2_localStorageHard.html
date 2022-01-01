@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <script>
+    //데이터 load함수 
+    const load = () =>{
+        const data = localStorage.getItem('애플리케이션')    //애플리케이션이라는 키 소환
+        if(data !== null){              //데이터가 null아 아니면 저장된 것을 불러와서 배열 형식에 ,로 구분하여 저장
+            const [color, message] = data.split(',')
+            return {
+                color: color,
+                message : message
+            }
+        }else{                          //데이터 없는 경우 원래 정했던 빨간과 메시지가 없으므로 ''으로 return
+            return{
+                color : 'red',
+                message : ''
+            }
+        }
+    }
+    //데이터 저장 함수  ==> 위의 color, message의 객체를 받아 setItem에 저장하는 방식
+    const save = (data) => {
+        //`${data.color},${data.message}`
+        localStorage.setItem('애플리케이션', `${data.color},${data.message}`)     //
+    }
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const p = document.querySelector('p')
+      const button = document.querySelector('button')
+      const input = document.querySelector('input')
+      const select = document.querySelector('select')
+
+      //처음 데이터 읽어오기 => color, message를 들고온다.
+      const data = load()
+      p.textContent = `이전 실행때의 마지막 값 : ${data.message}`
+      input.value = data.message  
+
+      document.body.style.backgroundColor = data.color
+      select.value = data.color //새로고침했는데도 다른 색으로 선택되어있는경우.
+
+      //이벤트 연결
+      button.addEventListener('click', () => {       //버튼 누를시 로컬스토리지 데이터 모두 지우기 + 입력양식 초기화
+        data.color = 'red'  //초기색
+        data.message = ''   //처음 빈 문자열
+        save(data)
+        //입력양식 초기화
+        select.value = 'red'
+        input.value = ''
+      }) 
+
+      input.addEventListener('keyup', () => {     //키 업 될때 입력양식 내부의 값 저장 + 입력 양식에 값을 입력시 데이터가 저장된다.!
+        data.message = input.value
+        save(data)
+      })      
+
+      select.addEventListener('change', () => { 
+        const color = select.options[select.selectedIndex].value
+        //입력양식 반영
+        document.body.style.backgroundColor = color
+        //데이터 저장
+        data.color = color
+        save(data)
+
+        
+      })
+      
+      ` 개념
+        localStorage.getItem('키')            //특정 키로 어떠한 값을 추출할때
+        localStorage.setItem('키', '값')      //특정 키로 특정한 값 저장
+        localStorage.removeItem('키')         //특정 키로 어떠한 값 제거
+        localStorage.clear()                  //특정 키로 전체제거
+      `  
+
+    })
+    
+    </script>
+  </head>
+  <body>
+    <p></p>
+    <button>지우기</button>
+    <input type="text" name="" id="">
+    <!-- 드롭다운 -> 옵션:색상 -> 페이지 배경색상 변경 -> 저장될 수 있게...즉 글자이외에 색상이라는 걸 저장해본다    -->      
+    <select name="" id="">
+      <option value="red">빨</option>
+      <option value="blue">푸</option>
+      <option value="green">초</option>
+
+    </select>
+
+    
+    
+    
+  </body>
+  <p>1_1 그대로 이어서.  localStorage에는 key, value로 저장되어있다. 근데 key가 많아지면 getItem, setItem으로 관리하기 힘들어진다. 애플리케이션 데이터라는 key에 여러 데이터를 함께 넣는다. 변경해보자
+  <p>
+
+  </html>
