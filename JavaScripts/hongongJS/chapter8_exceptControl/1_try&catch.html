@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+            const h1 = document.querySelector('h1')
+            
+            //if (h1 == null){
+            //    console.log("오류가 발생하였습니다.")
+            //} else{
+            //    h1.textContent = '변경!'                //body태그에 h1태그가 없어서 null이라는 문제가 발생할 것이다.
+            //}  이걸 try, catch로 바꿔보자`
+
+
+            try {                                                       //예외 발생 가능성이 있는 코드
+                h1.textContent = '변경!'
+            } catch (예외객체) {                                         //예외 발생시 실행되는 코드
+                console.log("오류가 발생하였습니다.")
+                console.log(예외객체)                  //TypeError: Cannot set properties of null (setting 'textContent') at HTMLDocument.<anonymous> (1.html:18) 출력
+                console.log(예외객체.name)             //TypeError
+                console.log(예외객체.message)          //Cannot set properties of null (setting 'textContent')
+            }
+        })
+    
+    </script>
+  </head>
+  <body>
+    
+
+   
+
+    <br>
+    <p>-------------------------------------------------기타 내용--------------------------------------------</p>
+    
+  </body>
+  <p>오류 출력시키기 1. if 사용 => 기본예외 처리
+  <p>2. try catch => 고급예외 처리
+  <p>catch(식별자)   => 식별자를 입력해서 예외객체를 받아온다. 예외와 관련된 정보를 담고 있다.  
+
+  </p>
+  
+</html>

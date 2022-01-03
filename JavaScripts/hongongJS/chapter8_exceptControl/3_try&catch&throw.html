@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <script>
+      const getPerimeter = (r) => {   //원의 둘레를 구하는 함수
+        if(r < 0){
+          throw '길이는 음수가 될 수 없습니다.'
+        }
+        
+        const pi = 3.14
+        return 2 * pi * r
+      }
+    
+      try{
+        console.log(getPerimeter(-10))
+      } catch(e){
+        console.log('어떤 문제가 발생하였습니다.')
+      }
+      console.log('프로그램이 정상적으로 종료되었습니다.')
+      //console.log(getPerimeter(-10))
+      //console.log('프로그램이 정상적으로 종료되었습니다.')   //throw를 사용하면 프로그램이 중단하므로 실행되지 않는다. 그래서 프로그램을 정상적으로 종료하려고 try catch사용
+
+    </script>
+  </head>
+  <body>
+    
+
+   
+
+    <br>
+    <p>-------------------------------------------------기타 내용--------------------------------------------</p>
+    
+  </body>
+  <p>반지름을 구하는데 음수나 이상한 수가 나왔을 경우 예외처리를 하는 예시</p>
+  <p>1. 매개변수로 음수가 들어왔을때 throw를 활용해서 강제로 예외를 발생시킨다.
+  <p>강제로 예외발생시 프로그램이 중단되므로 처리를 한다 => try catch를 사용한다. </p>
+  
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <script>
+
+            const 예 = () => {
+              try {                                                      
+                console.log("예외 발생 가능성이 있는 코드")
+                return
+
+              } catch (예외객체) {                                   
+                console.log("예외가 발생할 때 실행되는 코드")
+
+              } //finally{//nally가 의미를 갖으려면 try, catch구문에 return 혹은 break 가 존재해야 한다.
+                console.log("무조건적으로 실행할 코드 ")
+              
+            }
+
+            예()  //이러면 finally는 실행이 되지 않는다.
+
+    </script>
+  </head>
+  <body>
+    
+
+   
+
+    <br>
+    <p>-------------------------------------------------기타 내용--------------------------------------------</p>
+    
+  </body>
+  <p>finally는 무조건적으로 실행된다.
+  <p>예외처리가 가장 많이 사용되는 경우  1. 더 큰 문제 발생시 예외 발생시 이를 처리   2. 없는 속성에 접근해서 활용
+  <p> 
+
+  </p>
+  
+</html>
