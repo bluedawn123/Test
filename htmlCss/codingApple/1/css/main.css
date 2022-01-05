@@ -1,0 +1,41 @@
+.profile{
+    width : 350px;
+    display: block; 
+    margin-right: auto;
+    margin-left: auto}
+
+.name{
+    font-size:30px; 
+    color:rgb(25, 56, 38); 
+    letter-spacing: 20px; 
+    text-align: center}
+
+#special { 
+    text-align: center; 
+    font-weight: bold;
+    color:green
+}
+
+.content{
+    color:red
+}
+
+p {
+    color:blue
+}
+
+.box{
+    width : 1150px;
+    background-color: rgb(219, 166, 166);
+    margin : 30px;
+    padding : 30px;
+    border : 5px solid cadetblue;
+    border-radius: 15px;
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+
+
+
