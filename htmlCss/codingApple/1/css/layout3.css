@@ -28,3 +28,19 @@
 .blog-name{
     float: left;
 }
+
+.navbar>li{   /* 1.모든 li태그들이 inline-block을 갖는다. 
+                 2.스페이스는 ~~안에 있는 이라는 의미 (모든 자손 포함)
+                 3. > => ~안에 있는 직계자식*/
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+    background: rgb(92, 62, 62);
+    padding: 10px;
+    border-radius: 15px;
+
+}
+.navbar a{  
+    font-size: 16px;
+    text-decoration: none;   /* 누른 링크 보라색 혹은 밑줄 제거 */
+}
