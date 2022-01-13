@@ -8,7 +8,7 @@
     background-position: center;
     /*filter:brightness(50%)         글씨에도 필터는 적용된다. */
 
-    padding : 2px;   /* margin collapse 방지 */
+    padding : 2px;           /* margin collapse 방지=> 박스 2개가 겹쳤을때 마진이 겹쳐진다. 그래서 안쪽 박스에 마진을 줘도 둘다 이동하게 되는 현상*/
     position : relative;
     text-align: center;
 }
@@ -28,15 +28,18 @@
 }
 
 .main-button{
-    top:350px;
+    top : 350px;
+    border-radius : 30px;
+    border: none;
     padding: 15px;
     font-size: 20px;
     position : absolute;
-    left : 0;
+    
+    left : 0;    /* 버튼을 가운데로 */
     right : 0;
-    margin-left: auto; 
-    margin-right: auto;
-    width: 150px;/* 
+    margin : auto;
+    width: 150px;
+    /* 
    1. 좌표이동 => 포지션 속성이 있어야 한다.  
         position : relative 하고 top, bottom, left, right등을 조정
         1 relative(내 원래 위치를 기준점) float와 비슷하게 공중에 뜬다. 
@@ -51,15 +54,16 @@
 .explain-box{
     width: 70%;       /* %는 부모대비 %를 의미한다. 반응형 레이아웃*/
     max-width: 1000px; /* 참조 : padding은 width와 상관없다. */
-    margin:auto;      /* 박스 가운데정렬*/
-    padding: 30px;
-    text-align: center;
+    margin : auto;      /* 박스 가운데정렬*/
+    padding : 30px;
+    text-align : center;
     background-color: #eee;
     position: relative;   /*붕 뜨게하고   */                  
     top : -30px;          /*  위로 -30만큼 올린다*/
     box-sizing: border-box;   /*content box를 하면 padding border 포함 ㄴㄴ*/
 
     /*z-index : 붕뜬 녀석들의 우선순위. 숫자가 클수록 높이 온다. 앞으로 보낼때 사용*/
+    
     /* width:600을 줘도 padding을 50을 주면 실제 width는 700정도가 된다.
     
     ★★1. 박스 사이즈를 정확하게 하고 싶으면 content영역이 아닌 

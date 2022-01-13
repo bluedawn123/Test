@@ -1,35 +1,33 @@
-.container{
+.container{             /*전체 layout  */
     width: 800px;
     margin: auto;
     
 }
 
-.blog-content{
+.blog-content{          /*오른쪽 박스  */
     width: 80%;
     height: 200px;
-    
+    float: left;
+}
+.blog-img{             /*왼쪽 사진박스 */
+    width: 20%;
     float: left;
 }
 
-.blog-img{
-    width: 20%;
-    height: 200px;
-  
-    float: left;
-}
 
 .blog-profile{
-    width: 70px;
-    float: left;
-    display: block;
-}
-
-.blog-name{
+    width: 100px;
     float: left;
 }
 
-.navbar>li{   /* 1.모든 li태그들이 inline-block을 갖는다. 
-                 2.스페이스는 ~~안에 있는 이라는 의미 (모든 자손 포함)
+.blog-name{         /* h4, p 이런 것 다 한 행을 차지하기 때문에 float 사용 
+                    기본 마진을 갖고 있어서 칸이 벌어진다. 그래서 style margin을 적게 준다 */
+    float: left;    /*띄워서 위쪽에 붙히기 */
+}
+
+.navbar>li{   /* 1.모든 li태그들이 inline-block을 갖게한다. (자기자신크기만 해서 가로로 만드려고)
+                 2.띄어쓰기는 ~~안에 있는 이라는 의미 (자식의 자식같은 모든 자손 포함)
+                   예를들어 navbar li 는 navbar 클래스의 모든 li태그 의미
                  3. > => ~안에 있는 직계자식*/
     display: inline-block;
     width: 60px;
@@ -39,7 +37,7 @@
     border-radius: 15px;
 
 }
-.navbar a{  
+.navbar a{   /*navbar 안의 모든 a태그 */
     font-size: 16px;
     text-decoration: none;   /* 누른 링크 보라색 혹은 밑줄 제거 */
 }
