@@ -1,7 +1,6 @@
 .container{
-    width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 800px;
+    margin: auto;
     
 }
 
@@ -20,7 +19,7 @@
 }
 
 .blog-profile{
-    width: 60px;
+    width: 70px;
     float: left;
     display: block;
 }

@@ -111,3 +111,12 @@ div,input,textarea {          /* div,input,textarea태그에 border-box를 다 �
     width: 100%;
     padding: 10px      /* 상자2개 붙는거 띄어놓기 때문에 간격 벌어진거 맞추는 용도*/
 }
+
+.textarea{
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+    box-sizing: border-box;    
+}

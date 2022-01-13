@@ -1,10 +1,10 @@
 .container{
-    width: 800px;
+    width: 1000px;
 }
 
 .header{
     width: 100%;     /* 상위태그 비율 */
-    height: 50px;
+    height: 60px;
     background-color: aquamarine;
 }
 
@@ -19,7 +19,7 @@
     width: 80%;
     height: 400px;
     background: coral;
-    float: right;                  /* 붕 띄워서 우측정렬 */   
+    float: left;                  /* 붕 띄워서 우측정렬 */   
 }
 
 .footer{
