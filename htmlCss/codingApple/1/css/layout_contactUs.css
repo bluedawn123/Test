@@ -74,13 +74,13 @@ body{
 .form-background{
     margin:auto;
     background-color: black;
-    max-width: 800px;
-    padding: 30px;
+    max-width: 700px;
+    padding: 50px;
 }
 
 .form-white{
     background-color: white;
-    padding:30px;
+    padding : 30px;
     width: 80%;
     max-width: 600px;
     margin: auto;
@@ -96,8 +96,9 @@ body{
                                  content영역이기 때문.  => border-box 사용 */
 }
 
-div,input,textarea {          /* div,input,textarea태그에 border-box를 다 주는 방법 */
-    box-sizing: border-box;
+div, input, textarea {          /* div,input,textarea태그에 border-box를 다 주는 방법 */
+    box-sizing: border-box;   /*border-box =>content부분만 width로 설정하지 말고 padding, border포함. 
+                                즉 튀어나가는 거 방지*/
 }
 
 .w-50{
@@ -109,7 +110,7 @@ div,input,textarea {          /* div,input,textarea태그에 border-box를 다 �
 
 .w-100{
     width: 100%;
-    padding: 10px      /* 상자2개 붙는거 띄어놓기 때문에 간격 벌어진거 맞추는 용도*/
+    padding: 10px      /* 위에 w-50에 상자2개 붙는거 띄어놓기 때문에 간격 벌어진거 맞추는 용도*/
 }
 
 .textarea{
@@ -119,4 +120,11 @@ div,input,textarea {          /* div,input,textarea태그에 border-box를 다 �
     border-radius: 5px;
     border: 1px solid black;
     box-sizing: border-box;    
+}
+
+.yellow-button{
+    padding: 10px;
+    display : block;
+    margin-left: auto;
+
 }

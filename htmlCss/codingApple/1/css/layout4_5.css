@@ -53,18 +53,19 @@
 
 .explain-box{
     width: 70%;       /* %는 부모대비 %를 의미한다. 반응형 레이아웃*/
-    max-width: 1000px; /* 참조 : padding은 width와 상관없다. */
+    max-width: 600px; /* 참조 : padding은 width와 상관없다. */
     margin : auto;      /* 박스 가운데정렬*/
     padding : 30px;
     text-align : center;
     background-color: #eee;
     position: relative;   /*붕 뜨게하고   */                  
     top : -30px;          /*  위로 -30만큼 올린다*/
-    box-sizing: border-box;   /*content box를 하면 padding border 포함 ㄴㄴ*/
+    box-sizing: border-box;   /*border-box =>content부분만 width로 설정하지 말고 padding, border포함
+                               content box =>  padding border 포함 ㄴㄴ*/
 
     /*z-index : 붕뜬 녀석들의 우선순위. 숫자가 클수록 높이 온다. 앞으로 보낼때 사용*/
-    
-    /* width:600을 줘도 padding을 50을 주면 실제 width는 700정도가 된다.
+
+    /* width:600을 줘도 padding을 50을 주면 실제 width는 700정도가 된다. 폭은 padding과 상관없기 때문!
     
     ★★1. 박스 사이즈를 정확하게 하고 싶으면 content영역이 아닌 
     2. padding border를 포함시켜야 한다. => box-sizing : border-box;
