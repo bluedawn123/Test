@@ -1,0 +1,26 @@
+.product-container{
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 100%;
+}
+
+.product-container div{  /*product-container의 div태그들*/
+    float : left;
+    width : 25%;         /*pc사이즈에선 최대max경우 각 div는 1000px/4 (25%)만큼 차지 */
+    text-align: center;
+}
+
+/*테블릿(1200px 이하 적용) 사이즈에선 가로폭 ~~%, 최대폭 ~~px로 해주세요 */
+@media screen and (max-width : 1200px){
+    .product-container div{width: 50%;}   /*태블릿에선 각div는 50%만큼 차지 (700px의 50%) */
+    .product-container{max-width: 700px;}
+}
+
+
+/*모바일(768px) 사이즈에선 가로폭 ~~%, 최대폭 ~~px로 해주세요 */
+@media screen and (max-width : 768px){
+    .product-container div{width: 100%;}
+    .product-container{max-width: 400px;}
+}

@@ -1,0 +1,15 @@
+/*메인버튼을 만들고 재사용 */
+
+.main-btn{
+    padding:15px;
+    font-size: 15px;
+    border: none;
+}
+
+.bg-red{
+    background: red;
+}
+
+.bg-blue{
+    background : blue;
+}
