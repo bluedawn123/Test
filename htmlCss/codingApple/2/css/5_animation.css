@@ -34,3 +34,26 @@
 .overlay:hover{  /*마우스 올렸을때 (hover)투명도를 1로(투명도를 없애는것)*/
     opacity: 1;
 }
+
+/* 투명박스(overlay-warp)에 마우스를 hover하면 안에 있는 overlay가 아래서 등장하게 만드는 것*/
+.overlay-wrap{  /*이미지 위에 존재하는 div(투명한 박스라고 생각)*/
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;  /*넘치는 부분은 삭제함*/
+}
+
+
+.overlay-change{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(39, 46, 39, 0.3);  
+    margin-top: 120%;  /*시작화면*/
+    transition: all 1s;
+}
+
+/*overlay-wrap에 마우스를 올리고, 그 안에 있는 overlay-change가 변해야 한다!*/
+.overlay-wrap:hover .overlay-change {  
+   margin-top: 40%;  /*최종화면*/
+
+}
