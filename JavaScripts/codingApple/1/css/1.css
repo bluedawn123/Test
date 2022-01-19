@@ -1,0 +1,9 @@
+.alert-box{
+    background-color: blue;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+
+    display: none;  /*ui 숨기기*/
+
+}
