@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <link href="css/1.css" rel="stylesheet"> 
+    <script  
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+  </head>
+  <body>
+
+    <h4 id="test">안녕하세요</h4>
+    <h4 id="test2">안녕하세요</h4>
+
+    <p class="greeting">ㅎㅇㅎㅇㅎㅇㅎ</p>
+    <p class="greeting">ㅎㅇㅎㅇㅎㅇㅎ</p>
+    <p class="greeting">ㅎㅇㅎㅇㅎㅇㅎ</p>
+    <p class="greeting">ㅎㅇㅎㅇㅎㅇㅎ</p>
+
+    <button class="btn1">버튼123</button>
+    <button class="btn2">버튼123</button>
+    <button class="btn3">버튼123</button>
+
+    <script>
+        $('#test').html('바보');
+        $('#test2').html('바보');
+        $('#test2').addClass('yellow-bg');  /*클래스 추가하면 css가 추가된다.*/
+
+        document.getElementsByClassName('greeting')[0].innerHTML = '안녕';  /*class='greeting'인걸 바꾸려면 하나씩 해야한다. */
+        $('.greeting').html('후아');         /*3개가 다 바뀐다.*/
+        $('.greeting').eq(3).html('힝');     /*4번째 것만 힝으로 바뀐다.*/
+
+      //1. 코드의 압축 + 여러클래스를 쉽게 선택
+      //document.getElementsByClassName('greeting')[0].addEventListener()
+      //$('.btn').on('click', function(){        })       클래스 btn 총 3개 지정 + 이벤트 리스너 ==== 자바스크립트와 큰 차이가 없다.
+
+      //2. 첫 버튼 누르면 4번째 글자 힝이 사라지는 코드
+      document.getElementsByClassName('btn1')[0].addEventListener('click', function(){
+        document.getElementsByClassName('greeting')[3].style.display = 'none'
+      })
+
+      //3. 두 버튼을 누르면 4글자가 사라지는 코드  ==> 모두 선택이 가능하고 더 간편하다.
+      $('.btn2').on('click', function(){
+        $('.greeting').hide();          
+      })
+      
+      //4. 3 버튼을 누르면 4글자가 사라지는 코드  ==> 모두 선택이 가능하고 더 간편하다.
+      $('.btn3').on('click', function(){
+        $('.greeting').show();          
+      })
+      
+
+
+    </script>
+    <br>
+    <p>-------------------------------------------------수업 내용--------------------------------------------</p>
+    
+  </body>
+    <p>숙제 : jquery이용해서 html요소에 클래스 넣기 
+    <p>자바스크립트 대신 jquery를 쓰는이유?  쌩자바스크립트는 요소를 하나씩 변경해야 한다.
+    <p># => id   . => class </p>
+    <p>자바스크립트와 별반 다르지 않다. 
+    <p>애니메이션도 쉽게 만들수 있다.
+    <p>jquery hide(); => block을 적용해주는 jquery함수, slideup(); 등과 같은 다양한 함수들이 존재한다. 
+    <p>
+</html>

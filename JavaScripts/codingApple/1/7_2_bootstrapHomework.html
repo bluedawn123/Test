@@ -1,0 +1,80 @@
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="css/1.css" rel="stylesheet"> 
+    <script  
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+
+    <div class="black-background">
+      <div class="white-background">
+        <p style="text-align: center;">로그인하시오</p>
+        <textarea></textarea>
+        <textarea></textarea>
+
+        <button id="login-close">닫기</button>
+
+      </div>
+    </div>
+
+    <div class="nav-menu">
+        <h4 style="margin : 0">Shoes Studio</h4>
+        <a id="nav-sub-button">Products</a>
+    </div>
+
+    <!--products 눌렀을때 메뉴바 뜨게-->
+    <ul class="list-group nav-sub">
+        <li class="list-group-item">Outer</li>
+        <li class="list-group-item">InnerWear</li>
+        <li class="list-group-item">Shirts</li>
+
+    </ul>
+
+
+
+
+
+
+    <div class="jumbotron main-background">
+      <h1 class="display-4">Shoes Studio!</h1>
+      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+      <hr class="my-4">
+      <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+      <a id="login" class="btn btn-primary btn-lg" href="#" role="button">LogIn</a>
+    </div>
+
+    <script>
+        //로그인 버튼
+        $('#login').on('click', function(){    //id=login이라는 로그인창 누르면, 모달창인 black-background 뜨는 코드
+            $('.black-background').fadeIn();
+        })
+
+        //로그인 후 닫기 버튼
+        $('#login-close').on('click', function(){    //id=login이라는 로그인창 누르면, 모달창인 black-background 뜨는 코드
+            $('.white-background').fadeOut();
+        })     
+
+        //products 버튼 (위와 같다)
+        $('#nav-sub-button').click(function(){    //id=login이라는 로그인창 누르면, 모달창인 black-background 뜨는 코드
+            $('.nav-sub').slideToggle();          //눌렀을때 내리고 올리고 자유롭게
+        })
+
+
+
+    </script>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <link href="css/1.css" rel="stylesheet"> 
+
+  </head>
+  <body>
+
+    <div class="alert-box" id="alert">
+      <p id="title">alert 박스</p>
+      <button id="close">닫기</button>
+    </div>
+
+    <button onclick="open_alert('아이디를 입력해주세요')">버튼1</button>
+    <button onclick="open_alert('비밀번호를 입력해주세요')">버튼2</button>            
+
+    <!--onclick => 이 버튼을 클릭하면 이하 코드를 실행하게 하라.
+    id="alert" 요소를 가져와 display:block으로 바꿔라   -->
+
+    <script>
+        document.getElementById('close').addEventListener('click', function(){
+          document.getElementById('alert').style.display = 'none'
+        });
+        
+
+
+    </script>
+   
+
+    <br>
+    <p>-------------------------------------------------수업 내용--------------------------------------------</p>
+    
+  </body>
+  <p>숙제를 eventListener을 사용해서 코딩
+  <p>document.getElementById('close').addEventListener('click', function(){
+  <p>              왼쪽 요소(id가 close)가         클릭(이벤트발생)되면  함수를 실행하라(닫으라)  라는 의미
+  <p>id = 'close'인 녀석이 click이 되면 닫아라 라는 의미</p>
+  
+</html>
+
+
