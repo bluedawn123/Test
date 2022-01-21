@@ -7,3 +7,50 @@
     display: none;  /*ui 숨기기*/
 
 }
+
+.alert-box p{
+    display: inline;
+}
+
+.yellow-bg{
+    background: yellow;
+}
+
+
+
+.main-background{
+    background-image: url(shoes.jpg);
+    background-size : cover;
+    color : white;
+    border-radius: 0px;
+}
+
+.black-background{
+    background : rgba(0,0,0,0.5);
+    position : fixed;
+    z-index : 5;    /*부트스트랩이 1~4를 사용해서 제일 앞으로 보여주기 위함*/
+    width: 100%;
+    height: 100%;
+    display : none;
+    /* visibility: hidden;    */
+}
+
+.white-background{
+    background : white;
+    width : 30%;
+    height: 500px;
+    margin : 100px auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.nav-menu{
+    display: flex;  /*가로배치*/
+    justify-content: space-between;  /*양쪽정렬*/
+    padding : 15px;
+    align-items: center;
+}
+
+.nav-sub{
+    display: none;
+}
