@@ -23,6 +23,7 @@
     background-size : cover;
     color : white;
     border-radius: 0px;
+    height : 650px;
 }
 
 .black-background{
@@ -53,4 +54,19 @@
 
 .nav-sub{
     display: none;
+}
+
+.btn-lg{
+    margin-top: 35px;
+}
+
+#email-alert{
+    display : none;
+    margin-top: 15px;
+
+}
+
+#psw-alert{
+    display: none;
+    margin-top: 15px;
 }
