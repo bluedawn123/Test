@@ -101,5 +101,9 @@ app.get('/list', function(요청, 응답){             //  /list로 접속을 �
 ///////////////////////////////////////////////////삭제 기능 ///////////////////////////////////////////////////////////////////////////
 
 app.delete('/delete', function(요청, 응답){           //list.ejs 에서 DELETE요청을 했으므로, 여기서 DELETE요청하는 코드가 필요
-
+    console.log(요청.body);                          //요청.body 확인 => ajax의 data에서 설정한 것이 온다.  
+    요청.body._id = parseInt(요청.body._id);                                    // id : '1'이므로, int형으로 변환돼어 요청.body의 따옴표가 없어짐
+    db.collection('post').deleteOne(요청.body, function(에러, 결과){     //post컬렉션(글 저장디비)에서 deleteOne(삭제할 것, 콜백함수) 함수 사용
+    console.log('삭제완료');
+     })               
 })
