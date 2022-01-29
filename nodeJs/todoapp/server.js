@@ -104,6 +104,20 @@ app.delete('/delete', function(요청, 응답){           //list.ejs 에서 DELE
     console.log(요청.body);                          //요청.body 확인 => ajax의 data에서 설정한 것이 온다.  
     요청.body._id = parseInt(요청.body._id);                                    // id : '1'이므로, int형으로 변환돼어 요청.body의 따옴표가 없어짐
     db.collection('post').deleteOne(요청.body, function(에러, 결과){     //post컬렉션(글 저장디비)에서 deleteOne(삭제할 것, 콜백함수) 함수 사용
-    console.log('삭제완료');
+        console.log('삭제완료');  //terminal창
+        
+        응답.status(200).send({message : '성공했습니다.'});               //요청 성공시 응답코드 200 송신, 실패시 400
      })               
+})
+
+////////////////////////////////////////////detail 로 접속하면 detail.ejs 보여줌 /////////////////////////////////////////////
+app.get('/detail/:id', function(요청, 응답){       //:아무거나  => :을 붙히면 함수 실행
+    db.collection('post').findOne({_id : parseInt(요청.params.id)}, function(에러, 결과){              // __/ detail/4  면, 요청.params.id 가 4. 즉 4인데이터를 서버에서 갖고오고 결과에 저장됌.
+                                        //params.id가 string이므로 int형이 필요.
+        console.log(결과);              //ex){ _id: 11, '제목': '밥먹기', '날짜': '1.28' }
+        응답.render('detail.ejs', { data : 결과 });               //앞쪽이름으로 뒤쪽데이터로 저장
+
+    })
+    
+
 })
