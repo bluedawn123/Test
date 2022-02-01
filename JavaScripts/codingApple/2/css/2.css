@@ -26,34 +26,15 @@
     height : 650px;
 }
 
-/*.black-background{                ///이건 fadeIn용 css 
-    background : rgba(0,0,0,0.5);
-    position : fixed;
-    z-index : 5;    */                /*부트스트랩이 1~4를 사용해서 제일 앞으로 보여주기 위함*/
-/*  width: 100%;
-    height: 100%;
-    display : none;  
-}*/
-
-/* 아래는 위와 기능은 유사하지만 애니메이트로 위->아래  */
 .black-background{
     background : rgba(0,0,0,0.5);
     position : fixed;
     z-index : 5;    /*부트스트랩이 1~4를 사용해서 제일 앞으로 보여주기 위함*/
     width: 100%;
     height: 100%;
-    display: block;
-    transform : translateY(0px);
-    transition: all 3s;  /*css속성이 변경시 1초에 걸쳐 변경*/
-    /* margin-top: -1000px;  css 애니메이션은 이런거 금지*/
-    transform: translateY(-1000px); /*위로 안보이게*/
+    display : none;
+    margin-top: -10px;
 }
-
-.slide-down{
-    transform : translateY(0px);
-    transition: all 3s;
-} 
-
 
 .white-background{
     background : white;
@@ -79,14 +60,10 @@
     margin-top: 35px;
 }
 
-#login{
-    display: block;
-    width: 140px;
-}
-
 #email-alert{
     display : none;
     margin-top: 15px;
+
 }
 
 #psw-alert{
@@ -95,25 +72,12 @@
 }
 
 .left-menu{
-    width: 150px;
+    width:150px;
     height: 100%;
     background: black;
-    color : white;
-    position: fixed;  /*붕 띄우기*/
-    /* margin-left : -150px;  숨기려고 이건 animate 때 사용*/
-    display : none;
-}
-
-.slide-box{
-    width: 100vw;  /*viewport width(실제 브라우저 화면)로부터 100%차지 */
-    float : left;  /*띄워서 왼쪽정렬*/
-} 
+    color: white;
+    position : fixed;   /*왼쪽에 띄우기*/
+    margin-left : -150px; /*숨기기*/
 
 
-.slide-container{  /*아래 박스 3개를 감싸는 큰 콘테이너*/
-    width: 300vw;
-}
-
-.slide-box img{
-    width: 100%;   /*부모의 크기로부터 100%*/
 }

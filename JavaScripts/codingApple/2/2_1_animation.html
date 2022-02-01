@@ -16,16 +16,13 @@
 
   </head>
   <body>
+    <!-- 안녕  -->
+    <h3 id = "hi">안녕. 그냥 만들어본거. 지우지말지</h3>
 
-    <h4 id=hi>안녕. (필요없는데 안지운거 신경 ㄴㄴ)</h4>
-
+    <!--  -->
     <div class="left-menu">
-      <p style="margin-left: 10px; margin-top: 65px">Menu Title</p>
-      <p id="close-menu" style="margin-left: 10px; margin-top: 650px">Close Menu</p>   
-
+      <p>Menu TItle</p>
     </div>
-
-
 
     <!-- 로그인 모달창 -->
     <div class="black-background">
@@ -70,28 +67,28 @@
       <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
       <hr class="my-4">
       <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-      <!-- 로그인 버튼 -->
-      <a id="login" class="btn btn-primary btn-lg" href="#" role="button">Log In</a>
-
-      <!-- 메뉴 보여주기 버튼 -->
+      <a id="login" class="btn btn-primary btn-lg" href="#" role="button" >Log In</a>
       <a id="show-menu" class="btn btn-danger btn-lg" href="#" role="button">Show Menu</a>
+
     </div>
+
+
 
     <script>
         //로그인 버튼
         $('#login').on('click', function(){    //id=login이라는 로그인창 누르면, 모달창인 black-background 뜨는 코드
             $('.black-background').fadeIn();
-        });
+        })
 
         //로그인 후 닫기 버튼
         $('#close').on('click', function(){    //id=login이라는 로그인창 누르면, 모달창인 black-background 뜨는 코드
             $('.black-background').fadeOut();
-        });   
+        })     
 
         //products 버튼 (위와 같다)
         $('#nav-sub-button').click(function(){    //id=login이라는 로그인창 누르면, 모달창인 black-background 뜨는 코드
             $('.nav-sub').slideToggle();          //눌렀을때 내리고 올리고 자유롭게
-        });
+        })
 
         //로그인 아이디, 비번 공백 방지              //email input에 입력된 값이 빈칸인 경우 form의 전송을 막고 안내문을 띄워야 한다.
         $('form').on('submit', function(e){
@@ -103,43 +100,32 @@
             e.preventDefault();                   //form전송을 막는다. => e.preventDefault(); => form의 전송을 막는다. 
             $('#psw-alert').show();
           }
-        });  
+        })  
 
         // // 이메일인풋 관련 이벤트
         // $('#email').on('change', function(){     //change? => 값이 변하고 focus를 잃는 경우 실행
         // $('#email').on('input', function(){     //input? => 값이 변경된 경우 실행
 
-
-        // //animate 예시. 
+        //안녕 이벤트창
         $('#hi').click(function(){
-        $('#hi').animate( {marginTop : '100px',} );             //css에선 margin-left, 제이쿼리는 marginLeft. 여러개 사용가능
-        });
+          $('#hi').animate( { marginTop: '100px', marginLeft : '100px'}, 5000)
+        })
 
-        // show-menu버튼 클릭 시 메뉴 열기 (fadeIn사용)
-        $('#show-menu').click(function(){
-          $('.left-menu').fadeIn();
-        })    
+        //show-menu버튼 
+        $('#show-menu').click(function(){          //show-menu 버튼을 누르면 class가 left-menu인 것을 찾아서 
+          $('.left-menu').animate( {marginLeft : '0px'}, 1000)    //-150 => 0 해야 보이므로 
+        })     
 
-        // show-menu버튼 클릭 시 메뉴 열기 (animate사용) => 그냥 fadeIn으로 사용
-        // $('#show-menu').click(function(){
-        //   $('.left-menu').animate( {marginLeft:'150px'});
-        // }) 
-
-        // 메뉴 열렸을때 Close Menu 눌렀을 때 메뉴 닫기
-        $('#close-menu').on('click', function(){    //id=login이라는 로그인창 누르면, 모달창인 black-background 뜨는 코드
-            $('.left-menu').fadeOut();
-        }) 
 
 
     </script>
    
 
-
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
+
+
     <p>수업내용</p>
     <p>jquery, js를 이용하면 애니메이션을 쉽게 이용할 수 있다.
     <p>jquery animate( {css속성}, 숫자)   숫자=> n000 (n초)에 걸려서 작동 수행

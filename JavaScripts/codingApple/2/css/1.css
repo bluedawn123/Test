@@ -26,28 +26,15 @@
     height : 650px;
 }
 
-/*.black-background{                ///이건 fadeIn용 css 
-    background : rgba(0,0,0,0.5);
-    position : fixed;
-    z-index : 5;    */                /*부트스트랩이 1~4를 사용해서 제일 앞으로 보여주기 위함*/
-/*  width: 100%;
-    height: 100%;
-    display : none;  
-}*/
-
-/* 아래는 위와 기능은 유사하지만 애니메이트로 위->아래  */
 .black-background{
     background : rgba(0,0,0,0.5);
     position : fixed;
     z-index : 5;    /*부트스트랩이 1~4를 사용해서 제일 앞으로 보여주기 위함*/
     width: 100%;
     height: 100%;
-    display: none;
-    margin-top : -1200px;     /*모달창 위로*/
+    display : none;
+    /* visibility: hidden;    */
 }
-
-
-
 
 .white-background{
     background : white;
@@ -73,14 +60,10 @@
     margin-top: 35px;
 }
 
-#login{
-    display: block;
-    width: 140px;
-}
-
 #email-alert{
     display : none;
     margin-top: 15px;
+
 }
 
 #psw-alert{
@@ -89,12 +72,12 @@
 }
 
 .left-menu{
-    width: 150px;
+    width:150px;
     height: 100%;
     background: black;
-    color : white;
-    position: fixed;  /*붕 띄우기*/
-    /* margin-left : -150px;  숨기려고 이건 animate 때 사용*/
-    display : none;
+    color: white;
+    position : fixed;   /*왼쪽에 띄우기*/
+    margin-left : -150px; /*숨기기*/
+
 
 }
