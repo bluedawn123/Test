@@ -1,0 +1,191 @@
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="css/1.css" rel="stylesheet"> 
+    <script  
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+
+    <h4 id=hi>안녕. (필요없는데 안지운거 신경 ㄴㄴ)</h4>
+
+    <div class="left-menu">
+      <p style="margin-left: 10px; margin-top: 65px">Menu Title</p>
+      <p id="close-menu" style="margin-left: 10px; margin-top: 450px">Close Menu</p>   
+
+    </div>
+
+
+
+    <!-- 로그인 모달창 -->
+    <div class="black-background">
+      <div class="white-background">
+        <p style="text-align: center;">로그인하시오</p>
+
+        <form>
+            <div class="form-group">
+              <input type="email" class="form-control" placeholder="Email" id="email">
+              <!-- 공백시 알림창 -->
+              <p id="email-alert">이메일이 빈칸입니다. 이메일을 입력해주세요</p>
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" placeholder="Password" id="psw">
+              <p id="psw-alert">비밀번호가 빈칸이거나 형식에 맞지 않습니다. 비밀번호를 입력해주세요</p>
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-top: 15px;">전송</button>
+        </form>
+
+        <button class ="btn btn-danger" id="close" style="margin-top: 15px;">닫기</button>
+
+      </div>
+    </div>
+
+    <!-- 메뉴바 -->
+    <div class="nav-menu">
+        <h4 style="margin : 0">Shoes Studio</h4>
+        <a id="nav-sub-button">Products</a>
+    </div>
+
+    <!--products 눌렀을때 메뉴바 뜨게-->
+    <ul class="list-group nav-sub">
+        <li class="list-group-item">Outer</li>
+        <li class="list-group-item">InnerWear</li>
+        <li class="list-group-item">Shirts</li>
+
+    </ul>
+
+    <!-- 메인배경 -->
+    <div class="jumbotron main-background">
+      <h1 class="display-4">Shoes Studio!</h1>
+      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+      <hr class="my-4">
+      <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+      <!-- 로그인 버튼 -->
+      <a id="login" class="btn btn-primary btn-lg" href="#" role="button">Log In</a>
+
+      <!-- 메뉴 보여주기 버튼 -->
+      <a id="show-menu" class="btn btn-danger btn-lg" href="#" role="button">Show Menu</a>
+    </div>
+
+    <h4 clas="my-4 text-center">ShowCase</h4>
+
+    <div class="slide-container">
+      <div class="slide-box">
+        <img src="img/shoes.jpg">
+      </div>
+      <div class="slide-box">
+        <img src="img/travel1.jpg">
+      </div>
+      <div class="slide-box">
+        <img src="img/travel2.jpg">
+      </div>
+    </div>
+
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+
+
+    <script>
+        // fadeIn을 사용한 로그인 버튼
+        // $('#login').on('click', function(){    //id=login이라는 로그인창 누르면, 모달창인 black-background 뜨는 코드
+        //     $('.black-background').fadeIn();
+        // });
+        
+        // 애니메이션을 사용한 로그인 버튼 등장(위에서 아래로)
+        $('#login').on('click', function(){    //id=login이라는 로그인창 누르면, 모달창인 black-background 뜨는 코드
+             $('.black-background').show();    //display : none이므로, modal창을 show()로 보여준다. (위에서 보이는 상태)
+             $('.black-background').animate({marginTop : '0px'});  //(위에있는 것을)-1200에서 0으로 내려오게 한다.
+         
+        //  show().animate()처럼 연속해서 함수를 쓸수도 있다.
+        });
+        
+        //로그인 후 닫기 버튼
+        $('#close').on('click', function(){    //id=login이라는 로그인창 누르면, 모달창인 black-background 뜨는 코드
+            $('.black-background').fadeOut();
+        });   
+
+        //products 버튼 (위와 같다)
+        $('#nav-sub-button').click(function(){    //id=login이라는 로그인창 누르면, 모달창인 black-background 뜨는 코드
+            $('.nav-sub').slideToggle();          //눌렀을때 내리고 올리고 자유롭게
+        });
+
+        // //로그인 아이디, 비번 공백 방지              //email input에 입력된 값이 빈칸인 경우 form의 전송을 막고 안내문을 띄워야 한다.
+        // $('form').on('submit', function(e){
+        //   if ($('#email').val() == ''){           //email 인풋 입력값이 빈칸이면,
+        //     e.preventDefault();                   //form전송을 막는다. => e.preventDefault(); => form의 전송을 막는다. 
+        //     $('#email-alert').show();
+        //   }
+        //   else if ($('#psw').val() == ''){        //비밀번호 인풋 입력값이 빈칸이면,
+        //     e.preventDefault();                   //form전송을 막는다. => e.preventDefault(); => form의 전송을 막는다. 
+        //     $('#psw-alert').show();
+        //   }
+        // });
+
+      
+      // var 이메일안내창 = $('#email-alert');
+
+      //이메일 정규식으로 검증해보자! => email input값이 이메일형식이 아니면 폼 전송 X
+        $('form').on('submit', function(e){
+        var 입력한이메일 = $('#email').val();
+        var 입력한패스워드 = $('#psw').val();
+          
+          if ( /\S+@\S+\.\S+/.test(입력한이메일) == false){           //입력한이메일이 이메일형식이 아니라면, 폼 전송을 막는다. 
+                e.preventDefault();
+                $('#email-alert').show();}
+            
+          if (/[A-Z]/.test(입력한패스워드) == false){           //패스워드에 대문자 없으면 전송 불가하게 만들기
+                e.preventDefault();
+                $('#psw-alert').show();
+            }
+      });  
+
+        // // 이메일인풋 관련 이벤트
+        // $('#email').on('change', function(){     //change? => 값이 변하고 focus를 잃는 경우 실행
+        // $('#email').on('input', function(){     //input? => 값이 변경된 경우 실행
+
+
+        // 안녕 animate 예시. 
+        $('#hi').click(function(){
+        $('#hi').animate( {marginTop : '100px',} );             //css에선 margin-left, 제이쿼리는 marginLeft. 여러개 사용가능
+        });
+
+        // show-menu버튼 클릭 시 메뉴 열기 (fadeIn사용)
+        $('#show-menu').click(function(){
+          $('.left-menu').fadeIn();
+        })    
+
+        // show-menu버튼 클릭 시 메뉴 열기 (animate사용) => 그냥 fadeIn으로 사용
+        // $('#show-menu').click(function(){
+        //   $('.left-menu').animate( {marginLeft:'150px'});
+        // }) 
+
+        // 메뉴 열렸을때 Close Menu 눌렀을 때 메뉴 닫기
+        $('#close-menu').on('click', function(){    //id=login이라는 로그인창 누르면, 모달창인 black-background 뜨는 코드
+            $('.left-menu').fadeOut();
+        }) 
+
+
+    </script>
+   
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+    <p>수업내용--------------------------------------------------------------------------------------------------------</p>
+    <p>버튼을 누르면 이동하면서 다음 슬라이드를 보여준다.
+
+</html>
