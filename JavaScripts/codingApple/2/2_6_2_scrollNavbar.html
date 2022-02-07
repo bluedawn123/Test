@@ -51,9 +51,26 @@
 
     <!-- 메뉴바 -->
     <div class="nav-menu navblack">
-        <h4 style="margin : 0">Shoes Studio</h4>
+        <h4 style="margin : 0" class="large-logo smalllogo">Shoes Studio</h4>
         <a id="nav-sub-button">Products</a>
     </div>
+
+    <!-- 스크롤바 내렸을때 투명해지기 + 조금(100px정도) 내렸을때 작동하도록 -->
+      <script>
+        $(window).on('scroll', function(){
+          if ($(window).scrollTop() > 150){  //만약 스크롤을 ~~~px 내렸을때
+            $('.nav-menu').addClass('nav-black');      //클래스 부착
+            $('.nav-menu h4').addClass('small-logo');  //클래스 부착                                           
+          }
+        //스크롤바 올리면 다시 원상복구 시키기
+          if ($(window).scrollTop() <= 150){  //만약 스크롤을 ~~~px 내렸을때
+            $('.nav-menu').removeClass('nav-black');      //클래스 부착
+            $('.nav-menu h4').removeClass('small-logo');  //클래스 부착                                           
+          }
+
+
+        });
+      </script>
 
     <!--products 눌렀을때 메뉴바 뜨게  ==> 근데 스크롤바를 내린 후 누르면 안된다는 치명적인 단점 존재-->
     <ul class="list-group nav-sub">
@@ -65,14 +82,6 @@
 
     </ul>
 
-    <!-- 스크롤바 내렸을때 투명해지기 + 조금(100px정도) 내렸을때 작동하도록 -->
-    <script>
-        $(window).on('scroll', function(){
-            if ($(window).scrollTop() > 150){  //만약 스크롤을 ~~~px 내렸을때
-                $('.nav-menu').addClass('nav-black');  //클래스 부착
-            }
-        })
-    </script>
 
 
     <!-- 메인배경 -->
@@ -231,12 +240,10 @@
     <p>정규식 검증은 일단 생략</p>
     <p>navbar만들기
     <p>1. nav-menu 투명하게 + 스크롤 내리면 불투명하게 만들기
-    <p>=>        $(window).on('scroll', function(){ });  => window는 viewport의미. 즉 window가 스크롤 되었을때 함수 실행. 많이 쓰면 느려진다.
+    <p>=>        $(window).on('scroll', function(){ });  => window는 viewport의미. 즉 window가 스크롤 되었을때 함수 실행
     <p>$(window).scrollTop() => 스크롤바 위치에 따른 위치 표기(픽셀단위)
-    <p>숙제 
-    <p>1. 
-    <p>2.
     <p>
+    <p>숙제 => 스크롤 내리거나 올렸을때 메뉴바의 크기, 투명도 변경
 
     
 
