@@ -249,7 +249,12 @@
             //     $('.slide-container').css('transform', 'translateX(-200vw)');
             //     지금보이는사진 = 지금보이는사진 + 1;
             // }
-
+        $('.slide-before').click(function() {
+          if ( 지금보이는사진 > 1 ) { 
+          $('.slide-container').css('transform', 'translateX(-' + (지금보이는사진 - 2) + '00vw)');  
+            지금보이는사진 = 지금보이는사진 - 1;
+        }
+        });
 
 
 
