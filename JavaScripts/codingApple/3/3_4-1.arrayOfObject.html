@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="css/form.css" rel="stylesheet"> 
+    <script  
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+
+  </head>
+<body>
+
+    <form>
+        <div class="form-group">
+            <p>상품선택</p>
+            <select class="form-control" id="option1" style="color: blue">
+                <option>모자</option>
+                <option>셔츠</option>
+                <option>바지</option>
+
+
+            </select>
+      
+            <!-- 셔츠 평소엔 가렸다가 실행시 작동 -->
+            <div class="size-select">
+            <p class="mt-4">사이즈 선택</p>
+                <select class="form-control" id="option2" style="color: blue">
+
+                    <!--이 부분에 (템플릿)append에 작성한 것이 들어온다.-->
+
+                </select>
+            </div>
+
+        </div>
+      </form>
+      
+
+    <script>
+    //select인풋에서 셔츠라는 값을 선택하면  //'change'가 들어가는 게 중요하다
+    $('#option1').on('change', function(){
+        //만약 선택한 값이 셔츠면, 그 밑 UI를 보여줌. 사용자가 선택한 값이므로, val()사용
+        if ($('#option1').val() == '셔츠'){
+            //기존에 있던 html흔적들을 없애라
+            $('#option2').html('');
+   
+            var 템플릿 = `<option>95</option>
+            <option>100</option>
+            <option>105</option>`;               //백틱사용
+            
+            $('#option2').append(템플릿);        //붙인다.
+        }
+
+        //만약 선택한 값이 바지면, 바지용 option템플릿을 만들어서 원하는 곳에 append(템플릿)으로 집어넣기
+        var 사이즈 = [26, 27, 28, 29, 30, 31, 32, 34, 36];  //=> 이 경우 템플릿을 넣으면 코드가 너무 길어지므로 foreach문 활용
+        
+        if ($('#option1').val() == '바지'){         //선택한 게 바지
+            $('#option2').html('');                //html초기화
+            
+            // //for문으로 해보기
+            // for (var i =0; i < 사이즈.length; i++){
+            // var 템플릿 = `<option>${사이즈[i]}</option>`;    //사이즈 선택   
+            // $('#option2').append(템플릿);                   //붙이기
+            
+            //forEach문으로 해보기
+            사이즈.forEach(function(i){
+              var 템플릿 = `<option>${i}</option>`;    //사이즈 선택   
+              $('#option2').append(템플릿);            //붙이기
+            });
+          }
+    });
+
+    </script>
+
+
+
+
+
+
+
+
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+    <script>
+ 
+
+
+    </script>
+   
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+  <p>--------------------------------------------수업 내용-----------------------------------</p>
+  <p>
+  <p>
+  <p>
+
+    
+
+
+    
+  <br>
+  <br>
+  <br>
+
+</html>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="css/form.css" rel="stylesheet"> 
+    <script  
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+
+  </head>
+<body>
+
+    <form>
+        <div class="form-group">
+            <p>상품선택</p>
+            <select class="form-control" id="option1" style="color: blue">
+                <option>모자</option>
+                <option>셔츠</option>
+                <option>바지</option>
+
+
+            </select>
+      
+            <!-- 셔츠 평소엔 가렸다가 실행시 작동 -->
+            <div class="size-select">
+            <p class="mt-4">셔츠 사이즈 선택</p>
+                <select class="form-control" id="option2" style="color: blue">
+
+                    <!--이 부분에 (템플릿)append에 작성한 것이 들어온다.-->
+
+                </select>
+            </div>
+
+        </div>
+      </form>
+      
+
+    <script>
+    //select인풋에서 셔츠라는 값을 선택하면  //'change'가 들어가는 게 중요하다
+    $('#option1').on('change', function(){
+        //만약 선택한 값이 셔츠면, 그 밑 UI를 보여줌. 사용자가 선택한 값이므로, val()사용
+        if ($('#option1').val() == '셔츠'){
+            //기존에 있던 html흔적들을 없애라
+            $('#option2').html('');
+   
+            var 템플릿 = `<option>95</option>
+            <option>100</option>
+            <option>105</option>`;               //백틱사용
+            
+            $('#option2').append(템플릿);        //붙인다.
+        }
+        //만약 선택한 값이 바지면, 바지용 option템플릿을 만들어서 원하는 곳에 append(템플릿)으로 집어넣기
+        if ($('#option1').val() == '바지'){
+            //기존에 있던 html흔적들을 없애라
+            $('#option2').html('');
+            
+            var 템플릿 = `<option>28</option>
+            <option>30</option>
+            <option>32</option>`;               
+            
+            $('#option2').append(템플릿);        
+
+        }
+        
+    });
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+    <script>
+ 
+
+
+    </script>
+   
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+  <p>--------------------------------------------수업 내용-----------------------------------</p>
+  <p>수업내용 = form event들에 대해 배운다
+  <p>기존 option들에서 선택하면 또다른 옵션이 나오게 구현 => 역시 특정상황에 작동하게 만들면 된다.
+  <p>즉, 셔츠를 고르면 셔츠 사이즈를 선택할 수 있는 select 폼 구현
+  <p>이벤트는 click, input, change 등등이 있다. 
+  <p>select는 선택만 해도 change이벤트가 발동한다, 
+  <p>input은 값이 바뀔때마다 발동된다.input은 입력후 커서를 떼면 발동된다.
+  <p>사용자가 선택한 값이 셔츠인 경우 => val()를 사용해준다. 셀렉트면 $('select').val() 인풋이면 $('input').val()
+  <br>
+  <p>방법2 => HTML을 자바스크립트로 짜서 넣기. Ui를 줄일 수 있다</p>
+  <p>바지 사이즈 선택 부분은 HTML을 자바스크립트로 짜서 넣게 해본다. $()와 append, 템플릿을 사용</p>
+  <p>하지만, 선택이 변경될 때마다 기존의 HTML이 남아있는 문제가 발생한다. => 
+
+    
+
+
+    
+  <br>
+  <br>
+  <br>
+
+</html>
