@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="css/form.css" rel="stylesheet"> 
+    <link href="css/array.css" rel="stylesheet"> 
     <script  
     src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -16,66 +16,59 @@
   </head>
 <body>
 
-    <form>
-        <div class="form-group">
-            <p>상품선택</p>
-            <select class="form-control" id="option1" style="color: blue">
-                <option>모자</option>
-                <option>셔츠</option>
-                <option>바지</option>
-
-
-            </select>
-      
-            <!-- 셔츠 평소엔 가렸다가 실행시 작동 -->
-            <div class="size-select">
-            <p class="mt-4">사이즈 선택</p>
-                <select class="form-control" id="option2" style="color: blue">
-
-                    <!--이 부분에 (템플릿)append에 작성한 것이 들어온다.-->
-
-                </select>
-            </div>
-
+    <div class="card-group container">
+        <div class="card">
+          <img src="https://via.placeholder.com/600">
+          <div class="card-body">
+            <h5 class="title">Card title</h5>
+            <p class="price">가격 : 70000</p>
+            <button class="btn btn-danger">주문하기</button>
+          </div>
         </div>
-      </form>
+        <div class="card">
+          <img src="https://via.placeholder.com/600">
+          <div class="card-body">
+            <h5 class="title">Card title</h5>
+            <p class="price">가격 : 70000</p>
+            <button class="btn btn-danger">주문하기</button>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://via.placeholder.com/600">
+          <div class="card-body">
+            <h5 class="title">Card title</h5>
+            <p class="price">가격 : 70000</p>
+            <button class="btn btn-danger">주문하기</button>
+          </div>
+        </div>
+      </div>
+
+      <script>  
+      //서버가 보낸 실제상품 데이터라고 가정해보자
+        var products = [  
+          { id : 0, price : 70000, title : 'Blossom Dress' },
+          { id : 1, price : 50000, title : 'Springfield Shirt' },
+          { id : 2, price : 60000, title : 'Black Monastery' }
+        ];  //참고로 이때 products[0] = {id:0, price:70000, title:"blossom dress"}이고 products[0].title = "Blossom Dress"이다 
+
+        //데이터바인딩(꽂아넣기)
+        //1.제목바꾸기. => class명 정해주고 변수 넣어준다. 
+        for (var i = 0; i < 3; i++){
+        $('.title').eq(i).html(products[i].title);               //eq는 html상에서의 0번째 인덱스 의미!!
+        $('.price').eq(i).html("price : " + products[i].price);
+        }
+    </script>
+
+    <!-- 가격순 정렬 버튼 + Js -->
+    <div class="container my-5">
+        <button class="btn btn-danger">가격순정렬</button>
+    </div>
+
+    <script>
+
+    </script>
       
 
-    <script>
-    //select인풋에서 셔츠라는 값을 선택하면  //'change'가 들어가는 게 중요하다
-    $('#option1').on('change', function(){
-        //만약 선택한 값이 셔츠면, 그 밑 UI를 보여줌. 사용자가 선택한 값이므로, val()사용
-        if ($('#option1').val() == '셔츠'){
-            //기존에 있던 html흔적들을 없애라
-            $('#option2').html('');
-   
-            var 템플릿 = `<option>95</option>
-            <option>100</option>
-            <option>105</option>`;               //백틱사용
-            
-            $('#option2').append(템플릿);        //붙인다.
-        }
-
-        //만약 선택한 값이 바지면, 바지용 option템플릿을 만들어서 원하는 곳에 append(템플릿)으로 집어넣기
-        var 사이즈 = [26, 27, 28, 29, 30, 31, 32, 34, 36];  //=> 이 경우 템플릿을 넣으면 코드가 너무 길어지므로 foreach문 활용
-        
-        if ($('#option1').val() == '바지'){         //선택한 게 바지
-            $('#option2').html('');                //html초기화
-            
-            // //for문으로 해보기
-            // for (var i =0; i < 사이즈.length; i++){
-            // var 템플릿 = `<option>${사이즈[i]}</option>`;    //사이즈 선택   
-            // $('#option2').append(템플릿);                   //붙이기
-            
-            //forEach문으로 해보기
-            사이즈.forEach(function(i){
-              var 템플릿 = `<option>${i}</option>`;    //사이즈 선택   
-              $('#option2').append(템플릿);            //붙이기
-            });
-          }
-    });
-
-    </script>
 
 
 
@@ -83,35 +76,27 @@
 
 
 
-
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-
-    <script>
- 
-
-
-    </script>
-   
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
-  <p>--------------------------------------------수업 내용-----------------------------------</p>
-  <p>
-  <p>
-  <p>
+  
 
+
+</body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p>--------------------------------------------수업 내용-----------------------------------</p>
+<p>수업내용 = array 객체를 다뤄본다. 
+<p>개발방식 = 서버가 빈 HTML파일을 보내고, 실제로 채워넣는 것은 자바스크립트를 사용해서 브라우저에서 채워넣는다. 
+<p>array를 정렬할땐 sort()를 사용한다. var 어레이 = [3,4,1,7,40,55,25]; 면 어레이.sort() 하면 정렬이 안돼서 나온다.
+<p>★★★오름차순 = 어레이.sort(function(a,b){ return a - b}); 를 해주면 정렬이 된다. (암기)
+<p>★★★내림차순 = 어레이.sort(function(a,b){ return b - a}); 를 해주면 정렬이 된다. (암기)
+<br>
+<p>수업내용2 = 가격순정렬 버튼을 누르면 sort()를 응용해서 오름차순으로 정리되게 만들어본다.
     
-
-
-    
-  <br>
-  <br>
-  <br>
 
 </html>
