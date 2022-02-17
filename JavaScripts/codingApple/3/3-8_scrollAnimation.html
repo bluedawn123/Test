@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="css/sticky.css" rel="stylesheet"> 
+    <script  
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+
+  </head>
+    <body style="background: grey; height: 3000px;">
+
+        <div class="card-background">
+            <div class="card-box">
+              <img src="img/card1.jpg">
+            </div>
+            <div class="card-box">
+              <img src="img/card2.png">
+            </div>
+            <div class="card-box">
+              <img src="img/card3.jpg">
+            </div>
+        </div>
+
+
+
+    <script> 
+        //window=뷰포트가 scorll 될때마다 함수 실행
+        $(window).scroll(function(){
+            //스크롤 높이 측정하기
+            var 높이 = $(window).scrollTop();
+            console.log(높이) 
+            //측정결과 650~1050에서 작동한다. 즉 650때 투명도 1, 1050때 투명도 0
+
+            //650~1050까지 스크롤바를 내리면 투명도가 변하는 코드를 구해야하는데 일단 먼저 y를 구하기 위한 방정식타임
+            // var y = 기울기 * 높이 + b;
+            // 1 = 기울기 * 650 + b;
+            // 0 = 기울기 * 1150 + b;  //이걸 해보면,
+            // a = -1/500
+            // b = 115/50;  //이므로, 최종적으로는
+
+            var y = (-1/500) * 높이 + 100/50;
+                $('.card-box').eq(0).css('opacity', y);    //왼쪽셀렉터로 찾은 여러개 요수중 n번째. y는 서서히 변하는 것
+
+
+            //스크롤 내릴수록 0.9배로 작아지는 코드
+            var z = (-1/5000) * 높이 + 565/500;
+                $('.card-box').eq(0).css('transform', `scale( ${z} )`);
+        })
+
+
+    </script>
+      
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+
+
+    </body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p>--------------------------------------------수업 내용-----------------------------------</p>
+<p>수업내용 : 
+<p>1 : 스크롤 위치에 따라 변하는 CSS속성인 sticky 활용해보기
+<p>2 : 스크롤 내리면서 투명도 변화 => 시작점과 도착점(스크롤위치)를 파악하고 코드를 작성한다.
+<p>함수를 생각해보자. x축이 높이고 y축(투명도) 라면, x(높이)가 650~1050으로 변할때 y(투명도)는 1에서 0으로 와야한다.
+<p>
+
+    
+
+</html>

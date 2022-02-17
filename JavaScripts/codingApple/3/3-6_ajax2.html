@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="css/ajax.css" rel="stylesheet"> 
+    <script  
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+
+  </head>
+<body>
+
+
+    <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+
+    <button class="btn btn-danger">상품보여주기</button>
+
+
+    <script> 
+    $('.btn-danger').click(function(){
+        $.ajax({
+            url : 'https://codingapple1.github.io/data.json',
+            type : "GET"
+        }).done(function(data){   //ajax요청 성공시 done쓰고, 이후 콜백함수 추가 + data(파라미터)는 가져온 데이터 의미
+            //console.log(data)   => 로그 찍어보면, {brand : }, {model : }, {img: } 출력
+            $('.card-title').html(data.model);
+            $('.card-text').html(data.price);
+            $('.card-img-top').attr('src', data.img);
+
+
+        })
+    });
+ 
+
+    </script>
+      
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+
+
+</body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p>--------------------------------------------수업 내용-----------------------------------</p>
+<p>수업내용 : 별거없다. ajax사용해서 json데이터 가져와서 버튼 눌렀을 때 보여주는 거; 그게 끝
+<p>2.부트스트랩으로 카드포스트 만들고 상품보여주기 버튼 클릭시 어떤서버에 요청해서 상품제목, 설명,가격, 이미지 경로 등을 가져와 정보를 보여줘보자
+<p>
+<p>
+
+    
+
+</html>

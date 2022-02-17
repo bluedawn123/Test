@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="css/array.css" rel="stylesheet"> 
+    <script  
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+
+  </head>
+<body>
+
+    <div class="card-group container">
+        <div class="card">
+          <img src="https://via.placeholder.com/600">
+          <div class="card-body">
+            <h5 class="title">Card title</h5>
+            <p class="price">가격 : 70000</p>
+            <button class="btn btn-danger">주문하기</button>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://via.placeholder.com/600">
+          <div class="card-body">
+            <h5 class="title">Card title</h5>
+            <p class="price">가격 : 70000</p>
+            <button class="btn btn-danger">주문하기</button>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://via.placeholder.com/600">
+          <div class="card-body">
+            <h5 class="title">Card title</h5>
+            <p class="price">가격 : 70000</p>
+            <button class="btn btn-danger">주문하기</button>
+          </div>
+        </div>
+      </div>
+
+    <!-- 가격순 정렬 버튼 + Js -->
+    <div class="container my-5">
+        <button class="btn btn-danger" id="sortPrice">가격순정렬</button>
+        <button class="btn btn-danger" id="abc">가나다정렬</button>
+        <button class="btn btn-danger" id="filter">5만원미만정렬</button>
+
+    </div>
+    
+    <script>  
+      //서버가 보낸 실제상품 데이터라고 가정해보자
+        var products = [  
+          { id : 0, price : 70000, title : 'Blossom Dress' },
+          { id : 1, price : 50000, title : 'Springfield Shirt' },
+          { id : 2, price : 60000, title : 'Black Monastery' }
+        ];  //참고로 이때 products[0] = {id:0, price:70000, title:"blossom dress"}이고 products[0].title = "Blossom Dress"이다 
+
+      //데이터바인딩(꽂아넣기)
+      //1.제목바꾸기. => class명 정해주고 변수 넣어준다.///////////////////////////////////////////////////////////////////////////
+      for (var i = 0; i < 3; i++){
+      $('.title').eq(i).html(products[i].title);               //eq는 html상에서의 0번째 인덱스 의미!!
+      $('.price').eq(i).html("price : " + products[i].price);
+      }
+
+      function 집어넣기(){
+        for (var i = 0; i < 3; i++){
+         $('.title').eq(i).html(products[i].title);               //eq는 html상에서의 0번째 인덱스 의미!!
+         $('.price').eq(i).html("price : " + products[i].price);
+        }
+      }
+
+      //2. 정렬기능만들기 1. sort를 이용한 오름차순 만들기////////////////////////////////////////////////////////////////////////////
+      $('#sortPrice').click(function(){
+        products.sort(function(a,b){    //여기서 a,b는 {} 3개를 의미한다. 오브젝트끼리는 계산이 안되므로, 오브젝트 안의 숫자를 계산해야한다.
+          return a.price - b.price      //여기까지 했다고 완성된건 아니다. 화면에 나타나지 않으므로 구현해줘야 한다. 
+        })
+
+        //이걸 하는 이유?위에 정렬은 다 되어있는 상태지만 html에 되어있는 상태를 다시 입력해주어야 하기 때문!!
+        for (var i = 0; i < 3; i++){
+         $('.title').eq(i).html(products[i].title);               //eq는 html상에서의 0번째 인덱스 의미!!
+         $('.price').eq(i).html("price : " + products[i].price);
+      }
+    })
+      
+
+      //가다나순 정렬버튼  ////////////////////////////////////////////////////////////////////////////////////
+      $('#abc').click(function(){
+        products.sort(function(a,b){
+          //글자를 가나다순으로 정렬? => 부등호 비교
+          //true시 음수산출 => b를 오른쪽, a를 왼쪽으로(sort규칙) => 이렇게 코드짜기
+          //true시 양수산출 => b가 왼쪽으로 가서 sort 불가
+          if (a.title < b.title == true){
+          return -1 
+        } else{
+          return 1
+        } //여기까지 하면 정렬이 되지만 html에 보이지 않기 때문에 위처럼 다시 코드를 짜야한다.
+      })  
+        for (var i = 0; i < 3; i++){
+         $('.title').eq(i).html(products[i].title);               //eq는 html상에서의 0번째 인덱스 의미!!
+         $('.price').eq(i).html("price : " + products[i].price);
+        }
+    })
+
+      //6만원 이하 정렬버튼 기능/////////////////////////////////////////////////////////////////////////////////////////
+      //1. 버튼을 누르면 products를 필터하는 방식 => 6만원이하면, [{}, {}] 만 남는다.
+      $('#filter').click(function(){
+        var 새상품 = products.filter(function(a){
+          return a.price <= 60000
+        });
+
+        //새상품 갯수에 맞게 다시 상품목록 HTML 생성 
+        새상품.forEach(function(a){       //a는 array안에 들어있던 데이터 => [{}, {}] 이런 데이터들
+          var template = `<div>${a.title} ${a.price}</div>`;   //백틱 + $쓰면 글자 중간에 변수 사용 가능
+          $('.card-group').append(template)    //template를 만들고, card-group에 넣음. 그리고 기존 카드(목록)을 삭제해야한다.
+        })
+
+
+      })
+
+    </script>
+      
+
+
+
+
+    <script>
+      //filter함수
+      var 어레이 = [7,8,12,22,54,9];
+      var 뉴어레이 = 어레이.filter(function(a){
+        return a < 4  //조건식
+      })  //가격을 필터주고 싶을때 사용한다.
+     
+      //map함수
+      어레이.map(function(a){
+        return a * 2
+      }) //변환기능을 추가하고 싶을때 사용
+    </script>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+
+
+</body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p>--------------------------------------------수업 내용-----------------------------------</p>
+<p>수업내용 = array 객체를 다뤄본다. 
+<p>개발방식 = 서버가 빈 HTML파일을 보내고, 실제로 채워넣는 것은 자바스크립트를 사용해서 브라우저에서 채워넣는다. 
+<p>array를 정렬할땐 sort()를 사용한다. var 어레이 = [3,4,1,7,40,55,25]; 면 어레이.sort() 하면 정렬이 안돼서 나온다.
+<p>★★★오름차순 = 어레이.sort(function(a,b){ return a - b}); 를 해주면 정렬이 된다. (암기)
+<p>★★★내림차순 = 어레이.sort(function(a,b){ return b - a}); 를 해주면 정렬이 된다. (암기)
+<br>
+<p>수업내용2 = 가격순정렬 버튼을 누르면 sort()를 응용해서 오름차순으로 정리되게 만들어본다.
+<p>수업내용3 = array자료에 필터기능을 주고싶을때 ? => filter함수와 그 안에 조건식을 사용한다.</p>
+<p>수업내용4 = map함수 => 어레이 안에서 새로운 작업을 해서 새로운 어레이를 만들고 싶을때 사용
+<p>
+<p>숙제1. 가나다순 정렬버튼 => 부등호비교해서 true, false가 나옴 => true이고 음수를 산출시키면 . 음수면 왼쪽, (sort함수의 원리.)
+<p>숙제2. 5만원 이하 필터버튼 </p>
+    
+
+</html>

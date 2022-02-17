@@ -1,0 +1,35 @@
+.grey{
+    background: lightgrey;
+    height: 2000px;
+    margin-top: 500px;
+}
+
+.image{  
+    float: right;  /*띄워서 오른쪽*/
+    width: 700px;
+    position: sticky;  /*조건부의 position fixed = 스크롤 내리다가 고정*/
+    top: 150px;
+}
+
+.text{
+    float: left;   /*띄워서 왼쪽*/
+    width: 500px;
+}
+
+.card-background {
+    height: 3000px;     /*총 스크롤 길이*/
+    /*사진들 위치 = 위에서 400px, 아래서 1600px*/
+    margin-top: 400px;  
+    margin-bottom: 1600px;
+  }
+  
+  .card-box img {      /*card-box 안의 모든 img들(3개)*/
+    display: block;
+    margin: auto;      /*가운데정렬*/
+    max-width: 80%;
+  }
+  .card-box {
+    position: sticky;
+    top: 400px;        /*sticky 활용 좌표*/  
+    margin-top: 500px; /*카드간 간격. 길수록 아래에 위치(눈에는 안보임)*/
+  }
