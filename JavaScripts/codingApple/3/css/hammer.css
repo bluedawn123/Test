@@ -110,8 +110,16 @@
 
 .slide-container{
     width: 300vw;
-    transition: transform 2s;  /*애니메이션*/
+    /* transition: transform 3s;  애니메이션 */
 }
+
+/*pan을 사용하면 transition: transform 버그 때문에 새로운 클래스 생성
+.slide-container에 있으면 항상 적용이 되기 때문에 이렇게 분리!!
+마우스를 드래그 할때는 transition이 없었으면 좋겠고 마우스를 떼면 있었으면 좋겠으니!*/
+.transforming{
+    transition: transform 1s;
+}
+
 
 .slide-box{
     width: 100vw;      /*viewport width(실제 브라우저 화면)로부터 100%차지 */

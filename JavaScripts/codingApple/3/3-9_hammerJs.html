@@ -115,7 +115,7 @@
 
     <!---------------------------------------------- carosel  -------------------------------------------->
     <div style="overflow:hidden; position:relative;">         <!--넘치는 애들 + 스크롤 바 안보이게 하기-->
-        <div class="slide-container">
+        <div class="slide-container transforming">            
             <div class="slide-box">
                 <img src="img/shoes.jpg">
             </div>
@@ -170,7 +170,8 @@
 
 
     <script>
-    ////////////////////////hammer.js////////////////////////
+//////////////////////////////////////////////////////hammer.js////////////////////////////////////////////////////////////
+    var 지금보이는사진
     var 이미지1 = document.querySelectorAll('.slide-box img')[0]   //위3개중 첫번째
 
     var 매니저 = new Hammer.Manager(이미지1);             //어떤 요소에 터치기능 개발을 할건지. 이미지1의 터치이벤트 담당매니저
@@ -178,7 +179,29 @@
 
     매니저.on('pan', function(e){
         console.log(e.deltaX)  //어느쪽으로 슬라이드를 했는지 알 수 있다
+        //만약 왼쪽으로 그림을 슬라이드 했을때... => 슬라이드(e.deltaX) 한 만큼 박스를 왼쪽으로 이동시키는 것
+        if( e.deltaX < -1){
+          $('.slide-container').css('transform', 'translateX(' + e.deltaX + 'px)' );
+        }
 
+        //마우스 떼면 이미지2가 나와야 한다. 
+        //만약 마우스를 놓으면, (즉 끌어다가 넘기면서 마우스를 놓는 순간)
+        if (e.isFinal && 지금보이는사진==1){
+          //부드럽게 + 두번째 사진으로 변해야한다. 부드럽게 하고 pan버그 안 일어나게 하려고 잠깐 클래스를 붙혔다뗐다 해야한다.
+          $('.slide-container').addClass('transforming');                     //여기다가 transforimg class 추가
+          $('.slide-container').css('transform', 'translateX(-100vw)');
+
+          //제거시점 ? => 사진이 n초 후에 부드럽게 넘어간 이후. 여기선 css에 1초로 명시
+          setTimeout(function(){
+            $('.slide-container').removeClass('transforming');                //여기다가 transforimg class 제거
+          }, 1000)  //1000 = 1초
+          
+
+        }
+
+    
+    
+    
     })
 
 
@@ -308,8 +331,8 @@
   <p>슬라이드 터치 기능을 만들어 본다. => 호환성 문제로 hammer.js 를 설치해서 한다.
   <p>1. 일단 자바스크립트 셀렉터로 기능개발할 요소를 찾는다.
   <p>2. new Hammer.Manager() / add()로 요소를 등록한다. => 어떤 요소를 내가 hammer.js로 작동시킬지 정의해야한다.
-  <p>
-  <p>
+  <p>transforming 이라는 클래스를 만든다. 이유? => 마우스를 놓는 순간 부드럽게 넘어가게 하기 위해서
+  <p>근데 모든 곳에 사용하면 안되므로(pan 특성) 필요한 곳에만 쓴다.
  
   <br>
   <br>
