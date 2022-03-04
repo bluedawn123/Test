@@ -9,7 +9,7 @@ app.set('view engine', 'ejs');                             //ejs설치
 var db  //변수 필요해서 생성
 MongoClient.connect('mongodb+srv://haemilyjh:dkskwp123@cluster0.dfc2c.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', function(에러, client){  //url에 접속되면 아래코드실행
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////에러 처리///////////////////////////////////////////////////////////////
     if(에러) {return console.log(에러)}      //에러발생시 출력
 
     db = client.db('todoapp');              //변수 db <= todoapp이라는 database폴더에 연결
@@ -18,9 +18,9 @@ MongoClient.connect('mongodb+srv://haemilyjh:dkskwp123@cluster0.dfc2c.mongodb.ne
     // db.collection('post').insertOne( {이름 : 'john', 나이 : 20}, function(에러, 결과){
     //     console.log('저장완료');
     // });    
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////연결 확인////////////////////////////////////////////////////////////////////////
 
-    app.listen('8080', function(){
+    app.listen('8080', function(){                //로컬 포트 번호
       console.log('locallost 8080 실행완료')      //db접속되면 콘솔창에 실행
     });
   })
@@ -31,9 +31,9 @@ app.get('/pet', function(request, answer){
     answer.send('펫용품 쇼핑 할 수 있는 사이트 입니다..');
 })
 
-// get / => 홈페이지
+// get / => /하나면 홈
 app.get('/', (request, answer) => {
-    answer.sendFile(__dirname + '/index.html')
+    answer.sendFile(__dirname + '/index.html')  //sendfile을 쓰면 html등 파일을 보낼 수 있다.
 })
 
 // /write로 접속
@@ -45,14 +45,19 @@ app.get('/write', (request, answer) => {
 app.get('/write2', (request, answer) => {
     answer.sendFile(__dirname + '/write2.html');
 } )
+
+//sendok으로 접속
 app.get('/sendok', (request, answer) => {
     answer.sendFile(__dirname + '/sendok.html');
 } )
 
 ///////////////////////////////////////////////////    데이터 보내기 //////////////////////////////////////////////////////////////////////////////////////////////////
-//데이터를 submit 하면 데이터가 보내지고 /add창이 뜬다. (html 부분 확인)add 경로로 post 요청을 ____.html에서 했으면 ~~~를 실행하라. 
+//데이터를 submit 하면 데이터가 보내지고 /add창이 뜬다. (html 부분 확인)add 경로로 post 요청을 ~~~~.html에서 했으면 ~~~를 실행하라. 
 //참고로 form에서 post한 데이터들은 첫 파라미터(요청)에 들어있다.  + //body-parser설치(=> submit, input, post한 데이터를 꺼내쓰려고 설치)
+//
 app.post('/add', (요청, 응답) => {
+    //console.log(요청.body) -> {title : '~~', date : '~~~~'} 이렇게 출력하게 된다. 고로 body는 write.html의 전송된 데이터이다. 거기서 body.title등으로 응용
+    
     응답.sendFile(__dirname + '/add.html');  //전송시 add.html 창 오픈
 
 //글 번호 넘버링 => 1. _id 넘버링(영구지정 + 총게시물수+1)를 하기 위해 데이터컬렉션에서 데이터 찾는다
@@ -62,7 +67,7 @@ app.post('/add', (요청, 응답) => {
 
     //atlas에 데이터 저장하기 => add라는 경로로 post요청을 하면, 데이터 2개(날짜, 제목)전송.즉'post'라는 이름의 collection에 데이터 두개(제목,날짜)를 저장하기. 
     db.collection('post').insertOne({ _id : 총게시물갯수 + 1, 제목 : 요청.body.title, 날짜 : 요청.body.date}, function(에러, 결과){  //서버에 데이터 저장!
-        console.log('저장완료');  //실행 후 에러 없으면 실행
+        console.log('데이터 보내기 저장완료');  //실행 후 에러 없으면 실행
 
         //counter컬렉션에 있는 totalPost도 하나씩 업데이트해서 증가시켜야 한다.
         db.collection('counter').updateOne({name:'게시물갯수'}, { $inc : {totalPost:1} }, function(에러, 결과){  //operator. $set=> 바꿀값, $inc=>기존값에 더해줄 값 등등
@@ -85,14 +90,14 @@ app.post('/add', (요청, 응답) => {
 // /list로 get요청하면 실제 db에 저장된 데이터들로 저장할 것들을 보여줌. 
 app.get('/list', function(요청, 응답){             //  /list로 접속을 하면 함수 수행
     //1. //디비에 저장된 post라는 collection안의 모든 데이터 꺼내기
-    db.collection('post').find().toArray(function(에러, 결과){          //컬렉센이 post인 데이터를 다루겠다. find() 까지만 하면 메타데이터도 오므로, toArray()도 붙혀준다.
+    db.collection('post').find().toArray(function(에러, 결과){     //컬렉센이 post인 데이터를 다루겠다. find() 까지만 하면 메타데이터도 오므로, toArray()도 붙혀준다.
         
     console.log(결과);         //가져온 데이터 콘솔창에 출력
     // _id: new ObjectId("61f10b827737edd6157940fb"),
     // '제목': 'posts 에러 해걸',
     // '날짜': '1.26 5:51'        형태
 
-    응답.render('list.ejs', { postings : 결과});  //2. 1번에서 갖고온 데이터를 ejs파일에 집어넣어 데이터 보여주기
+    응답.render('list.ejs', { postings : 결과});    //2. 1번에서 갖고온 데이터 posting로 저장해 ejs파일에 집어넣어 데이터 보여주기
     });     
 
 })
