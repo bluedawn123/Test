@@ -66,6 +66,7 @@ app.post('/add', (요청, 응답) => {
         let 총게시물갯수 = 결과.totalPost;
 
     //atlas에 데이터 저장하기 => add라는 경로로 post요청을 하면, 데이터 2개(날짜, 제목)전송.즉'post'라는 이름의 collection에 데이터 두개(제목,날짜)를 저장하기. 
+    //서버의 post컬럭션에 데이터 저장!
     db.collection('post').insertOne({ _id : 총게시물갯수 + 1, 제목 : 요청.body.title, 날짜 : 요청.body.date}, function(에러, 결과){  //서버에 데이터 저장!
         console.log('데이터 보내기 저장완료');  //실행 후 에러 없으면 실행
 
@@ -97,7 +98,7 @@ app.get('/list', function(요청, 응답){             //  /list로 접속을 �
     // '제목': 'posts 에러 해걸',
     // '날짜': '1.26 5:51'        형태
 
-    응답.render('list.ejs', { postings : 결과});    //2. 1번에서 갖고온 데이터 posting로 저장해 ejs파일에 집어넣어 데이터 보여주기
+    응답.render('list.ejs', {postings : 결과});    //2. 1번에서 갖고온 결과(데이터)를 posting로 저장해 ejs파일에 집어넣어 데이터 보여주기
     });     
 
 })
