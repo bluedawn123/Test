@@ -10,9 +10,11 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+    
     <title>Hello, world!</title>
 
   </head>
+  
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Todo App</a>
@@ -45,7 +47,7 @@
     <% for (var i = 0;  i < postings.length ; i++){ %>             데이터 길이만큼 post한 데이터 불러오기!
       <h4>할일 제목 : <%= postings[i].제목 %></h4>
       <p>할일 마감 날짜 : <%= postings[i].날짜 %></p>
-      <button>삭제</button>                           delete, put은 html로는 안된다. 방법1 : method-override라이브러리, 방법2 : ajax이용해서 서버에서 삭제
+      <button>삭제</button>     //delete, put은 html로는 안된다. 방법1 : method-override라이브러리, 방법2 : ajax이용해서 서버에서 삭제
       
     <% } %>      이거랑 부트스트랩이랑 합쳐서 아래 코드완성-->
 
@@ -56,8 +58,9 @@
         <p>글번호 : <%= postings[i]._id%></p>
         <h4>할일 제목 : <%= postings[i].제목 %></h4>
         <p>할일 마감 날짜 : <%= postings[i].날짜 %></p>
-        <button class="delete" data-id="<%= postings[i]._id%>">삭제</button>   <!--delete, put은 html로는 안된다. 방법1 : method-override라이브러리 
-                               버튼에 아이디 부여 (data-id속성에 _id를 숨겨주세요)                                 방법2 : ajax이용해서 서버에서 삭제-->
+        
+        <button class="delete" data-id= "<%= postings[i]._id%>" >삭제</button>   <!--delete, put은 html로는 안된다. 방법1 : method-override라이브러리 
+                               버튼에 아이디 부여 (data-id속성에 _id를 숨겨주세요)                  방법2 : ajax이용해서 서버에서 삭제-->
       </li>
       <% } %>
     </ul>
@@ -74,13 +77,13 @@
         $.ajax({
           method : 'DELETE',             //뭘 할래?
           url : '/delete',               //경로 => 서버에 /delete 경로로 DELETE 요청 => 서버에서 DELETE요청 코드 필요(server.js)
-          data : {_id : 글번호}               //요청과 함께 보낼 데이터. 삭제의 경우 '무엇을'삭제할것인가 의미. ex) {_id : 1} 이면 아이디가 1인 전송
+          data : {_id : 글번호}     //하드코딩하면 안돼기 때문...요청과 함께 보낼 데이터. 삭제의 경우 '무엇을'삭제할것인가 의미. ex) {_id : 1} 이면 아이디가 1인 전송
                                          //해당 버튼을 눌렀을 때 해당 데이터가 삭제돼야한다. => 클릭한 버튼의 아이디  
       
       }).done(function(결과){                //(서버에서 응답 성공시)ajax요청이 성공 후 함수 실행
         
         console.log('성공했습니다.');      //브라우저 console창
-        지금누른거.parent('li').fadeOut();               //누른것의 부모님 => li태그 를 fadeOut
+        지금누른거.parent('li').fadeOut(); //바로반영이 안되므로 삭제된 것을 안보이게 해주자 => 누른것의 부모님 => li태그 를 fadeOut
 
     }).fail(function(){                    //요청 실패시 실행
 
