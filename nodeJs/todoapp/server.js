@@ -9,6 +9,10 @@ app.set('view engine', 'ejs');                             //ejs설치
 var db  //변수 필요해서 생성
 MongoClient.connect('mongodb+srv://haemilyjh:dkskwp123@cluster0.dfc2c.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', function(에러, client){  //url에 접속되면 아래코드실행
 
+app.use('/public', express.static('public'));
+
+
+
 /////////////////////////////////////////////////////에러 처리///////////////////////////////////////////////////////////////
     if(에러) {return console.log(에러)}      //에러발생시 출력
 
@@ -86,7 +90,7 @@ app.post('/add', (요청, 응답) => {
 // /list로 get요청하면 실제 db에 저장된 데이터들로 저장할 것들을 보여줌. 
 app.get('/list', function(요청, 응답){             //  /list로 접속을 하면 함수 수행
     //1. //디비에 저장된 post라는 collection안의 모든 데이터 꺼내기
-    db.collection('post').find().toArray(function(에러, 결과){     //컬렉센이 post인 데이터를 다루겠다. find() 까지만 하면 메타데이터도 오므로, toArray()도 붙혀준다.
+    db.collection('post').find().toArray(function(에러, 결과){   //컬렉센이 post인 데이터를 다루겠다. find() 까지만 하면 메타데이터도 오므로, toArray()도 붙혀준다.
         
     console.log(결과);         //가져온 데이터 콘솔창에 출력
     // _id: new ObjectId("61f10b827737edd6157940fb"),
@@ -116,11 +120,15 @@ app.delete('/delete', function(요청, 응답){           //list.ejs 에서 DELE
 
 ////////////////////////////////////////////detail 로 접속하면 detail.ejs 보여줌 /////////////////////////////////////////////
 app.get('/detail/:id', function(요청, 응답){       //:아무거나  => :을 붙히면 함수 실행
-    db.collection('post').findOne({_id : parseInt(요청.params.id)}, function(에러, 결과){   // __/ detail/4  면, 요청.params.id 가 4. 즉 4인데이터를 서버에서 갖고오고 결과에 저장됌.
-                                        //params.id가 string이므로 int형이 필요. 요청.id는 문자이므로, 
+    db.collection('post').findOne({_id : parseInt(요청.params.id)}, function(에러, 결과){   
+        // 만약 __/ detail/4 면, 요청.params.id 가 4. 즉 4인데이터를 서버에서 갖고오고 결과에 저장됌. (아래아래 읽어보기)
+        //즉, params.id가 string이므로 int형이 필요. 요청.id는 문자이므로, 
+        //★★만약, detail/11면, _id: parseInt(요청.params.5)가 되고 parseInt떄문에 숫자형으로 전환! 그럼 _id:11인 데이터를 갖고와 아래아래처럼 저장한다.
+        
         console.log('삭제완료')
         console.log(결과);              //ex){ _id: 11, '제목': '밥먹기', '날짜': '1.28' }
-        응답.render('detail.ejs', { data : 결과 });               //앞쪽이름으로 뒤쪽데이터로 저장
+        
+        응답.render('detail.ejs', { data : 결과 });      //앞쪽이름으로 뒤쪽데이터로 저장. 즉 위의 결과를 data로 저장해서 detail.ejs로 보낸다.
 
     })
     

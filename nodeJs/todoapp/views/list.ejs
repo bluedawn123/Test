@@ -9,7 +9,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <!-- css파일 첨부 -->
+    <link rel="stylesheet" href="/public/main.css">
     
     <title>Hello, world!</title>
 
@@ -27,31 +28,19 @@
               <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Write</a>
+              <a class="nav-link" href="/write">Write</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">임시</a>
+              <a class="nav-link" href="/list">list</a>
             </li>
           </ul>
         </div>
       </nav>
     
-    <h4 class="ml-3 my-3" style="color : blue;">서버에서 가져온 할일 리스트</h4>
+    <h4 class="ml-3 my-3 text-center" style="color : blue;">서버에서 가져온 할일 리스트</h4>
 
-<!-- 서버에서 가져온 할일 리스트 만들기 => EJS 설치 => html과 비슷한데 서버데이터를 집어 넣을 수 있다-->
 <!-- 서버에서 가져온 할일 리스트 -->
-<!--<h4>할일 제목 : <%= postings[0].제목 %></h4>                     postings라고만 쓰면 server.js에서 array자료형인 object소환-->
-<!--<p>할일 마감 날짜 : <%= postings[0].날짜 %></p>                  0번은, 첫번째 쓴 데이터 의미. -->
-    
-<!-- server.js의 posting : 결과기 때문에 아래 코드 입력이 반복수행해서 길이만큼 보여줌 
-    <% for (var i = 0;  i < postings.length ; i++){ %>             데이터 길이만큼 post한 데이터 불러오기!
-      <h4>할일 제목 : <%= postings[i].제목 %></h4>
-      <p>할일 마감 날짜 : <%= postings[i].날짜 %></p>
-      <button>삭제</button>     //delete, put은 html로는 안된다. 방법1 : method-override라이브러리, 방법2 : ajax이용해서 서버에서 삭제
-      
-    <% } %>      이거랑 부트스트랩이랑 합쳐서 아래 코드완성-->
-
-
+<div class="container">
     <ul class="list-group">  <!--데이터 보여주기(list페이지) + 반복문-->
       <% for (var i = 0;  i < postings.length ; i++){ %>             <!--데이터 길이만큼 post한 데이터 불러오기!-->
       <li class="list-group-item">
@@ -59,11 +48,12 @@
         <h4>할일 제목 : <%= postings[i].제목 %></h4>
         <p>할일 마감 날짜 : <%= postings[i].날짜 %></p>
         
-        <button class="delete" data-id= "<%= postings[i]._id%>" >삭제</button>   <!--delete, put은 html로는 안된다. 방법1 : method-override라이브러리 
+        <button class="btn btn-danger delete" data-id= "<%= postings[i]._id%>" >삭제</button>   <!--delete, put은 html로는 안된다. 방법1 : method-override라이브러리 
                                버튼에 아이디 부여 (data-id속성에 _id를 숨겨주세요)                  방법2 : ajax이용해서 서버에서 삭제-->
       </li>
       <% } %>
     </ul>
+  </div>
 
 
     <!-- 삭제 기능 구현을 위한 ajax 설정 -->
