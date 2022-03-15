@@ -2,16 +2,14 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended : true}));        //body-parser 는 요청 데이터 해석을 도와준다.
-
 const MongoClient = require('mongodb').MongoClient;        //몽고디비 설치
 app.set('view engine', 'ejs');                             //ejs설치
-
 var db  //변수 필요해서 생성
 MongoClient.connect('mongodb+srv://haemilyjh:dkskwp123@cluster0.dfc2c.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', function(에러, client){  //url에 접속되면 아래코드실행
-
 app.use('/public', express.static('public'));
 
-
+const methodOverride = require('method-override')
+app.use(methodOverride('_method'))
 
 /////////////////////////////////////////////////////에러 처리///////////////////////////////////////////////////////////////
     if(에러) {return console.log(에러)}      //에러발생시 출력
@@ -30,39 +28,59 @@ app.use('/public', express.static('public'));
   })
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
 // get요청 => 누군가가 /pet 으로 방문하면.. pet 관련된 안내문을 띄워보기
 app.get('/pet', function(request, answer){
     answer.send('펫용품 쇼핑 할 수 있는 사이트 입니다..');
 })
 
+app.get('/todoapp', (request, answer) => {
+    //  answer.sendFile(__dirname + '/index.html')  //sendfile을 쓰면 html등 파일을 보낼 수 있다. ejs쓸거기 때문에 안씀
+    answer.render('index.ejs')
+})
+
+
 // get / => /하나면 홈
-app.get('/', (request, answer) => {
-    answer.sendFile(__dirname + '/index.html')  //sendfile을 쓰면 html등 파일을 보낼 수 있다.
+app.get('/index', (request, answer) => {
+    //  answer.sendFile(__dirname + '/index.html')  //sendfile을 쓰면 html등 파일을 보낼 수 있다. ejs쓸거기 때문에 안씀
+    answer.render('index.ejs')
 })
 
 // /write로 접속
 app.get('/write', (request, answer) => {
-    answer.sendFile(__dirname + '/write.html');
+    //answer.sendFile(__dirname + '/write.html'); ejs쓸거기 때문에 안씀
+    answer.render('write.ejs')
+} )
+
+// NotYet로 접속
+app.get('/notyet', (request, answer) => {
+    //answer.sendFile(__dirname + '/write.html'); ejs쓸거기 때문에 안씀
+    answer.render('notyet.ejs')
 } )
 
 // /write2로 접속
 app.get('/write2', (request, answer) => {
-    answer.sendFile(__dirname + '/write2.html');
+    answer.sendFile(__dirname + '/write2.html'); 
 } )
 
 //sendok으로 접속
 app.get('/sendok', (request, answer) => {
-    answer.sendFile(__dirname + '/sendok.html');
+    //answer.sendFile(__dirname + '/sendok.html'); ejs쓸거기 때문에 안씀
 } )
+
+
+
 
 ///////////////////////////////////////////////////    데이터 보내기 //////////////////////////////////////////////////////////////////////////////////////////////////
 //데이터를 submit 하면 데이터가 보내지고 /add창이 뜬다. (html 부분 확인)add 경로로 post 요청을 ~~~~.html에서 했으면 ~~~를 실행하라. 
 //참고로 form에서 post한 데이터들은 첫 파라미터(요청)에 들어있다.  + //body-parser설치(=> submit, input, post한 데이터를 꺼내쓰려고 설치)
-//
 app.post('/add', (요청, 응답) => {
     //console.log(요청.body) -> {title : '~~', date : '~~~~'} 이렇게 출력하게 된다. 고로 body는 write.html의 전송된 데이터이다. 거기서 body.title등으로 응용
     
-    응답.sendFile(__dirname + '/add.html');  //전송시 add.html 창 오픈
+    // 응답.sendFile(__dirname + '/add.html');  //전송시 add.html 창 오픈
+    응답.redirect('/write')
+
+
 
 //글 번호 넘버링 => 1. _id 넘버링(영구지정 + 총게시물수+1)를 하기 위해 데이터컬렉션에서 데이터 찾는다
     db.collection('counter').findOne({name : '게시물갯수'}, function(에러, 결과){
@@ -86,6 +104,9 @@ app.post('/add', (요청, 응답) => {
 
 
 
+
+
+
 /////////////////////////////////////////////////// /list에서 데이터 보여주기  /////////////////////////////////////////////////
 // /list로 get요청하면 실제 db에 저장된 데이터들로 저장할 것들을 보여줌. 
 app.get('/list', function(요청, 응답){             //  /list로 접속을 하면 함수 수행
@@ -103,6 +124,9 @@ app.get('/list', function(요청, 응답){             //  /list로 접속을 �
 })
 
 
+
+
+
 ///////////////////////////////////////////////////삭제 기능 ///////////////////////////////////////////////////////////////////////////
 //요청.body에 담겨온 게시물번호를 가진 글을 db에서 찾아서 삭제하는 기능
 app.delete('/delete', function(요청, 응답){           //list.ejs 에서 DELETE요청을 했으므로, 여기서 DELETE요청하는 코드가 필요
@@ -118,19 +142,72 @@ app.delete('/delete', function(요청, 응답){           //list.ejs 에서 DELE
      })               
 })
 
+
+
+
 ////////////////////////////////////////////detail 로 접속하면 detail.ejs 보여줌 /////////////////////////////////////////////
 app.get('/detail/:id', function(요청, 응답){       //:아무거나  => :을 붙히면 함수 실행
     db.collection('post').findOne({_id : parseInt(요청.params.id)}, function(에러, 결과){   
-        // 만약 __/ detail/4 면, 요청.params.id 가 4. 즉 4인데이터를 서버에서 갖고오고 결과에 저장됌. (아래아래 읽어보기)
+        // 만약 __/ detail/4 면, detail/:id의 :id 가 4이다. 즉 _id: 4가 되어야 한다.
+        //그러려면 요청.params.id 가 4(이유는 다음줄)여야 한다. 즉 4인데이터를 서버에서 갖고오고 결과에 저장됌. (아래아래 읽어보기)
         //즉, params.id가 string이므로 int형이 필요. 요청.id는 문자이므로, 
         //★★만약, detail/11면, _id: parseInt(요청.params.5)가 되고 parseInt떄문에 숫자형으로 전환! 그럼 _id:11인 데이터를 갖고와 아래아래처럼 저장한다.
-        
+        //post디비에서 _id가 url값이랑 같아야 해당 게시물을 갖고 올 수 있기 때문
+
         console.log('삭제완료')
         console.log(결과);              //ex){ _id: 11, '제목': '밥먹기', '날짜': '1.28' }
         
         응답.render('detail.ejs', { data : 결과 });      //앞쪽이름으로 뒤쪽데이터로 저장. 즉 위의 결과를 data로 저장해서 detail.ejs로 보낸다.
-
     })
+})
+
+// ///////////////////////////////////////////////수정페이지 만들기/////////////////////////////////////
+app.get('/edit/:id', function(요청, 응답){
+    // edit/숫자 로 접속하면 숫자게시물의 날짜, 제목을 edit.ejs로 보냄
+    db.collection('post').findOne({ _id : parseInt(요청.params.id)}, function(에러, 결과){   
+    //post디비에서 _id가 url값이랑 같아야 해당 게시물을 갖고 올 수 있기 때문
     
+        console.log('edit 창 열기 완료')
+        console.log(결과);       // { _id: 24, '제목': '알바가기', '날짜': '3.9' } 로 object형으로 나타난다. 
+        응답.render('edit.ejs', { post : 결과 })   //같은 결과를 edit/숫자 에서 post로 이용 가능하다. 위와 동일
+    })
+})
+
+
+app.put('/edit', function(요청, 응답){  //edit으로 수정(put)요청시, 폼에 담긴 데이터들을 가지고 db에 업데이트 
+    db.collection('post').updateOne( {_id : parseInt(요청.body.id) }, {$set : { 제목:요청.body.title, 날짜:요청.body.date }}, function(){ 
+    //updateOne는 (어떤데이터를수정할것인가, 수정값, 콜백함수) 3개의 파라미터를 갖는다.
+    //_id를 edit.ejs에서 설정한 id값으로 업데이트 한다.
+        console.log('수정완료')
+        응답.redirect('/list')
+
+    });
 
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+// app.put('/edit', function(요청, 응답){  //edit으로 수정(put)요청시, 폼에 담긴 데이터들을 가지고 db에 업데이트 
+//     db.collection('post').updateOne( {_id : parseInt(요청.body.id) }, {$set : { 제목 : 요청.body.title , 날짜 : 요청.body.date }}, function(){ 
+//     //updateOne는 (어떤데이터를수정할것인가, 수정값, 콜백함수) 3개의 파라미터를 갖는다.
+//     //_id를 edit.ejs에서 설정한 id값으로 업데이트 한다.
+//         console.log('수정완료')
+//         응답.redirect('/list')
+
+//     });
+
+// })
