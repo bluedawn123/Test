@@ -169,15 +169,16 @@ app.get('/edit/:id', function(요청, 응답){
     
         console.log('edit 창 열기 완료')
         console.log(결과);       // { _id: 24, '제목': '알바가기', '날짜': '3.9' } 로 object형으로 나타난다. 
-        응답.render('edit.ejs', { post : 결과 })   //같은 결과를 edit/숫자 에서 post로 이용 가능하다. 위와 동일
+        응답.render('edit.ejs', { post : 결과 });   //같은 결과를 edit/숫자 에서 post로 이용 가능하다. 위와 동일
     })
 })
 
 
-app.put('/edit', function(요청, 응답){  //edit으로 수정(put)요청시, 폼에 담긴 데이터들을 가지고 db에 업데이트 
-    db.collection('post').updateOne( {_id : parseInt(요청.body.id) }, {$set : { 제목:요청.body.title, 날짜:요청.body.date }}, function(){ 
+app.put('/edit/', function(요청, 응답){  //edit으로 수정(put)요청시, 폼에 담긴 데이터들을 가지고 db에 업데이트 
+    db.collection('post').updateOne( {_id : parseInt(요청.body.id) }, {$set : { 제목:요청.body.title, 날짜:요청.body.date }}, function(에러, 결과){ 
     //updateOne는 (어떤데이터를수정할것인가, 수정값, 콜백함수) 3개의 파라미터를 갖는다.
     //_id를 edit.ejs에서 설정한 id값으로 업데이트 한다.
+        
         console.log('수정완료')
         응답.redirect('/list')
 
