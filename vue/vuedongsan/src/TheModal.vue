@@ -10,16 +10,12 @@
       <p>{{month}} 개월 선택 : {{원룸들[누른거].price * month}} 원 </p>  <!--month라고 저장헀으니 사용자가 입력한 데이터값을 month라고 저장한다. -->
     
 
-      <button @click="$emit('closeModal')">닫기</button>
+      <button @click="$emit('closeModal')">닫기</button>  <!--부모한테 closeModal이라는 메세지 전송-->
 
 
     </div>
   </div>
 </template>
-
-
-
-
 
 
 
