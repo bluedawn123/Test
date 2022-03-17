@@ -8,8 +8,8 @@ var db  //변수 필요해서 생성
 MongoClient.connect('mongodb+srv://haemilyjh:dkskwp123@cluster0.dfc2c.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', function(에러, client){  //url에 접속되면 아래코드실행
 app.use('/public', express.static('public'));
 
-const methodOverride = require('method-override')
-app.use(methodOverride('_method'))
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
 
 /////////////////////////////////////////////////////에러 처리///////////////////////////////////////////////////////////////
     if(에러) {return console.log(에러)}      //에러발생시 출력
@@ -161,54 +161,18 @@ app.get('/detail/:id', function(요청, 응답){       //:아무거나  => :을 
     })
 })
 
-// ///////////////////////////////////////////////수정페이지 만들기/////////////////////////////////////
+///////////////////////////////////////////////////수정 기능  /////////////////////////////////////////////
 app.get('/edit/:id', function(요청, 응답){
-    // edit/숫자 로 접속하면 숫자게시물의 날짜, 제목을 edit.ejs로 보냄
-    db.collection('post').findOne({ _id : parseInt(요청.params.id)}, function(에러, 결과){   
-    //post디비에서 _id가 url값이랑 같아야 해당 게시물을 갖고 올 수 있기 때문
-    
-        console.log('edit 창 열기 완료')
-        console.log(결과);       // { _id: 24, '제목': '알바가기', '날짜': '3.9' } 로 object형으로 나타난다. 
-        응답.render('edit.ejs', { post : 결과 });   //같은 결과를 edit/숫자 에서 post로 이용 가능하다. 위와 동일
+    db.collection('post').findOne({_id : parseInt(요청.params.id)}, function(에러, 결과){
+        console.log(결과)   //{ _id: 24, '제목': '알바가기', '날짜': '3.9' }
+        응답.render('edit.ejs', {posts : 결과 })
+    })
+
+})
+
+app.put('/edit', function(요청, 응답){
+    db.collection('post').updateOne({ _id : parseInt(요청.body.id) }, { $set : { 제목: 요청.body.title, 날짜:요청.body.date }}, function(에러, 결과){
+        console.log('수정완료');
+        응답.redirect('/list');
     })
 })
-
-
-app.put('/edit/', function(요청, 응답){  //edit으로 수정(put)요청시, 폼에 담긴 데이터들을 가지고 db에 업데이트 
-    db.collection('post').updateOne( {_id : parseInt(요청.body.id) }, {$set : { 제목:요청.body.title, 날짜:요청.body.date }}, function(에러, 결과){ 
-    //updateOne는 (어떤데이터를수정할것인가, 수정값, 콜백함수) 3개의 파라미터를 갖는다.
-    //_id를 edit.ejs에서 설정한 id값으로 업데이트 한다.
-        
-        console.log('수정완료')
-        응답.redirect('/list')
-
-    });
-
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-// app.put('/edit', function(요청, 응답){  //edit으로 수정(put)요청시, 폼에 담긴 데이터들을 가지고 db에 업데이트 
-//     db.collection('post').updateOne( {_id : parseInt(요청.body.id) }, {$set : { 제목 : 요청.body.title , 날짜 : 요청.body.date }}, function(){ 
-//     //updateOne는 (어떤데이터를수정할것인가, 수정값, 콜백함수) 3개의 파라미터를 갖는다.
-//     //_id를 edit.ejs에서 설정한 id값으로 업데이트 한다.
-//         console.log('수정완료')
-//         응답.redirect('/list')
-
-//     });
-
-// })
