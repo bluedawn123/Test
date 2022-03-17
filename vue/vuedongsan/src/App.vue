@@ -1,7 +1,8 @@
 <template>
 
 <!------------------------------------------- 모달창 --------------------------------------------------------------->
-  <!-- <div class="black-bg" v-if="모달창상태 == true">  
+  <!-- 
+  <div class="black-bg" v-if="모달창상태 == true">           v-if -> 조건식이 참일때만 보여줌!
     <div class="white-bg">
       <img :src="원룸들[누른거].image" style="width:80%">
       <h4>{{원룸들[누른거].title}}</h4>              
@@ -11,7 +12,7 @@
       <button v-on:click="모달창상태 = false">닫기</button>                     
       
     </div>
-  </div> -->
+  </div>        누른거?사용자가 누른 상품의 번호.코드간결화 -->
 
   <!-- 자식(TheModal.vue)의 'closeModal'로부터 온 메세지를 아래와 같이 수정해준다.-->
   <transition name="fade">
@@ -23,13 +24,13 @@
 
 
 
-  <!-- <TheDiscount></TheDiscount> -->
+  <!-- <TheDiscount></TheDiscount> 만들었다가 그냥 안넣음-->
 
 
 
 <!---------------------------------------------메뉴바------------------------------------------------------------->
   <div class="menu" >  
-    <a v-for="(a,i) in 메뉴들" :key=i>{{ a }}</a>                       
+    <a v-for="(a,i) in 메뉴들" :key=i>{{ a }}</a>  <!-- a는 자료를 반복하고 i는 숫자가 1씩 증가한다. -->                     
   </div> 
 <!---------------------------------------------메뉴바 끝------------------------------------------------------------->
 
@@ -44,29 +45,27 @@
 
 
   <!-- <div v-for="(작명, i) in 원룸들" :key="i">              => Card라는 컴포넌트로 만듦. 공부를 위해 안지움. 아래 코트를 메뉴들갯수만큼 반복하는 코드-->
-    <!-- <img :src="원룸들[i].image" class="room-img">                       HTML태그안의 속성 데이터바인딩은 : 필수 -->
-    <!-- <h4 @click="모달창상태 = true; 누른거=i">{{원룸들[i].title}}</h4>    HTML태그안의 내용 데이터바인딩은 : 필수, 누른거는 n번째 상품제목을 누르면 n번이 되는 변수를 만들어줘야한다.   -->
+    <!-- <img :src="원룸들[i].image" class="room-img">                     HTML태그안의 속성(src) 데이터바인딩은 : 필수 -->
+    
+    <!-- <h4 @click="모달창상태 = true; 누른거=i">{{원룸들[i].title}}</h4>  
+    HTML태그안의 내용 데이터바인딩은 {{}} 필수, 누른거는 n번째 상품제목을 누르면 n번이 되어야함. 또한 ;를 사용해서 클릭시 2가지 이벤트를 사용가능. 
+    반복문이 돌때마다 i의 값이 1씩 증가하므로 예를들어 4번째 게시판을 눌르면 i=3이 저장!!되는 것이다. 즉, 누른거를 i로 해서 다양하게 사용가능(0부터 시작)  -->
+    
     <!-- <p>가격 = {{원룸들[i].price}} </p> -->
-    <!-- <button @click="신고수[0]++">신고</button>   
+    <!-- <button @click="신고수[0]++">신고</button>   =>버튼을 누르면 신고수가 1씩 증가!  
     <span>신고 수 : {{신고수[0]}}</span> -->
   <!-- </div> -->
 <!----------------------------------------------상품카드 끝 --------------------------------------------------->
-
-
-
 
 </template>
 
 
 
 
-
-
-
 <script>
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-import data from './assets/oneroom.js'
-// import TheDiscount from './TheDiscount.vue'
+import data from './assets/oneroom.js'           //원룸.js -> data => 원룸들 
+// import TheDiscount from './TheDiscount.vue'   //컴포넌트쓰는법.  1.vue파일 import 2.등록 3.쓰기
 import TheModal from './TheModal.vue'
 import TheCard from './TheCard.vue'
 
@@ -76,26 +75,28 @@ export default {
   name: 'App',
   data(){
     return{                                   //object형식으로 데이터 저장
-      누른거 : 0,                             //사용자가 누른 상품의 번호를 기록(0부터시작)
+      누른거 : 0,                             //사용자가 누른 상품의 번호를 기록(0부터시작). 0번째누르면 0번째, 1번째 누르면 1번쨰로 하기위함. 
       원룸들 : data,
-      모달창상태 : false,
+      모달창상태 : false,                     //모달창은 true일때 열리기 때문에, 평소엔 false로 하고, 클릭시 true로 변경하는 코드를 써서 클릭시만 창이 뜨게 만든다.
       메뉴들 : ['Home', 'Products', 'About'],
       products : ['역삼동원룸', '천호동원룸', '평창동원룸'],
-      신고수 : [0,0,0]
+      신고수 : [0,0,0]              //각각원룸의 신고수를 기록하려구
     }
   },
-  // methods: {
-  //   // increase(){
-  //   // this.신고수 += 1;
-  //   // },
+
+  // methods: {          //vue에서 함수를 만들고 싶으면 methods : { 함수명() {}} 아래 함수2,3처럼 만드셈
+  //    increase(){
+  //    this.신고수 += 1;
+  //    },             //increase란 함수를 만들고, this는 data의 자료들을 쓰고 싶으면 this를 써야한다.
 
   //   함수2(){
-
+  //   },
+  //   함수3(){
   //   }
   // },
 
-  components: {
-    // TheDiscount : TheDiscount,
+  components: {  //2단계. 컴포넌트 등록
+    // TheDiscount : TheDiscount,   //왼쪽은자유작명, 오른쪽은 갖고온 컴포넌트
     TheModal : TheModal,
     TheCard : TheCard,
 

@@ -15,7 +15,9 @@
 
 
   <div class="menu">
-    <a v-for="(a,i) in 메뉴들" :key="i">{{ a }}</a>  <!--Home을 3번 반복한다-->
+    <a v-for="(a,i) in 메뉴들" :key="i">{{ a }}</a>  
+    <!--Home을 3번 반복한다-->
+    <!-- a는 자료를 반복하고 i는 숫자가 1씩 증가한다. -->
   </div>
 
   
@@ -23,7 +25,8 @@
         <div v-for="(b, i) in products" :key="b">
         <h4>{{products[i]}}</h4>
         <p>?? 만원 </p>
-        <button @click="신고수++">신고</button>  <span>신고 수 : {{신고수}}</span>
+        <button @click="신고수 += 1">신고</button>  <span>신고 수 : {{신고수}}</span>
+        => 버튼을 누르면 신고수가 1씩 증가!
       </div>                                                     -->
 
   <div>
