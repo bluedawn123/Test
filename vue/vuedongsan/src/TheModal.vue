@@ -19,16 +19,11 @@
 
 
 
-
-
-
-
-
 <script>
 export default {
     name : 'TheModal',
-    props : {
-        //App.vue(부모), data=>oneroom.js 원룸들:data ==> 부모에서 이렇게 지정했으므로 여기서 원룸들을 사용
+    props : {   //몹시중요. props는 부모의 데이터, 기타 정보를 받아(쓸)올 때 사용한다. 받아온 데이터 적음.
+        //App.vue(부모), oneroom.js=> data=> 원룸들 (원룸들:data이므로) ==> 부모에서 이렇게 지정했으므로 여기서 원룸들을 사용
         원룸들 : Array,         //왜 원룸들이 Array???              //pros:{데이터이름:자료형이름}
         모달창상태 : Boolean,
         누른거 : Number
@@ -44,11 +39,12 @@ export default {
         //사용자가 month에 입력한 데이터가 13보다 크면 경고창
         if( a >= 13){
           alert('12개월이 한계입니다.')
+          this.month = 1;                  //12가 넘으면 초깃값을 1로
         }
         //사용자가 month를 글자로 입력하면 경고문을 띄워라 = "month라는 데이터를 isNaN() 안에 집어넣어보고 true가 나오면 alert 띄우셈"
         if (isNaN(a) == true){             //isNaN안에 숫자를 입력하면 false, 글자면 true를 입력한다.
           alert('숫자만 입력하세요');
-          this.month = 1;
+          this.month = 1;                  //숫자가 아닌 str이라면 초깃값을 1로
         }
     }
 

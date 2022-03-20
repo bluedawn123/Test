@@ -1,12 +1,12 @@
 <template>
-  <div> <!--v-for="(a,i) in 원룸들" :key=i-->        <!--하나만 컴포넌트로 만들어서 나중에 for문으로 쓰면된다.-->
+  <div> <!--v-for="(a,i) in 원룸들" :key=i-->        <!--하나만 컴포넌트로 만들고 나중에 app.vue에서 for문으로 쓰면된다.-->
     <img :src="원룸.image" class="room-img">          <!-- HTML태그안의 속성 데이터바인딩은 : 필수  -->
     
-    
     <!--HTML태그안의 내용 데이터바인딩은 : 필수, 누른거는 n번째 상품제목을 누르면 n번이 되는 변수를 만들어줘야한다.  -->
-    <!--emit('작명', 데이터) => 부모에게 메세지 보낼때-->
-    <h4 @click="send()">{{원룸.title}}</h4>          <!-- @click="$emit('openModal', 원룸.id)" 대체가능-->
-    
+    <!--emit('작명', 데이터) => 부모에게 메세지 보낼때. props데이터는 수정을 못한다. 받아온 모달창상태=false이므로 불가-->
+    <h4 @click="send()">{{원룸.title}}</h4>     
+
+    <!-- @click="$emit('openModal', 원룸.id)" 원래 이건데 send()라는 함수를 만들어서 보내봄.. 부모에게 openModal라는 메세지와 원룸.id 데이터 전송. 자세한건 app.vue확인-->
     <p>가격 = {{원룸.price}} 원 </p> 
     
   </div> 
@@ -16,15 +16,16 @@
 <script>
 export default {
     name : 'TheCard',
-    props : {
-        //App.vue(부모), data=>oneroom.js 원룸들:data ==> <TheCard :원룸="원룸들[i]"/>  <=> 여기서 원룸이라 지정했으므로 template에 원룸이라고 사용
-        원룸 : Object,        //왜 여긴 object??               //pros:{데이터이름:자료형이름}
+    props : {  //pros:{데이터이름:자료형이름}
+        //App.vue(부모), oneroom.js=> data=> 원룸들[i] => 원룸 <TheCard :원룸="원룸들[i]"/>  <=> 여기서 원룸이라 지정했으므로 template에 원룸이라고 사용
+        원룸 : Object,        //왜 여긴 object?? ==> data가 [{}, {}, {}..] 로 어레이안에 오브젝트가 있는 형식. 근데 원룸=원룸들[i]라고 했으므로 각각의 오브젝트이므로
+                            
     },
     
     
     methods:{
       send(){  //함수로 만들어서 @click 등등에 써도 된다.
-        this.$emit('openModal', this.원룸.id)
+        this.$emit('openModal', this.원룸.id)          //데이터 전송시는 this를 사용해야한다.
 
       }
     }
