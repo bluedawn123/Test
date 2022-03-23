@@ -7,7 +7,7 @@
 
 <!--input방법 1 :  <input @input="month = $event.target.value">  -event.target 현재 이벤트요소 + .value 면, input에 입력한 값까지 의미-->
       거주 예상 개월을 입력하세요 = <input class="input" v-model.number="month"> 
-      <p>{{month}} 개월 선택 : {{원룸들[누른거].price * month}} 원 </p>  <!--month라고 저장헀으니 사용자가 입력한 데이터값을 month라고 저장한다. -->
+      <p>{{month}} 개월 선택 : {{원룸들[누른거].price * month}}원 </p>  <!--month라고 저장헀으니 사용자가 입력한 데이터값을 month라고 저장한다. -->
     
 
       <button @click="$emit('closeModal')">닫기</button>  <!--부모한테 closeModal이라는 메세지 전송-->

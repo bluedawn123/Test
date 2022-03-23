@@ -1,27 +1,27 @@
 <template>
 
 
-<h2>This Page is for bootstrap MainPage</h2>
+<h2>이 페이지는 윤준호 웹페이지 만들기의 메인홈입니다.</h2>
 <div class="container-fluid p-5 bg-primary text-white text-center">
-  <h1>My First Bootstrap Page</h1>
-  <p>Resize this responsive page to see the effect!</p> 
+  <h1>뭐 쓰고싶은 거 쓰시면 됩니다</h1>
+  <p>ㅁㅇ나러ㅣㅁㅇㄴ러ㅣㅏㅁㄴ어ㅣ란어리ㅏ머ㅣ런이ㅏ</p> 
 </div>
   
 
 <div class="container mt-5">
   <div class="row">
     <div class="col-sm-4">
-      <h3>Column 1</h3>
+      <h3>주제 1</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
     </div>
     <div class="col-sm-4">
-      <h3>Column 2</h3>
+      <h3>주제 2</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
     </div>
     <div class="col-sm-4">
-      <h3>Column 3</h3>        
+      <h3>주제 3</h3>        
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
     </div>
