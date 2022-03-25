@@ -12,10 +12,12 @@
 <!--------------------------------------------------상단 메뉴 --------------------------------------------->
 
 
-  <TheContainer :게시물="게시물" />  <!--TheContainer안에 2개의 ThePost가 들어가있는 형식-->
+  <TheContainer :게시물="게시물" :step="step"   />  <!--TheContainer안에 2개의 ThePost가 들어가있는 형식-->
 
 
-
+<!-- 더보기버튼 눌렀을때 서버에서 추가 게시물을 갖고오고 그걸 ThePost로 보여줄것 -->
+<!-- 클릭시, more이라는 함수 실행 -->
+  <button @click="more">더보기</button>
 
 
 
@@ -32,13 +34,30 @@
 <!--------------------------------------------------하단 메뉴 --------------------------------------------->
 
 
+<!--------------------------------------------------tab --------------------------------------------->
+<!-- <div v-if = "step == 0">내용0</div>
+<div v-if = "step == 1">내용1</div>
+<div v-if = "step == 2">내용2</div>
+<button @click = "step = 0">버튼0</button>
+<button @click = "step = 1">버튼1</button>
+<button @click = "step = 2">버튼2</button> -->
+
+
+
+
+
+<!--------------------------------------------------tab--------------------------------------------->
+
+
+
+
 
 </template>
 
 <script>
 import TheContainer from './components/TheContainer.vue'
 import PostData from './assets/PostData.js'
-
+import axios from 'axios';
 
 
 
@@ -47,12 +66,24 @@ export default {
   data(){
     return{
       게시물 : PostData,
-
+      더보기 : 0,
+      step : 0, 
     }
 
   },
   components: {
     TheContainer : TheContainer,
+
+  },
+  methods :{
+    more(){
+      axios.get(`https://codingapple1.github.io/vue/more${this.더보기}.json`)
+      .then( (결과)=> {   //요청성공시 실행할 코드
+        console.log(결과.data);  // {name: 'David', userImage: 'https://placeimg.com/100/100/tech', postImage: 'https://placeimg.com/640/480/tech', likes: 5, date: 'July 25'} 
+        this.게시물.push(결과.data)  //원본게시물에 push사용해서 array에 데이터 추가해주세요. 즉, 새로 받아온 데이터를 하나 더 추가한다!
+        this.더보기++;    
+      })
+    },
 
   }
 }
