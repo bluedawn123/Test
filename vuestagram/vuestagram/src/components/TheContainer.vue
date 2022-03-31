@@ -1,4 +1,4 @@
-
+스텝1. 이미지 추가시 보이는 페이지
 <template>
 <div>
     <!-- step이 0이면 ThePost만 보임 -->
@@ -17,22 +17,23 @@
 <!-- step이 1이면 ThePost만 보임 -->
 <!-- 필터선택페이지 -->
     <div v-if= "step == 1 "> 
-        <div class="upload-image"></div>
+        <div class="upload-image" :style="`background-image:url(${이미지})`"></div>  <!--백틱 => 문자중간에 변수사용하려면-->
+
         <div class="filters">
-            <div class="filter-1"></div>
-            <div class="filter-1"></div>
-            <div class="filter-1"></div>
-            <div class="filter-1"></div>
-            <div class="filter-1"></div>
+            <FilterBox :이미지="이미지" v-for="a in 필터들"  :key="a"></FilterBox>  <!--필터들 갯수에 맞게 필터들 갯수생성-->
+
+
         </div>
     </div>
 
 <!-- step이 2이면 ThePost만 보임 -->
 <!-- 글작성페이지 -->
     <div v-if= "step == 2 "> 
-        <div class="upload-image"></div>
+        <div class="upload-image" :style="`background-image:url(${이미지})`"></div>
+        
+        <!-- 내가 입력한 글. App.vue로 전송해야한다. -->
         <div class="write">
-            <textarea class="write-box">write!</textarea>
+            <textarea @input="$emit('write', $event.target.value)" class="write-box">write!</textarea>
         </div>
     </div>
 
@@ -47,15 +48,27 @@
 
 <script>//얘는 TheContainer는 ThePost의 부모태그.   App.vue > TheContainer.vue > ThePost.vue
 import ThePost from './ThePost.vue'
+import FilterBox from './FilterBox.vue'
 
 export default {
+    data(){
+        return{
+            필터들 : [ "aden", "_1977", "brannan", "brooklyn", "clarendon", "earlybird", "gingham", "hudson", 
+"inkwell", "kelvin", "lark", "lofi", "maven", "mayfair", "moon", "nashville", "perpetua", 
+"reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"],
+            etc : 5,
+            
+        }
+    },
     components :{
         ThePost,
+        FilterBox
     },
 
     props:{
         게시물 : Array,  //다시 ThePost.vue로 데이터를 전송해야한다. 
         step : Number,
+        이미지 : String,
     }
 
 

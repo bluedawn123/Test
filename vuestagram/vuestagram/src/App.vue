@@ -2,18 +2,21 @@
 <!--------------------------------------------------상단 메뉴 --------------------------------------------->
   <div class="header">
     <ul class="header-button-left">
-      <li>Cancel</li>
+      <span>Cancel</span>  
+      
     </ul>
     <ul class="header-button-right">
-      <li>Next</li>
+      <li v-if="step == 1" @click="step++">Next</li>     <!--step 1면 Next보여줌-->
+      <li v-if="step == 2" @click="publish">발행</li>     <!--step 2면 발행보여줌-->
+
     </ul>
     <img src="./assets/logo.png" class="logo" />
 </div>
 <!--------------------------------------------------상단 메뉴 --------------------------------------------->
 
 
-  <TheContainer :게시물="게시물" :step="step"   />  <!--TheContainer안에 2개의 ThePost가 들어가있는 형식-->
-
+  <TheContainer @write="작성한글 = $event" :이미지="이미지" :게시물="게시물" :step="step"   />  <!--TheContainer안에 2개의 ThePost가 들어가있는 형식-->
+  <!--TheContainer.vue(하위)에서 쓴 글을 emit으로 여기(상위)로 보내고 그것을 작성한글이라고 저장 -->
 
 <!-- 더보기버튼 눌렀을때 서버에서 추가 게시물을 갖고오고 그걸 ThePost로 보여줄것 -->
 <!-- 클릭시, more이라는 함수 실행 -->
@@ -27,11 +30,14 @@
 
 <div class="footer">
   <ul class="footer-button-plus">
-    <input type="file" id="file" class="inputfile" />
+    <input @change = "upload" accept="image/*" type="file" id="file" class="inputfile" />
     <label for="file" class="input-plus">+</label>
   </ul>
  </div>
 <!--------------------------------------------------하단 메뉴 --------------------------------------------->
+
+
+
 
 
 <!--------------------------------------------------tab --------------------------------------------->
@@ -66,8 +72,12 @@ export default {
   data(){
     return{
       게시물 : PostData,
+      //글발행의 원리? => next버튼클릭시, 게시물에 PostData의 양식에 맞게 데이터를 하나 더 추가해준다
+
       더보기 : 0,
       step : 0, 
+      이미지 : '',  //props를 써서 Thecontainer로 보내기 위해서
+      작성한글 : '',
     }
 
   },
@@ -84,6 +94,38 @@ export default {
         this.더보기++;    
       })
     },
+
+    //이미지를 업로드 한 다음, step1으로 넘어가는 함수
+    upload(e){         //e? => event와 관련된 파라미터. 
+      let 파일 = e.target.files;    //e.target.files => 업로드한 파일들이 담겨있고 그걸 파일에 저장
+      console.log(파일[0])    // => 파일에 대한 정보가 담겨있다.
+
+      let url = URL.createObjectURL(파일[0]) //사진 넣는 방식
+      // console.log(url)      //blob머시기 
+      this.이미지 = url;     //위data의 이미지에 이미지를 넣어 props를 하기위해 url을 이미지에 넣는다
+
+      this.step++;  //파일을 올린 후 step 0 -> step 1으로 변해야한다. (파일 올려서 글을 보여주는 페이지로)
+
+    },
+    //step 2단계에서 발행 누르면, 게시물에 데이터를 밀어넣음
+    publish(){
+      //어레이를 만들고 다음줄에서 자료추가
+      var 내게시물 = {
+        name: "Kim Hyun",
+        userImage: "https://placeimg.com/100/100/arch",
+        postImage: this.이미지,  //내가업로드한이미지URL
+        likes: 36,
+        date: "May 17",
+        liked: false,
+        content: this.작성한글,  //내기입력한글. TheContainer.vue에 있다. 하위->상위 데이터전송이므로, custonEvent 필요
+        filter: "perpetua"
+        };
+        
+      this.게시물.unshift(내게시물);
+      this.step = 0;
+
+    }
+    
 
   }
 }
