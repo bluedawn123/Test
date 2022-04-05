@@ -17,11 +17,14 @@
 <!-- step이 1이면 ThePost만 보임 -->
 <!-- 필터선택페이지 -->
     <div v-if= "step == 1 "> 
-        <div class="upload-image" :style="`background-image:url(${이미지})`"></div>  <!--백틱 => 문자중간에 변수사용하려면-->
+        <div :class="선택한필터"  class="upload-image"  :style="`background-image:url(${이미지})`"></div>  <!--백틱 => 문자중간에 변수사용하려면-->
 
         <div class="filters">
-            <FilterBox :이미지="이미지" v-for="a in 필터들"  :key="a"></FilterBox>  <!--필터들 갯수에 맞게 필터들 갯수생성-->
+            <FilterBox :필터="필터" :이미지="이미지" v-for="필터 in 필터들"  :key="필터">  <!--필터들 갯수에 맞게 필터들 갯수생성하고 필터를 filterbox에 props-->
 
+                <template v-slot:a> <span>{{필터}}</span></template>
+
+            </FilterBox>  
 
         </div>
     </div>
@@ -29,7 +32,7 @@
 <!-- step이 2이면 ThePost만 보임 -->
 <!-- 글작성페이지 -->
     <div v-if= "step == 2 "> 
-        <div class="upload-image" :style="`background-image:url(${이미지})`"></div>
+        <div :class="선택한필터" class="upload-image" :style="`background-image:url(${이미지})`"></div>
         
         <!-- 내가 입력한 글. App.vue로 전송해야한다. -->
         <div class="write">
@@ -57,8 +60,15 @@ export default {
 "inkwell", "kelvin", "lark", "lofi", "maven", "mayfair", "moon", "nashville", "perpetua", 
 "reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"],
             etc : 5,
+            선택한필터 : '',  
             
         }
+    },
+    mounted(){
+        //filterbox에서 보낸 데이터를 수신
+        this.emitter.on('박스클릭함', (a)=> {
+            this.선택한필터 = a
+        })
     },
     components :{
         ThePost,

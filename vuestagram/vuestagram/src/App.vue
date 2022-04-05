@@ -78,8 +78,14 @@ export default {
       step : 0, 
       이미지 : '',  //props를 써서 Thecontainer로 보내기 위해서
       작성한글 : '',
+      선택한필터 : '',
     }
 
+  },
+  mounted(){
+    this.emitter.on('작명', (a)=> {   //emit로 데이터 발사시 수신코드. '작명'이란 이벤트 발사하면 이하 코드 실행
+      this.선택한필터 = a
+    });
   },
   components: {
     TheContainer : TheContainer,
@@ -118,7 +124,7 @@ export default {
         date: "May 17",
         liked: false,
         content: this.작성한글,  //내기입력한글. TheContainer.vue에 있다. 하위->상위 데이터전송이므로, custonEvent 필요
-        filter: "perpetua"
+        filter: this.선택한필터  //예,"perpetua". 선택한필터의 이름때문에
         };
         
       this.게시물.unshift(내게시물);
