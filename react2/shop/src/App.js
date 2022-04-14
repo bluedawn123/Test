@@ -1,9 +1,17 @@
 // import logo from './logo.svg';
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar,Nav,NavDropdown, Form, Button, FormControl, Container, Jumbotron } from 'react-bootstrap';
 import './App.css';
+import grey2002 from "./grey2002.jpg"
+import pink from "./pink.jpg"
+
 
 function App() {
+
+  let [shoes, shoes변경] = useState([]);
+
+
+
   return (
     <div className="App">
       <Navbar bg="light" expand="lg">
@@ -37,10 +45,52 @@ function App() {
         </p>
       </Jumbotron>
 
+      <div className="container">
+        <div className="row">
+          <div className="col-md-4">
+            <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
+            <h4>상품명</h4>
+            <p>상품정보</p>
+          </div>
+
+          <div className="col-md-4">
+            <img src="https://codingapple1.github.io/shop/shoes2.jpg" width="100%" />
+            <h4>상품명</h4>
+            <p>상품정보</p>
+          </div>
+
+          <div className="col-md-4">
+          <img src="https://codingapple1.github.io/shop/shoes3.jpg" width="100%" />
+            <h4>상품명</h4>
+            <p>상품정보</p>
+          </div>
 
 
+
+        </div>
+      </div>
     </div>
+
+
   );
 }
 
 export default App;
+
+
+
+
+
+
+
+          {/* <div className="col-md-3">
+          <img src={grey2002} width="100%" />
+            <h4>상품명</h4>
+            <p>상품정보</p>
+          </div>
+
+          <div className="col-md-3">
+          <img src={pink} width="80%" />
+            <h4>상품명</h4>
+            <p>상품정보</p>
+          </div> */}
