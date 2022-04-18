@@ -84,11 +84,6 @@ function App() {
 
 
 
-      <Route exact path="/:id"> 
-          <div>아무거나</div>
-      </Route>
-
-
 </Switch>{/* switch컴포넌트 => 중복허용X. 여러개가 맞아도 하나만 보여주세요 => 맨 위에서 매칭이 된 것만 보여준다. */}
 
 
