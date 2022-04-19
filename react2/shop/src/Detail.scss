@@ -1,0 +1,63 @@
+@import './reset.scss';
+
+
+
+$메인칼라 : rgb(105, 79, 79);       //변수생성하려면 $ 사용
+
+.red{
+    color: $메인칼라;
+}
+
+//셀렉터 대신 쓰는 nesting
+// div.container h4{
+//     color: blue;
+// }
+// div.container p {
+//     color : green;
+// }
+
+//위, 아래 두 개가 같다.
+
+// div.container{
+//     h4{
+//         color : blue;
+//     }
+//     p {
+//         color : green;
+//     }
+// }
+
+
+@mixin 함수사용법() {//함수는 @mixin로 만들고/ @include로 붙혀넣기 한다.
+    background-color: #ddd3d3;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 500px;
+    width: 100%;
+    margin : auto;
+}
+
+
+.my-alert{
+    // background-color: #ddd3d3;
+    // padding: 20px;
+    // border-radius: 5px;
+    // max-width: 500px;
+    // width: 100%;
+    // margin : auto; 이거 대신 함수로
+
+    @include 함수사용법();
+}
+
+.my-alert p{ 
+    margin-bottom: 0px;
+    font-size : 20px;
+    color: black;
+}
+
+//extend sass. my-alert에 있는 모든 속성을 붙혀넣기 하고, 거기서 바꾸고 싶은 것만 변경해주는것
+.my-alert2 {
+    @extend .my-alert
+};
+
+
