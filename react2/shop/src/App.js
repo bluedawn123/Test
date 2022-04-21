@@ -6,6 +6,7 @@ import './App.css';
 import Data from './data.js'
 import { Link, Route, Switch } from 'react-router-dom';
 import Detail from './Datail.js'
+import axios from 'axios';
 
 
 // import grey2002 from "./grey2002.jpg"
@@ -26,8 +27,13 @@ function App() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-            <Nav.Link> <Link to="/">Home</Link> </Nav.Link>
-            <Nav.Link> <Link to="/detail">Detail</Link> </Nav.Link>
+            {/* <Nav.Link><Link to="/"> Home </Link></Nav.Link>  */}
+            <Nav.Link as={Link} to="/"> Home </Nav.Link> 
+            <Nav.Link as={Link} to="/detail"> About Us </Nav.Link> 
+            <Nav.Link as={Link} to="/detail"> Products </Nav.Link>
+            <Nav.Link as={Link} to="/detail"> Contact </Nav.Link> 
+            <Nav.Link as={Link} to="/detail"> Service </Nav.Link> 
+
                 <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -47,12 +53,26 @@ function App() {
             <h1>Hello, world!</h1>
             <p> 
             This is a simple hero unit, a simple jumbotron-style component for calling
-            extra attention to featured content or information.
+            extra attention to featured content or information. 
+            <p>
+            omponent for calling extra attention to featured content or information.
+            <p>
+            Line 41:11:  Imported JSX component 박스 must be in PascalCase or SCREAMING_SNAKE_CASE
+            </p>
+            <p>
+            img elements must have an alt prop, either with meaningful text, or an empty string for decorative images
+            </p>
+            </p>
             </p>
             <p>
             <Button variant="primary">Learn more</Button>
             </p>
         </Jumbotron>
+
+{/* ---------------------------------------------메인페이지 ------------------------------------------------------------- */}
+
+
+{/* ---------------------------------------------제품 카드  ------------------------------------------------------------- */}
         
         <div className="container">
           <div className="row">
@@ -63,26 +83,39 @@ function App() {
           
             {
               shoes.map( (a, i)=> {   //a는 각 데이터, i는 0부터 증가하는 수
-                return<Card shoes={shoes[i]} i={i}></Card>   //대신, <Card shoes={ a }}></Card> 를 써서 props해도 됌
+                return<Card shoes={shoes[i]} i={i} key={i}></Card>   //대신, <Card shoes={ a }}></Card> 를 써서 props해도 됌
               })
             }
           </div>
+{/* ---------------------------------------------제픔 카드 ------------------------------------------------------------- */}
+
+
+          <button className='btn btn-primary' onClick={ ()=> {
+            axios.get('https://codingapple1.github.io/shop/data2.json')     //서버에 get요청
+            .then( (result) => {      //result에는 성공한데이터 등 보관. result.data는 데이터만 가져옴(즉, 상품3개만)
+
+
+              shoes변경( [...shoes, ...result.data] ); //복사본 만들어서 원래의 shoes state에 추가
+
+
+            })                 
+            .catch( () => {
+
+            })
+
+          }}>더보기</button>
+
         </div> 
       </Route>
-{/* ---------------------------------------------메인페이지 ------------------------------------------------------------- */}
+
+        
 
 
 
-
-
-{/* ---------------------------------------------디테일 페이지 ------------------------------------------------------------- */}
 
       <Route exact path="/detail/:id">    {/* /:id => 아무문자가 받겠다는 URL작명법 */}
         <Detail shoes={shoes}></Detail>
       </Route>
-{/* ---------------------------------------------디테일 페이지 ------------------------------------------------------------- */}
-
-
 
 </Switch>{/* switch컴포넌트 => 중복허용X. 여러개가 맞아도 하나만 보여주세요 => 맨 위에서 매칭이 된 것만 보여준다. */}
 
@@ -118,6 +151,13 @@ function Card(props){
 
 
 export default App;
+
+
+
+
+
+
+
 
 
 
