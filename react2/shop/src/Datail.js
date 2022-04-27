@@ -1,9 +1,11 @@
 //app.js에서 shoes 받아와서 사용
 import React, { useEffect, useState } from 'react';   //컴포넌트 만들 때 필수
 import { useHistory, useParams } from 'react-router-dom';
-import { Navbar,Nav,NavDropdown, Form, Button, FormControl, Container, Jumbotron } from 'react-bootstrap';
+// import { Navbar,Nav,NavDropdown, Form, Button, FormControl, Container, Jumbotron } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 import styled from 'styled-components'
 import './Detail.scss';
+import {CSSTransition} from 'react-transition-group';
 
 //styled-components를 이용한 class없는 CSS스타일링 => css를 미리 입혀놓은 컴포넌트를 만들어서 쓴다.
 let 박스 = styled.div`
@@ -21,6 +23,7 @@ function Detail(props){
   let history = useHistory();
   let [alert, alert변경] = useState(true);
   let [누른탭, 누른탭변경] = useState(0);  //지금 누른 것 저장하기 위해
+  let [스위치, 스위치변경] = useState(false);
 
     // Hook 관련---------------------------------------------------------------------------------------------------------------------------------------------------------------
     useEffect( ()=> {      //컴포넌트가 mount, update됐을때 특정코드 실행
@@ -71,69 +74,54 @@ function Detail(props){
                 &nbsp;
                 <button className="btn btn-danger" onClick={ ()=> {
                   history.push('/'); 
-                }}>홈으로</button> 
+                  }}>홈으로</button> 
               </div>
               
-              {/* <div>
-                <h4 className='inform'>제품설명</h4>
-
-              </div> */}
 
               {/* ------------------------------tab 기능 ------------------------------ */}
               {/* TAB UI만드는 법. 1.몇번째버튼 눌렀는지 state로 저장.  2.state에 따라 UI 보이게 안보이게 */}
               {/* eventKey => 버튼들마다 유니크한 eventKey부여하는 것 */}
               {/* Nav를 누르면 state가 0,1 등으로 변경 => 각 해당 숫자에 맞는 div를 보여줘야한다. */}
               
+                <div>
                 <Nav className="mt-5" variant="tabs" defaultActiveKey="link-0">
                   <Nav.Item>
-                    <Nav.Link eventKey="link-0" onClick={ ()=>{ 누른탭변경(0) }}>Active</Nav.Link>  
+                    <Nav.Link eventKey="link-0" onClick={ ()=>{ 스위치변경(false); 누른탭변경(0) }}>1</Nav.Link>  
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="link-1" onClick={ ()=>{ 누른탭변경(1) }}>Options</Nav.Link>
+                    <Nav.Link eventKey="link-1" onClick={ ()=>{ 스위치변경(false); 누른탭변경(1) }}>2</Nav.Link>
                   </Nav.Item>
-                
-                
                 </Nav>
-                  
-                <TabContent 누른탭={누른탭}></TabContent>
+                </div>
+
+                <div>
+                <CSSTransition in={스위치} classNames="wow" timeout={500}>  
+                  <TabContent 누른탭={누른탭}/>
+                </CSSTransition>
+                </div>
+
           </div>
-
       </div>
-      
     )
-
   }
 
 // 3항연산자는 경우의 수가 3이상일 경우 별로다 => 함수 만들어서 사용. Nav를 누르면 state가 0,1 등으로 변경 => 각 해당 숫자에 맞는 div를 보여줘야한다. 
 function TabContent(props){
   if (props.누른탭 === 0){
-    return <div>이게 아래로 가야 하는데 왜 위에 있는 걸까요?</div>
+    return <div>111이게 아래로 가야 하는데 왜 위에 있는 걸까요?</div>
   } else if (props.누른탭 === 1){
-    return <div>이게 아래로 가야 하는데 왜 위에 있는 걸까요!!!!!!!!?</div>
+    return <div>222이게 아래로 가야 하는데 왜 위에 있는 걸까요!!!!!!!!?</div>
   } else if (props.누른탭 === 2){
     return <div>내용2</div>
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//애니메이션 만들기 팁
+//1. 애니메이션 주는 class를 CSS 파일에 열심히 짜서 제작해놓고
+//2. 컴포넌트 등장/업데이트시 className을 부착하시면 됩니다. 
+//className을 어떻게 원할 때 부착하냐고요? className={} 이렇게 중괄호안에 삼항연산자 if문을 쓰든가 하시면 됩니다. 
+//3. <CSSTransition> 에는 in, classNames, timeout이 들어간다. 
+//in은 스위치, classname은 이름, timeout은 시간
 
   
   export default Detail;   //Datail함수를 app.js에서 쓰기 위해서

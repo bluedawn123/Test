@@ -7,6 +7,7 @@ import Data from './data.js'
 import { Link, Route, Switch } from 'react-router-dom';
 import Detail from './Datail.js'
 import axios from 'axios';
+import Cart from './Cart.js';
 
 
 // import grey2002 from "./grey2002.jpg"
@@ -110,12 +111,17 @@ function App() {
 
         
 
-
-
-
       <Route exact path="/detail/:id">    {/* /:id => 아무문자가 받겠다는 URL작명법 */}
         <Detail shoes={shoes}></Detail>
       </Route>
+
+      <Route path="/cart">
+        <Cart></Cart>
+      </Route>
+
+
+
+
 
 </Switch>{/* switch컴포넌트 => 중복허용X. 여러개가 맞아도 하나만 보여주세요 => 맨 위에서 매칭이 된 것만 보여준다. */}
 
