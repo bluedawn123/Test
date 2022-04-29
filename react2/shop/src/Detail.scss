@@ -70,6 +70,10 @@ $메인칼라 : rgb(105, 79, 79);       //변수생성하려면 $ 사용
 //.작명-enter 라는 클래스명은 컴포넌트 등장시작시 적용할 CSS
 //.작명-enter-active 라는 클래스명은 컴포넌트 등장중일시 적용할 CSS입니다.
 
+.wow{
+    color: blue;
+}
+
 .wow-enter {
     opacity : 0
 }
@@ -77,4 +81,10 @@ $메인칼라 : rgb(105, 79, 79);       //변수생성하려면 $ 사용
 .wow-enter-active {
     opacity : 1;
     transition : all 500ms;
+}
+
+.TabContent{
+    margin-top: 5px;;
+    margin-left: 18px;
+    font-size: 15px;
 }

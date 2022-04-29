@@ -6,6 +6,7 @@ import { Nav } from 'react-bootstrap';
 import styled from 'styled-components'
 import './Detail.scss';
 import {CSSTransition} from 'react-transition-group';
+import { connect } from 'react-redux'
 
 //styled-components를 이용한 class없는 CSS스타일링 => css를 미리 입혀놓은 컴포넌트를 만들어서 쓴다.
 let 박스 = styled.div`
@@ -45,7 +46,6 @@ function Detail(props){
             <제목 className='red'>Detail</제목>
           </박스>
 
-
           {/* hook사용해서 2초후 사라지게 하기 */}
           {
             alert === true
@@ -54,7 +54,6 @@ function Detail(props){
                </div>)
             : null
           }
-
 
           <div className="row">
             <div className="col-md-6">
@@ -70,8 +69,15 @@ function Detail(props){
                   history.goBack(); //바로 전으로 이동하기
                   // history.push('/'); 이건 ()안 경로로 이동해달라는 것
                 }}>뒤로가기</button>&nbsp;  */}
-                <button className="btn btn-danger" >주문하기</button>
+
+                {/* 주문하기 버튼 누를때마다 새로운 데이터 보내기 */}
+                <button className="btn btn-danger" onClick={ () => {
+                  //버튼을 누를 때마다 {id : 2, name : '새로운상품', quan : 1} 이런 데이터가 redux로 보내집니다.
+                  props.dispatch({type : '항목추가', payload : {id : 2, name : '새로운상품', quan : 1} })  //dispa
+                }}>주문하기</button>
+
                 &nbsp;
+
                 <button className="btn btn-danger" onClick={ ()=> {
                   history.push('/'); 
                   }}>홈으로</button> 
@@ -83,22 +89,22 @@ function Detail(props){
               {/* eventKey => 버튼들마다 유니크한 eventKey부여하는 것 */}
               {/* Nav를 누르면 state가 0,1 등으로 변경 => 각 해당 숫자에 맞는 div를 보여줘야한다. */}
               
-                <div>
+              <div>
                 <Nav className="mt-5" variant="tabs" defaultActiveKey="link-0">
                   <Nav.Item>
-                    <Nav.Link eventKey="link-0" onClick={ ()=>{ 스위치변경(false); 누른탭변경(0) }}>1</Nav.Link>  
+                    <Nav.Link eventKey="link-0" onClick={ ()=>{ 스위치변경(false); 누른탭변경(0) }}>제품 상세 설명</Nav.Link>  
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="link-1" onClick={ ()=>{ 스위치변경(false); 누른탭변경(1) }}>2</Nav.Link>
+                    <Nav.Link eventKey="link-1" onClick={ ()=>{ 스위치변경(false); 누른탭변경(1) }}>제품 주의 사항</Nav.Link>
                   </Nav.Item>
                 </Nav>
-                </div>
-
-                <div>
+          
+                <div className="TabContent">
                 <CSSTransition in={스위치} classNames="wow" timeout={500}>  
-                  <TabContent 누른탭={누른탭}/>
+                  <TabContent 누른탭={누른탭} 스위치변경={스위치변경}/>
                 </CSSTransition>
                 </div>
+              </div>
 
           </div>
       </div>
@@ -107,6 +113,11 @@ function Detail(props){
 
 // 3항연산자는 경우의 수가 3이상일 경우 별로다 => 함수 만들어서 사용. Nav를 누르면 state가 0,1 등으로 변경 => 각 해당 숫자에 맞는 div를 보여줘야한다. 
 function TabContent(props){
+
+  useEffect( ()=>{
+    props.스위치변경(true); //탭내용 컴포넌트가 로드될 때 true
+  });
+
   if (props.누른탭 === 0){
     return <div>111이게 아래로 가야 하는데 왜 위에 있는 걸까요?</div>
   } else if (props.누른탭 === 1){
@@ -124,4 +135,12 @@ function TabContent(props){
 //in은 스위치, classname은 이름, timeout은 시간
 
   
-  export default Detail;   //Datail함수를 app.js에서 쓰기 위해서
+function 함수명(state){
+  return{
+    state : state.reducer,
+    alert열렸니 : state.reducer2,
+
+  }
+}
+
+export default connect(함수명)(Detail);

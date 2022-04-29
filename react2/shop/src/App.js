@@ -24,16 +24,16 @@ function App() {
     <div className="App">
       <Navbar bg="light" expand="lg">
         <Container> 
-          <Navbar.Brand href="#home">Shoe Shop</Navbar.Brand> 
+          <Navbar.Brand as={Link} to="/">Shoe Shop</Navbar.Brand> 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
             {/* <Nav.Link><Link to="/"> Home </Link></Nav.Link>  */}
-            <Nav.Link as={Link} to="/"> Home </Nav.Link> 
+            {/* <Nav.Link as={Link} to="/"> Home </Nav.Link>  */}
             <Nav.Link as={Link} to="/detail"> About Us </Nav.Link> 
             <Nav.Link as={Link} to="/detail"> Products </Nav.Link>
-            <Nav.Link as={Link} to="/detail"> Contact </Nav.Link> 
-            <Nav.Link as={Link} to="/detail"> Service </Nav.Link> 
+            <Nav.Link as={Link} to="/detail"> Contact Us</Nav.Link> 
+            <Nav.Link as={Link} to="/detail"> Customer Service </Nav.Link> 
 
                 <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">1</NavDropdown.Item>
@@ -66,7 +66,7 @@ function App() {
             </p>
             </p>
             <p>
-            <Button variant="primary">Learn more</Button>
+            <Button variant="primary" as={Link} to="/detail">Learn more</Button>
             </p>
         </Jumbotron>
 
