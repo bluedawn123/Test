@@ -1,164 +1,143 @@
 /* eslint-disable */
 
-import logo from './logo.svg';
-import React, { useState } from 'react';
 import './App.css';
+import { useState, useTransition } from 'react';
 
 function App() {
-  let test = 'blog'
-  let posts = '강남 고기 맛집';
-  let [글제목, 글제목변경] = useState(['남자 코트 추천', '강남 우동 맛집', '홍대 맛집가기']); //a변수엔 실제 저장할 데이터. b변수엔 저장할 데이터를 변경시킬 함수
-  let [따봉, 따봉변경] = useState(0);   //따봉변경(''). ''안에는 대체할 데이터가 들어간다.
-  var [name, age] = ['Kim', 20]          //name = 'Kim',  age = 20 이라는 변수가 생성
-  let [modal, modal변경] = useState(false);  //모달창 스위치 위해 생성
-  let [modal2, modal변경2] = useState(false);  //모달창 스위치 위해 생성
 
-  // for반복문을 쉽게 쓰는 방법 => 함수를 만들어서 필요한 곳에 함수를 넣어서 쓴다.
-  function 반복된UI(){
-    var 어레이 = [];
-    for (var i = 0; i < 3; i++){
-      어레이.push(<div>안녕</div>)
-    }
-    return 어레이
-  }
-
-
-  function 클릭시제목바꾸기(){
-    // 글제목에 있던 0번째 데이터를 여자코트추천으로 바꾸려면 state원본은 변경이 안되므로 복사본을 생성후거기서 바꿔야한다.
-    var newArray = [...글제목];     //딥카피(서로공유x.완전새로움)로 ★★복사본 만들기★★
-    newArray[0] = '여자 코트 추천';  //데이터 변경
-    글제목변경( newArray );
-  }
+//[자료, 변경함수] 그리고 괄호안은 데이터(자료)
+  let [글제목, 글제목변경] = useState(['남자 코트 추천', '강남 우동 맛집', '파이썬 독학']);  
+  let [따봉, 따봉변경] = useState([0,0,0]);
+  let [modal, setModal] = useState(false); //기본값은 false
+  let [title, setTitle] = useState(0);
+  let [입력값, 입력값변경] = useState('');
 
   return (
     <div className="App">
-      <div className="black-nav">
-        <div style={ {color : 'white', fontSize : '25px'} }>개발 {test}</div>       {/* 리액트에서 css 간단히 쓰는 법*/}
+      <div className="black-nav" >
+        <div>개발 blog</div>
       </div>
 
-      {/* <button onClick={() => { 클릭시제목바꾸기() }}> 수정버튼1 </button>
-          <button onClick={ 클릭시제목바꾸기 }> 수정버튼2 </button>           두개는 서로 같다.*/}
+      <button onClick={ ()=>{  
+        let copy = [...글제목];
+        copy[0] = '여자코트 추천';
+        글제목변경(copy)            //남자코트추천 -> 여자코트 추천
+      } }> 수정버튼 </button>
 
-
-      <div className="list">
-        <h3>{ 글제목[0] } <span onClick={ () => { 따봉변경(따봉+1)} }>👍</span> {따봉}</h3>    
-        {/*onClick뒤 {}에는 함수가 들어가야한다. <div onClick={ () => { 실행할 코드 } }>*/}
-        <p>2월 17일 발행</p>
-        <hr/>
-      </div>
-      <div className="list">
-        <h3>{ 글제목[1] }</h3>
-        <p>2월 17일 발행</p>
-        <hr/>
-      </div>
-      <div className="list">
-        {/* 클릭시, false인 모달창을 true로 변경해주기 위해 onclick이하 작성. 참고 !기호는 true왼쪽에 붙이면 false로, false 왼쪽에 붙이면 true로*/}
-        <h3 onClick={ ()=> {modal변경(!modal)} }>{ 글제목[2] }</h3>  {/* {modal변경(true)} => {modal변경(!modal)} 로 변경 */}
-        <p>2월 17일 발행</p>
-        <hr/>
-      </div>
-
-      {/* 위 div map반복문으로 반복시켜보기 */}
-      {
-        글제목.map(function(글){
+      { 
+        글제목.map(function(a, i){    //항목수(어레이갯수)만큼 반복시켜주고 파라미터를 받아 출력시키는게 map함수의 특징이므로. i는0부터 시작
           return (
-          <div className="list">
-            <h3>{ 글 }</h3>  
-            <p>2월 17일 발행</p>
-            <hr/>
-          </div>
-          )
-        })
+          <div className="list" key={i}>
+              <h4 onClick={ ()=> {setModal(!modal); setTitle(i)} }>{ 글제목[i] } 
+                <span onClick={(e)=>{ 
+                  e.stopPropagation();    //이벤트버블링 막기
+                  let copy = [...따봉];   //복사본 생성
+                  copy[i] = copy[i] + 1;  
+                  따봉변경(copy)
+                 }}>👍</span> {따봉[i]}     
+              </h4>
+            
+              <p>2월 18일 발행</p>
+              <button onClick={(e)=>{
+                  e.stopPropagation();
+                  let copy = [...글제목];
+                  copy.splice(i, 1);         //(i, 1)에서 i번째가 삭제된다.(i는 첫 게시글)
+                  글제목변경(copy);
+              }}>삭제</button>
+          </div>)
+        }) 
       }
 
+     
+      <input onChange={ (e)=>{ 입력값변경(e.target.value) } }></input>  
+      {/* 이러면 입력한 값이 input에 들어가서 state에 저장된다. 상자안의 글이 입력값변경 함수를 통해 변경되고, 입력값으로 저장돼서*/}
+
+      <button onClick={()=>{
+        let copy = [...글제목];   //복사본만들고,
+        copy.unshift(입력값);     //복사본에 유저가 입력한 글을 처음으로 넣어야한다. unshift함수를 사용해야한다.(왼쪽 array맨앞에!), 그리고 입력값은 위의 input에서의 입력값
+        글제목변경(copy)
+      }}>클릭 시 글 발행</button>
+
+      { //jsx에서는 조건문에서 3항연산자 사용
+        modal == true? <Modal title={title} 글제목변경={글제목변경} 글제목={글제목} setModal={setModal} modal={modal}/>  //글제목state를 글제목이란 이름으로 Modal에 전달
+        : null
+      }
+
+    </div>
+  )
+}
+
+export default App;
 
 
+//let Modal = () => {} 으로 해도 가능
+function Modal(props){
+  return (
+    <div className="modal" >
+      <h4>{props.글제목[props.title]}</h4>
+      <p>날짜</p>
+      <p>상세내용</p>
+
+      <button onClick={ ()=> { props.글제목변경(['하아 개졸려', '너무피곤해', '집가고싶어'])}}>글수정</button>
+      <button onClick={ ()=> { props.글제목변경(['남자 코트 추천', '강남 우동 맛집', '파이썬 독학'])}}>글수정취소</button>
 
 
-
-
-
+      <button onClick={ ()=> {props.setModal(!props.modal)} }>닫기</button>
+  {/* <button onClick={ ()=> {props.setModal(false)} }>닫기</button>       같다.*/}
 
  
 
+    </div>
+  )
+}
 
-      {/* -----------------------------클릭시만 보이는 컴포넌트로 모달창 만들기  ==> if대신 삼항연산자 사용--------------------------------------- */}
-      {
-        modal === true
-        ? <Modal></Modal>
-        : null
-      }
+//html 코드짤 때 유의점 : return( )안에 두개의html태그 나란히 적기불가. return ( ) 내부는 하나의 태그로 시작해서 하나의 태그로 끝남 
+//동적ui만드는 방법 => 1.디자인 미리 완성, 2. Ui연재 상태를 state로 저장 3. state따라 UI가 어떻게 보일지 작성
+//!modal 은 현재의 것과 다른 것 의미. ex) !true = false
 
+//map?
+//[1, 2, 3].map( function(a){  
+// console.log(a)    })  => 1, 2, 3 출력. 
 
+//[1, 2, 3].map( function(a){  
+// return '111111'    }) => 어레이에 담아 3번실행 => ['11111', '11111', '11111' ]
 
+//props?
+//1. <자식컴포넌트 작명={state이름}
+//2. props파라미터 등록 후 props.작명 사용
 
+//input관련
+//onChange/OnInput/OnMouseOver/OnScroll 등이 있다. 
+//onChange={(e) => {   }}.. 에서 e는 이벤트객체 의미. ex) e.target.value는 이벤트 발생한 html 태그에 입력한 값
 
+//이벤트버블링 막기?
+//
 
-
-
-
-
-
-
-
-
-
-
-
-      {/* 이 이하는 그닥 필요 없는 공부할 때 쓴 것들입니다. */}
-      <div>--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</div>
-
-      {/* ----------------------------------숙제로 열고닫는버튼 만들어보기 -----------------------------*/}
-      <div>
-        <button onClick={ ()=>{ modal변경2(!modal2) } }> 열고닫는버튼 </button>
-        { 
-        modal2 === true 
-        ? <Modal2></Modal2>
-        : null
-        }
+      {/* 
+      <div className="list">
+        <h4 onClick={()=> { setModal(!modal) }}>{ 글제목[0] } <span onClick={ ()=>{ 따봉변경(따봉 + 1) } } >👍</span> { 따봉 }</h4>
+        <p>2월 17일 발행</p>
       </div>
-      
-      {/* 위 데이터를 반복문으로 제목만 반복시켜보기 => map() 사용. */}
-      {
-        글제목.map(function(a){
-          return <div>{a}</div>
-        })   //남자 코트 추천 강남 우동 맛집 홍대 맛집가기 출력. 이런식으로 for문처럼 사용가능
+      <div className="list">
+        <h4 onClick={()=> { setModal(!modal) }}>{ 글제목[1] }</h4>
+        <p>2월 17일 발행</p>
+      </div>
+      <div className="list">
+        <h4 onClick={()=> { setModal(!modal) }}>{ 글제목[2] }</h4>
+        <p>2월 17일 발행</p>
+      </div> 
+
+      let [글제목, 글제목변경] = useState(['남자 코트 추천', '강남 우동 맛집', '파이썬 독학']); 의 글제목 갯수가 중요하다. 이만큼 필요하니 이걸 map의 기준점으로 삼는다. 
+      그러므로, 좀 간단히 만들어본다면,
+
+      글제목.map(function(a, i){    //항목수(어레이갯수)만큼 반복시켜주고 파라미터를 받아 출력시키는게 map함수의 특징이므로.
+          return 
+          (<div className="list" key={i}>
+              <h4>{ 글제목[i] } </h4>
+              <p>2월 18일 발행</p>
+              <button>삭제</button>
+          </div>)
+        }) 
       }
 
-      {/* //어레이함수 예시
-          //var 어레이 = [2,3,4]; 에 2를 곱하고 싶다?
-          //var 뉴어레이 = 어레이.map(function(a){ return a * 2}; 이런식. map함수는 어레이를 반복시킨다고 보면 된다. */}
-
-      
-      {반복된UI()}
-
-      <div>--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</div>
-
-
-
-
-    </div>
-  );
-}
-
-
-
-
-function Modal(){
-  return (
-    <div className="modal">
-      <h2>제목</h2>
-      <p>날짜</p>
-      <p>상세내용!</p>
-    </div>
-  )
-}
-
-function Modal2(){
-  return (
-    <div className="modal">
-      <h2>그냥 만들어본 거</h2>
-    </div>
-  )
-}
-export default App;
+      */}
