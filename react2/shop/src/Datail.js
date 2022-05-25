@@ -21,6 +21,8 @@ let 제목 = styled.h4`
 function Detail(props){
 
   let { id } = useParams();   // ../:id 의 id를 넣기 위해
+
+
   let history = useHistory();
   let [alert, alert변경] = useState(true);
   let [누른탭, 누른탭변경] = useState(0);  //지금 누른 것 저장하기 위해
