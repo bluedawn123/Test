@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+
+    <div></div>
+    <button id="버튼"> 버튼</button>
+
+    <script>
+
+        //간단한 입출력
+        function 함수(a){return a + 10}
+        console.log( 함수(5) ); //15출력
+
+
+        //
+        [1,2,3,4].forEach( a => console.log(a))
+        
+
+        //화살표함수는 this값을 재정의 해주지 않기 때문에 이 경우 window가 출력된다. 
+        //일반함수였다면 e.currentTarget이 나왔어야하는 차이 존재
+        document.getElementById('버튼').addEventListener('click', (e) => {
+            console.log(this)  //window
+                          
+        });
+
+        console.log('아래 오브젝트 함수 시행 후, 버튼 눌렀을때 위의 이벤트리스너 동작하는 순서')
+
+        var 오브젝트 = {
+            함수 : () => {
+                return this
+            }
+        }
+        console.log(오브젝트.함수());  //window 출력
+
+    </script>
+   
+
+    <br>
+    <p>-------------------------------------------------수업 내용--------------------------------------------</p>
+    
+  </body>
+<p>1. 코드들을 기능으로 묶고 싶을때 사용 </p>
+<p>2. 입출력 기게를 만들고 싶을때 사용</p>
+<p>3. 코드의 간결화</p>
+
+  
+</html>
+
+
