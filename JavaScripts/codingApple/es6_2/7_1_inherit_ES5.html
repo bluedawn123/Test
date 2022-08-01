@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+
+    <div></div>
+
+    <script>
+        //ES5 => Object.create(프로토타입 object); 방식
+        
+        var 부모 = { name : 'kim', age : 50};
+        var 자식 = Object.create(부모);
+
+        console.log(자식)        //{}  => 아무것도 나오지 않는다. 
+        console.log(자식.name)  //kim  => 자식의 prototype을 부모로 쓰기 때문. 자식이 name이 없을 경우 부모의 name을 검사하기 때문(상속때문)
+ 
+        자식.age = 20;
+
+        var 손자 = Object.create(자식);
+        console.log(손자.name)   //kim
+        console.log(손자.age)    //20
+
+    </script>
+   
+
+    <br>
+    <p>-------------------------------------------------수업 내용--------------------------------------------</p>
+    
+</body>
+<p>construcor를 만들면 prototype이 생성된다. 상속기능으로 사용할수 있다
+<p></p>
+<p></p>
+<p></p>
+

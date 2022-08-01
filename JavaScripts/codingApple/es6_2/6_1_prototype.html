@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+
+    <div></div>
+
+    <script>
+        //constructor => 비슷한 오브젝트를 쉽게 찍어낼 수 있다.
+        function 기계(이름){
+            //여기서 this는 새로생성되는 object의미
+            this.name = 이름;
+            this.age = 15;
+            this.sayHi = function(){
+                console.log('안녕하세요' + this.name + '입니다.')
+            }
+
+        }
+
+        var 학생1 = new 기계('준호');  //기계 {name: '준호', age: 15, sayHi: ƒ}
+        var 학생2 = new 기계();        //기계 {name: undefined, age: 15, sayHi: ƒ}
+        var 학생3 = new 기계('흥민');   //기계 {name: '흥민', age: 15, sayHi: ƒ}
+
+
+        //상속 => prototype = 유전자
+        기계.prototype               //{constructor: ƒ}
+        기계.prototype.gender = '남자';         //prototype에 gender 등록해보자.
+
+        console.log(학생1.gender)  //남자
+
+
+        ///자바스크립트의 특징으로 위쪽으로 부모 유전자를 계속 찾기 때문이다. 
+        //toString() 과 같은 함수를 쓸수 있는 것도 부모 유전자에 있기 때문이다. 
+        var 어레이12 = [1,2,3];
+        var 어레이123 = new Array(1,2,3);   
+        //실제 array는 이런 방식으로 만들어진다. Array는 constructor 함수이다. 그렇기 때문에 어레이123은 부모의 유전자(prototype)에 있기 때문이다. 
+        
+
+    </script>
+   
+
+    <br>
+    <p>-------------------------------------------------수업 내용--------------------------------------------</p>
+    
+</body>
+<p>construcor를 만들면 prototype이 생성된다. 상속기능으로 사용할수 있다
+<p>설명 참조. 자세히 적어놨다.</p>
+<p></p>
+<p></p>
+<p></p>
+
