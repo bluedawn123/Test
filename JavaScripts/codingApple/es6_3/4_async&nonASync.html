@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+
+    <div></div>
+
+    <script>
+      //동기식처리 = 하나씩 처리
+
+
+      //비동기식처리 = 오래걸리는 작업이 있으면 다른 것 먼저 처리
+      console.log(11231515);
+      setTimeout( ()=> { console.log('5초후에 실행되는 함수')}, 5000);  //오래걸림
+      console.log(5);                             //1, 5 출력되고 5초후에 22가 출력된다. 
+
+
+      //1순차적으로 실행하려면 콜백함수를 사용
+      function 첫함수(구멍){
+        console.log(1);
+        구멍();
+      }
+
+      function 둘함수(){
+        console.log('둘함수 222')
+      }
+
+      첫함수(둘함수);
+
+
+      //2. promise 사용
+
+
+
+
+
+
+
+
+    </script>
+   
+
+    <br>
+    <p>-------------------------------------------------수업 내용--------------------------------------------</p>
+    
+</body>
+<p>비동기식처리 = 빠른 거 먼저 처리. setTimeout, addEventListener 등등이 있다. </p>
+<p>1. 순차적으로 실행하려면 콜백함수를 사용</p>
+<p>2. promise 사용</p>
+
