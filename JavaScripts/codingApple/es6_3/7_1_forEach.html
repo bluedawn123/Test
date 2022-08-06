@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+
+    <div></div>
+
+    <script>
+        var 오브젝트 = {name : 'kim', age:30}
+
+        //forEach
+        var numbers1 = [1,2,3,4,5]
+        numbers1.forEach(function(numbers1){      //세로로 1,2,3,4,5 출력. 
+            console.log(numbers1)
+        })                                        
+
+
+
+
+
+        //forEach 응용문제1.fruits 을 fruits2 에 넣어보시오
+        var fruits = ['banana', 'orange', 'grape'];
+        var fruits2 = ['wine'];
+
+        fruits.forEach( (결과)=>{ fruits2.push(결과) })         //참고로 결과는 fruits를 forEach실행 후 하나하나씩 나온 것들
+        console.log(fruits2);   //(4) ['wine', 'banana', 'orange', 'grape']
+
+
+
+
+        //forEach 응용문제2.numbers의 숫자를 forEach를 이용해 다 더해보자
+        let numbers = [12, 22, 15, 29, 53];
+        let sum = 0;
+
+        numbers.forEach( (결과) =>{   //역시 결과에는 12, 22, 15....가 차례로 들어간다. 
+            sum += 결과;
+        })
+        console.log(sum)
+
+
+
+
+
+
+
+
+    </script>
+   
+
+    <br>
+    <p>-------------------------------------------------수업 내용--------------------------------------------</p>
+    
+</body>
+<p>forEach() 반복문. (어레이 전용)
+<p>for in 반복문 (오브젝트 전용)</p>
+<p>for of 반복문 (iterable 전용)</p>

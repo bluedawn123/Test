@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+
+    <div></div>
+
+    <script>
+        
+        var person = new Map();
+        person.set('name', 'kim');       //키, 벨류로 구성. 앞에 나오는 것들이 keys
+        person.set('age', 20);
+
+        console.log(person)  //Map(2) {'name' => 'kim', 'age' => 20}  왜써?  자료간의 연관성을 표현하기 위해 씀
+
+        //기타 등등
+        person.get('age')  //20
+
+        //for 반복문 사용시
+        for (var key of person.keys()){
+            console.log(key)   //name, age
+        }
+
+
+        //직접 자료 집어 넣을때
+        var person2 = new Map([
+            [ 'name', 'kim'],
+            ['age', 35]
+        ])
+
+        for (var value of person2.values()){
+            console.log(value)   //kim, 35 출력
+        }
+
+
+        //set => 중복자료를 허용하지 않는 어레이 비슷한 것
+        var 출석부 = ['john', 'tom', 'andy', 'tom'];
+        var 출석부2 = new Set( ['yoon', 'yoon', 'kim', 'mean'])
+
+        console.log(출석부2)  //Set(3) {'yoon', 'kim', 'mean'}. 중복이 제거된다. 
+        
+        출석부2.add('sally');
+
+        //set 자료형을 array로 바꿔보자
+        어레이출석부 = [...출석부2]
+        console.log(어레이출석부)  //(4) ['yoon', 'kim', 'mean', 'sally']
+
+    </script>
+   
+
+    <br>
+    <p>-------------------------------------------------수업 내용--------------------------------------------</p>
+    
+</body>
+<p>kay, value 를 저장하는 Map 자료형. (오브젝트와 유사)
+<p>
+<p>

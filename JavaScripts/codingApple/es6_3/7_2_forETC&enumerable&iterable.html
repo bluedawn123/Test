@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+
+    <div></div>
+
+    <script>
+        var 오브젝트 = {name : 'kim', age:30};
+
+        //for in 반복문
+        for (var key in 오브젝트){    //작명, 반복시킬오브젝트.    작명(key) 부분에는 오브젝트의 key값의 데이터 부분이 들어간다.
+            console.log(오브젝트)     //{name: 'kim', age: 30}
+            console.log(오브젝트[key])    //오브젝트['name'] = 'kim' 나오는 것과 같음. 그래서 kim, 30이 출력된다. 
+        }
+
+
+
+
+
+        //for in의 두번째 특징 = 부모의 prototype도 출력
+        class 부모{
+
+        }
+        부모.prototype.name = 'park';
+
+        var 오브젝트1 = new 부모();
+        for (var key in 오브젝트1){
+            if (오브젝트1.hasOwnProperty(key)) {  //부모의 prototype말고 내가 직접갖고있는것만 반복시키고 싶은 경우
+                //true면 보여주고, false면 안보여준다. 
+
+                console.log(오브젝트1[key])  //park
+                console.log(오브젝트1.hasOwnProperty(key))  //false
+
+            }
+        }
+
+
+
+
+        //for of 반복문
+        var 어레이 = [2,3,4,5];
+
+        for (var 작명 of 어레이){        //데이터, 대상. 
+            console.log(작명)           //2,3,4,5
+        }
+
+
+    </script>
+   
+
+    <br>
+    <p>-------------------------------------------------수업 내용--------------------------------------------</p>
+    
+</body>
+<p>forEach() 반복문. (어레이 전용)
+<p>for in 반복문 (오브젝트 전용).   + 부모의 prototype도 반복시켜준다. 내가 직접 갖고싶은것만 반복시키고 싶으면, hasOwnProperty() 사용!</p>
+<p>for of 반복문 (iterable 전용 => . 어레이, 문자, arguments, map, set 등등등)</p>
