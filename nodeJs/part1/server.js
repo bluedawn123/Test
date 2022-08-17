@@ -7,9 +7,16 @@ app.use(express.urlencoded({extended: true}))
 // 그래서 파일을 빨리 하나 만들어봅시다. 
 // 그 전에 주의할점 : 작업폴더 내에 views라는 이름의 폴더를 하나 만드신 후
 // 거기에 list.ejs 파일을 만드셔아합니다. 
+
+const methodOverride = require('method-override')
+app.use(methodOverride('_method'))
+
 app.set('view engine', 'ejs');
 
+app.use('/public', express.static('public')); //나는 static파일을 보관하기 위해 public을 쓸거다
+
 const MongoClient = require('mongodb').MongoClient
+
 
 var db;
 
@@ -40,11 +47,13 @@ app.get('/pet', function(요청, 응답){
 
 //html을 보내려면?
 app.get('/', function(요청, 응답) { 
-    응답.sendFile(__dirname +'/index.html')
-  });1144
+    // 응답.sendFile(__dirname +'/index.html') -> ejs로 변경
+    응답.render('index.ejs');
+  });
 
 app.get('/write', function(요청, 응답) { 
-  응답.sendFile(__dirname +'/write.html')
+  // 응답.sendFile(__dirname +'/write.html') -> ejs로 변경
+  응답.render('write.ejs');
 });  
 
 
@@ -98,3 +107,60 @@ app.get('/list', function(요청, 응답) {
     });   
     
 });  
+
+
+app.delete('/delete', function(요청, 응답){           //delete로 왔을때 뭘 수행할것이냐?
+  console.log(요청.body)         // 요청을 받았을때 보낸 데이터를 알아보자. 일반적으로 요청.body에 들어있으므로.
+
+  //요청.body에 담겨온 게시물번호(data)를 가진 글을 db에서 찾아서 삭제하는 코드.  참고로 따옴표 제거를 위해서는 parseInt 사용
+  요청.body._id = parseInt(요청.body._id)   //참고로 따옴표 제거를 위해서는 parseInt 사용
+  db.collection('post').deleteOne(요청.body, function(에러, 결과){
+    console.log('삭제완료');
+    응답.status(200).send( {message : '삭제 성공했습니다. '});   //성공시
+
+  })
+})
+
+
+//detail로 접속하면 detail.ejs를 보여준다. 단, detail2, detail3 등이 다 달라야 한다. 
+app.get('/detail/:id', function(요청, 응답){      //   /:id에서 :id부분이 중요. url의 파라미터
+  db.collection('post').findOne( {_id : parseInt(요청.params.id) }, function(에러, 결과){    //해석 => 컬렉션post에서 _id를 찾는데, 그것이 파라미터중 :id 의미이고 바로 그것이 parseInt(요청.params.id) 이다.      
+    // 요청.params.id ?? => 파라미터중 :id 의미. detail/4 면 요청.params.id가 4가 된다.  그냥 외워야 한다.
+    //그리고 찾은 결과물이 결과로 저장된다. 
+    
+    console.log(결과)     //detail/8의 경우, { _id: 8, '제목': '똥싸기', '날짜': '123' } 이런식으로 찾아준다. 
+    응답.render('detail.ejs', { data : 결과 } );  //찾은 결과를 data라는 이름으로 detail.ejs 로 보내준다.
+
+  })
+})
+
+
+
+//edit 페이지. 단 edit/숫자 로 접속하면 해당 숫자의 데이터를 보여줘야 한다.
+//예를들어, edit/2로 접속하면 2번 게시물의 데이터(제목, 날짜)를 edit.ejs 로 보내면 된다.
+
+app.get('/edit/:id', function(요청, 응답){
+  
+  db.collection('post').findOne( {_id : parseInt(요청.params.id)}, function(에러, 결과){   //이 부분은 이해가 안되면 위를 보자. 그냥 암기해야한다.
+    console.log(결과)    //edit/10이면, { _id: 10, '제목': '일하기', '날짜': '1123123' } 를 출력(예시)
+    응답.render('edit.ejs', {post : 결과 })  //찾은 결과데이터를 post로 해서 edit.ejs에 보낸다. 
+  })
+  
+})
+
+//서버로 put 요청 들어오면 게시물 수정 
+app.put('/edit', function(요청, 응답){
+  //폼에 담긴 제목, 날짜 데이터를 가지고 db.collection에다가 업데이트를 해줘야 한다. 
+
+  db.collection('post').updateOne( {_id : parseInt(요청.body.id) }, { $set : { 제목 : 요청.body.title, 날짜 : 요청.body.date} }, function(에러, 결과){             //updateOne(어떤게시물을 수정할건지?, 수정값, 콜백함수)
+    //아이디가 ~~인 데이터를 찾아서 ~~ 이렇게 바꾼다.
+    //_id 를 가져오는 방법 ==>> edit.ejs에 value="<%= post._id %>" name="id" 상태로 있는데 위 코드를 {_id : 요청.body.id } 이런식으로 가져온다. 
+
+    console.log('수정완료...제발')
+    
+    //다른페이지로 이동시키기
+    응답.redirect('/list')
+
+  })
+
+})
