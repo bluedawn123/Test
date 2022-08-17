@@ -152,7 +152,7 @@ app.get('/edit/:id', function(요청, 응답){
 app.put('/edit', function(요청, 응답){
   //폼에 담긴 제목, 날짜 데이터를 가지고 db.collection에다가 업데이트를 해줘야 한다. 
 
-  db.collection('post').updateOne( {_id : parseInt(요청.body.id) }, { $set : { 제목 : 요청.body.title, 날짜 : 요청.body.date} }, function(에러, 결과){             //updateOne(어떤게시물을 수정할건지?, 수정값, 콜백함수)
+  db.collection('post').updateOne({ _id : parseInt(요청.body.id) }, { $set : { 제목 : 요청.body.title, 날짜 : 요청.body.date} }, function(에러, 결과){             //updateOne(어떤게시물을 수정할건지?, 수정값, 콜백함수)
     //아이디가 ~~인 데이터를 찾아서 ~~ 이렇게 바꾼다.
     //_id 를 가져오는 방법 ==>> edit.ejs에 value="<%= post._id %>" name="id" 상태로 있는데 위 코드를 {_id : 요청.body.id } 이런식으로 가져온다. 
 
@@ -164,3 +164,4 @@ app.put('/edit', function(요청, 응답){
   })
 
 })
+
