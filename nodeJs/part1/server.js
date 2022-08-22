@@ -1,4 +1,4 @@
-
+require('dotenv').config()
 
 const express = require('express');
 const app = express();
@@ -46,69 +46,26 @@ MongoClient.connect('mongodb+srv://haemilyjh:dkskwp123@cluster0.dfc2c.mongodb.ne
     });
 })
 
+// (env 파일을 적용하는 server.js 코드 ★★추후 손보자)
 
-
-
-
-
-
-
-app.get('/pet', function(요청, 응답){
-    응답.send('반갑습니다.');
-
-})
+// var db;
+//   MongoClient.connect(process.env.DB_URL, function(err, client){
+//   if (err) return console.log(err)
+//   db = client.db('Example1');
+//   app.listen(process.env.PORT, function() {
+//     console.log('listening on 8080')
+//   })
+// }) 
 
 //html을 보내려면?
 app.get('/', function(요청, 응답) { 
     // 응답.sendFile(__dirname +'/index.html') -> ejs로 변경
     응답.render('index.ejs');
   });
-
 app.get('/write', function(요청, 응답) { 
   // 응답.sendFile(__dirname +'/write.html') -> ejs로 변경
   응답.render('write.ejs');
 });  
-
-
-
-//어떤 사람이 /add경로로 POST 요청을 하면 ~~코드를 실행해주세요
-//우리가 POST를 한 경보는 요청에 숨겨져있다.
-app.post('/add', function (요청, 응답) {
-
-    //counter에서 게시물갯수(찾기위해 지정)를 찾고, 찾은 결과에서 총게시물갯수를 결과의 totalPost로 저장을 해준다.
-    db.collection('counter').findOne({name : '게시물갯수'}, function(에러, 결과){     //결과 = counter의 전체데이터. { _id: 62f4a6bf2ddc2d3035195c43, totalPost: 1, name: '게시물갯수' } 이런 게 있다.
-    //   console.log(결과)            //{ _id: 62f4a6bf2ddc2d3035195c43, totalPost: 1, name: '게시물갯수' }
-    //   console.log(결과.totalPost)  //1
-
-      var 총게시물갯수 = 결과.totalPost
-
-      //post에 새로운 데이터 저장될 때마다 id는 총게시물갯수에서 하나를 더한값으로 저장해주기 위해서! 그리고 counter콜렉션의 totalPost도 역시 1 증가시켜야 한다.
-      db.collection('post').insertOne({ _id : 총게시물갯수 + 1, 제목 : 요청.body.title, 날짜 : 요청.body.date }, function (에러, 결과) {
-        db.collection('counter').updateOne( {name:'게시물갯수'}, { $inc: {totalPost:1} }, function(에러, 결과){
-
-//updateOne 함수엔 파라미터가 세개가 필요합니다. 
-// 왼쪽엔 { name : '게시물갯수' } 이렇게 자료를 찾을 수 있는 이름이라든지 쿼리문을 적어주면 됩니다. 
-// 가운데는 여러분이 수정할 값을 입력해주시면 됩니다. 그런데 약간 특이합니다. 
-
-// { $set : { totalPost : 100 } } 이렇게 넣어서 값을 아예 100으로 변경할 수도 있고
-// { $inc : { totalPost : 5 } } 이렇게 넣어서 값을 5만큼 더해줄 수도 있습니다. 
-// $ 표시 붙은게 바로 operator 라는 문법입니다. 여러 종류가 있으니 나머지는 필요할 때 찾아쓰도록 합시다. 
-
-// 오른쪽은 그냥 콜백함수입니다. 수정이 실패나 성공시 실행할 코드를 안에 담으시면 됩니다. 
-
-
-            if(에러){return console.log(에러)}
-            응답.send('전송완료');
-        })
-      })
-  
-    })
-  })
-
-
-
-
-
 //list로 get요청 접속하면 실제 db에 저장된 데이터들로 html을 보여준다.
 app.get('/list', function(요청, 응답) { 
     //디비에 저장된 post라는 collection 안에 데이터(조건필요)를 꺼내주세요
@@ -118,19 +75,16 @@ app.get('/list', function(요청, 응답) {
         //★★★찾은걸 list.ejs로 posts라는 이름을 써서 집어넣는 작업.
         응답.render('list.ejs', { posts : 결과 })
     });   
-    
 });  
 
 
 app.delete('/delete', function(요청, 응답){           //delete로 왔을때 뭘 수행할것이냐?
   console.log(요청.body)         // 요청을 받았을때 보낸 데이터를 알아보자. 일반적으로 요청.body에 들어있으므로.
-
   //요청.body에 담겨온 게시물번호(data)를 가진 글을 db에서 찾아서 삭제하는 코드.  참고로 따옴표 제거를 위해서는 parseInt 사용
   요청.body._id = parseInt(요청.body._id)   //참고로 따옴표 제거를 위해서는 parseInt 사용
   db.collection('post').deleteOne(요청.body, function(에러, 결과){
     console.log('삭제완료');
     응답.status(200).send( {message : '삭제 성공했습니다. '});   //성공시
-
   })
 })
 
@@ -147,33 +101,25 @@ app.get('/detail/:id', function(요청, 응답){      //   /:id에서 :id부분�
   })
 })
 
-
-
 //edit 페이지. 단 edit/숫자 로 접속하면 해당 숫자의 데이터를 보여줘야 한다.
 //예를들어, edit/2로 접속하면 2번 게시물의 데이터(제목, 날짜)를 edit.ejs 로 보내면 된다.
 
 app.get('/edit/:id', function(요청, 응답){
-  
   db.collection('post').findOne( {_id : parseInt(요청.params.id)}, function(에러, 결과){   //이 부분은 이해가 안되면 위를 보자. 그냥 암기해야한다.
     console.log(결과)    //edit/10이면, { _id: 10, '제목': '일하기', '날짜': '1123123' } 를 출력(예시)
     응답.render('edit.ejs', {post : 결과 })  //찾은 결과데이터를 post로 해서 edit.ejs에 보낸다. 
   })
-  
 })
 
 //서버로 put 요청 들어오면 게시물 수정 
 app.put('/edit', function(요청, 응답){
   //폼에 담긴 제목, 날짜 데이터를 가지고 db.collection에다가 업데이트를 해줘야 한다. 
-
   db.collection('post').updateOne({ _id : parseInt(요청.body.id) }, { $set : { 제목 : 요청.body.title, 날짜 : 요청.body.date} }, function(에러, 결과){             //updateOne(어떤게시물을 수정할건지?, 수정값, 콜백함수)
     //아이디가 ~~인 데이터를 찾아서 ~~ 이렇게 바꾼다.
     //_id 를 가져오는 방법 ==>> edit.ejs에 value="<%= post._id %>" name="id" 상태로 있는데 위 코드를 {_id : 요청.body.id } 이런식으로 가져온다. 
-
     console.log('수정완료...제발')
-    
     //다른페이지로 이동시키기
     응답.redirect('/list')
-
   })
 
 })
@@ -182,12 +128,13 @@ app.put('/edit', function(요청, 응답){
 app.get('/login', function(요청, 응답){
   응답.render('login.ejs')
 });
-
 app.get('/fail', function(요청, 응답){
   응답.render('fail.ejs')
 });
 
 
+
+//-----------------------------------------------------------로그인 기능 --------------------------------------------------------------------
 //로그인 페이지에서 로그인을 하면 아이디, 비번을 검사해야 => 누군가 로그인폼에서 POST 요청을 하면 ~~를 실행해주세요 라는 코드
 //1. post 요청해서 form을 전송하면, 
 app.post('/login', passport.authenticate('local', 
@@ -237,13 +184,131 @@ passport.serializeUser(function (user, done) {   //★★★여기 user값은 �
 });
 
 
-//마이페이지 접속시 발동. 이 세션 데이터를 가진 사람을 db에서 찾아주세요?
+//마이페이지 접속시 발동. 이 세션 데이터를 가진 사람을 db에서 찾아주세요? = 로그인한 유저의 개인정보를 db에서 찾는 역할
 passport.deserializeUser(function (아이디, done) {
-  done(null, {})
-}); 
+  db.collection('login').findOne({ id: 아이디 }, function (에러, 결과) {
+    done(null, 결과)
+  })
+});
 
 
-//마이페이지
-app.get('/mypage', function (요청, 응답) {
-  응답.render('mypage.ejs', {})
+//----------------------------------------------------------- 가입기능 --------------------------------------------------------------------
+//유저가 입력한 id/pw를 db에 저장
+app.post('/register', function(요청, 응답){
+  db.collection('login').insertOne( { id: 요청.body.id, pw : 요청.body.pw }, function(에러, 결과){
+    응답.redirect('/')
+  } )
+
+})
+
+
+
+//미들웨어 함수를 만들어서 사용해보자. 
+//마이페이지  get() 이런 함수 안에 저렇게 미들웨어를 집어넣을 수 있다.
+//mypage 요청과 mypage.ejs 응답 사이에 로그인했니라는 코드를 실행시켜준다. 
+app.get('/mypage', 로그인했니, function (요청, 응답) {   //mypage로 접속하면 로그인했니라는 함수를 실행하고 다음 함수를 실행한다. 
+  console.log('마이페이지 접속완료'); 
+  console.log(요청.user); 
+  console.log(요청.user._id); 
+  응답.render('mypage.ejs', { 사용자 : 요청.user}) 
 }) 
+
+
+function 로그인했니(요청, 응답, next) {   //요청.user 가 있으면 next()로 통과시켜주고요, 없으면 에러메세지를 응답.send() 해주세요~" 라는 뜻
+  if (요청.user) {  
+    console.log(요청.user)
+    console.log('확인용')
+    next() 
+  } 
+  else { 
+    응답.send('로그인안하셨는데요?') 
+  } 
+} 
+
+
+//-----------------------------------------------------------검색기능 --------------------------------------------------------------------
+//queryString을 요청받으면 해당 제목을 가진 게시물을 DB에서 찾아서 보내주는 방식
+
+app.get('/search', function(요청, 응답){  //이전에 list.ejs에서 버튼누르면 search?value=뭐시기 까지 만들어놨다. 그 이후
+  
+  //1. 검색창에 입력한 값을 추출하기
+  //요청.query -> queryString이 담겨있는 부분. Ex)검색창에 ddd라고 치면 { value: 'ddd' } 출력. 요청.query.value면 ddd만 !
+  console.log(요청.query.value)   //이닦기, 똥싸기 등등
+  
+
+  //2. 추출한 결과물을 db에서 찾기 => 제목이 똥싸기 인걸 db에서 찾아서 결과를 array로 변환
+  var 검색조건 = [
+    {
+      $search: {
+        index: 'titleSearch',  //우리가 mongodbAtlas에서 만든 index명
+
+        //검색요청 부분
+        text: {
+          query: 요청.query.value,  //실제 검색어
+          path: '제목'  // collection안의 어떤 항목에서 찾을것인가? 제목날짜 둘다 찾고 싶으면 ['제목', '날짜']
+        }
+      }
+    },
+    { $sort : { _id : -1 }},   //기타 정렬조건
+    { $limit : 10},
+    { $project : { 제목: 1, _id : 1, score: { $meta : "searchScore"} }}   //아래 요약해 놓음
+  ] 
+  db.collection('post').aggregate(검색조건).toArray(function(에러, 결과){   
+  
+  //2-1.find( { 제목 : 요청.query.value }) => find( { $text : { $search: 요청.query.value }} ) 로 변환. 이유? 검색한 결과가 포함된 다른 것들도 찾아줌
+  
+  //몽고디비의 단점 = 띄어쓰기 기준이라 단어의 일부는 검색이 안된다...ㅅㅂ
+  //2-2.db.collection('post').find( { $text : { $search: 요청.query.value }} ).toArray(function(에러, 결과){   이것도 안쓸거임. 
+
+  //2-3. aggregate()사용 => aggregate() 안에 [ {검색조건1}, {검색조건2} ... ] 이렇게 조건을 여러개 집어넣을 수 있다.
+
+    console.log(결과)     // [ { _id: 9, '제목': '괴롭히기', '날짜': '11123' } ]  이런식으로 출력
+
+  //3. search.ejs 페이지 만들어주기. list ejs와는 다르게 찾아서 나온 것들만 결과로 보여준다!
+    응답.render('search.ejs', { posts : 결과})  //결과를 posts로 해서 search.ejs(검색 결과 페이지)
+  
+  })
+
+})
+// $sort를 쓰면 결과를 정렬해서 가져옵니다. _id를 오름차순으로 정렬해주세요~ 라고 썼습니다.
+// $limit을 쓰면 결과를 제한해줍니다. 맨위의 10개만 가져오라고 시켰습니다. 
+// $project를 쓰면 찾아온 결과 중에 원하는 항목만 보여줍니다. 0은 안보여주고 1은 보여주라는 뜻입니다. 위의 코드는 _id는 빼고 제목만 가져오겠군요. 
+// 이 외에도 백만개의 $연산자가 있다
+
+
+
+
+//-----------------------------------------------------------글 업로드 기능 --------------------------------------------------------------------
+//어떤 사람이 /add경로로 POST 요청을 하면 ~~코드를 실행해주세요
+//우리가 POST를 한 경보는 요청에 숨겨져있다.
+app.post('/add', function (요청, 응답) {
+
+  //counter에서 게시물갯수(찾기위해 지정)를 찾고, 찾은 결과에서 총게시물갯수를 결과의 totalPost로 저장을 해준다.
+  db.collection('counter').findOne({name : '게시물갯수'}, function(에러, 결과){     //결과 = counter의 전체데이터. { _id: 62f4a6bf2ddc2d3035195c43, totalPost: 1, name: '게시물갯수' } 이런 게 있다.
+  //   console.log(결과)            //{ _id: 62f4a6bf2ddc2d3035195c43, totalPost: 1, name: '게시물갯수' }
+  //   console.log(결과.totalPost)  //1
+
+    var 총게시물갯수 = 결과.totalPost
+
+    var 저장할거 = { _id : 총게시물갯수 + 1, 작성자:요청.user._id, 제목:요청.body.title, 날짜:요청.body.date }
+
+    //post에 새로운 데이터 저장될 때마다 id는 총게시물갯수에서 하나를 더한값으로 저장해주기 위해서! 그리고 counter콜렉션의 totalPost도 역시 1 증가시켜야 한다.
+    db.collection('post').insertOne( 저장할거, function (에러, 결과) {
+      db.collection('counter').updateOne( {name:'게시물갯수'}, { $inc: {totalPost:1} }, function(에러, 결과){
+
+//updateOne 함수엔 파라미터가 세개가 필요합니다. 
+// 왼쪽엔 { name : '게시물갯수' } 이렇게 자료를 찾을 수 있는 이름이라든지 쿼리문을 적어주면 됩니다. 
+// 가운데는 여러분이 수정할 값을 입력해주시면 됩니다. 그런데 약간 특이합니다. 
+
+// { $set : { totalPost : 100 } } 이렇게 넣어서 값을 아예 100으로 변경할 수도 있고
+// { $inc : { totalPost : 5 } } 이렇게 넣어서 값을 5만큼 더해줄 수도 있습니다. 
+// $ 표시 붙은게 바로 operator 라는 문법입니다. 여러 종류가 있으니 나머지는 필요할 때 찾아쓰도록 합시다. 
+
+// 오른쪽은 그냥 콜백함수입니다. 수정이 실패나 성공시 실행할 코드를 안에 담으시면 됩니다. 
+          if(에러){return console.log(에러)}
+          응답.render('add.ejs');
+      })
+    })
+
+  })
+})
