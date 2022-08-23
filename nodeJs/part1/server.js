@@ -66,27 +66,21 @@ app.get('/write', function(요청, 응답) {
   // 응답.sendFile(__dirname +'/write.html') -> ejs로 변경
   응답.render('write.ejs');
 });  
+
+
+//------------------------------------------------------리스트 페이지 //------------------------------------------------------
 //list로 get요청 접속하면 실제 db에 저장된 데이터들로 html을 보여준다.
 app.get('/list', function(요청, 응답) { 
     //디비에 저장된 post라는 collection 안에 데이터(조건필요)를 꺼내주세요
     db.collection('post').find().toArray(function(에러, 결과){      //.find().toArray();는 모든 데이터
-        console.log(결과);
+        console.log(결과);  //{ _id: 13, '제목': '알하기 쉬기', '날짜': '111' }, 이런식
 
         //★★★찾은걸 list.ejs로 posts라는 이름을 써서 집어넣는 작업.
-        응답.render('list.ejs', { posts : 결과 })
-    });   
+        응답.render('list.ejs', { posts : 결과 })   //{ _id: 13, '제목': '알하기 쉬기', '날짜': '111' } 이런 많은 데이터를 posts로 list.ejs로 보냄
+    });
+ 
 });  
 
-
-app.delete('/delete', function(요청, 응답){           //delete로 왔을때 뭘 수행할것이냐?
-  console.log(요청.body)         // 요청을 받았을때 보낸 데이터를 알아보자. 일반적으로 요청.body에 들어있으므로.
-  //요청.body에 담겨온 게시물번호(data)를 가진 글을 db에서 찾아서 삭제하는 코드.  참고로 따옴표 제거를 위해서는 parseInt 사용
-  요청.body._id = parseInt(요청.body._id)   //참고로 따옴표 제거를 위해서는 parseInt 사용
-  db.collection('post').deleteOne(요청.body, function(에러, 결과){
-    console.log('삭제완료');
-    응답.status(200).send( {message : '삭제 성공했습니다. '});   //성공시
-  })
-})
 
 
 //detail로 접속하면 detail.ejs를 보여준다. 단, detail2, detail3 등이 다 달라야 한다. 
@@ -101,9 +95,11 @@ app.get('/detail/:id', function(요청, 응답){      //   /:id에서 :id부분�
   })
 })
 
+
+ 
+//------------------------------------------------------수정 기능 //------------------------------------------------------
 //edit 페이지. 단 edit/숫자 로 접속하면 해당 숫자의 데이터를 보여줘야 한다.
 //예를들어, edit/2로 접속하면 2번 게시물의 데이터(제목, 날짜)를 edit.ejs 로 보내면 된다.
-
 app.get('/edit/:id', function(요청, 응답){
   db.collection('post').findOne( {_id : parseInt(요청.params.id)}, function(에러, 결과){   //이 부분은 이해가 안되면 위를 보자. 그냥 암기해야한다.
     console.log(결과)    //edit/10이면, { _id: 10, '제목': '일하기', '날짜': '1123123' } 를 출력(예시)
@@ -124,7 +120,7 @@ app.put('/edit', function(요청, 응답){
 
 })
 
-
+//------------------------------------------------------//------------------------------------------------------//------------------------------------------------------
 app.get('/login', function(요청, 응답){
   응답.render('login.ejs')
 });
@@ -192,24 +188,14 @@ passport.deserializeUser(function (아이디, done) {
 });
 
 
-//----------------------------------------------------------- 가입기능 --------------------------------------------------------------------
-//유저가 입력한 id/pw를 db에 저장
-app.post('/register', function(요청, 응답){
-  db.collection('login').insertOne( { id: 요청.body.id, pw : 요청.body.pw }, function(에러, 결과){
-    응답.redirect('/')
-  } )
-
-})
-
-
-
+//------------------------------------------------------ 마이페이지 //------------------------------------------------------//------------------------------------------------------
 //미들웨어 함수를 만들어서 사용해보자. 
 //마이페이지  get() 이런 함수 안에 저렇게 미들웨어를 집어넣을 수 있다.
 //mypage 요청과 mypage.ejs 응답 사이에 로그인했니라는 코드를 실행시켜준다. 
 app.get('/mypage', 로그인했니, function (요청, 응답) {   //mypage로 접속하면 로그인했니라는 함수를 실행하고 다음 함수를 실행한다. 
   console.log('마이페이지 접속완료'); 
-  console.log(요청.user); 
-  console.log(요청.user._id); 
+  console.log(요청.user);                               //{ _id: 630499c000ca9b23448508ea, id: 'test2', pw: 'test2' }
+  console.log(요청.user._id);                           //630499c000ca9b23448508ea
   응답.render('mypage.ejs', { 사용자 : 요청.user}) 
 }) 
 
@@ -225,6 +211,15 @@ function 로그인했니(요청, 응답, next) {   //요청.user 가 있으면 n
   } 
 } 
 
+
+//----------------------------------------------------------- 가입기능 --------------------------------------------------------------------
+//유저가 입력한 id/pw를 db에 저장
+app.post('/register', function(요청, 응답){
+  db.collection('login').insertOne( { id: 요청.body.id, pw : 요청.body.pw }, function(에러, 결과){
+    응답.redirect('/')
+  } )
+
+})
 
 //-----------------------------------------------------------검색기능 --------------------------------------------------------------------
 //queryString을 요청받으면 해당 제목을 가진 게시물을 DB에서 찾아서 보내주는 방식
@@ -290,7 +285,8 @@ app.post('/add', function (요청, 응답) {
 
     var 총게시물갯수 = 결과.totalPost
 
-    var 저장할거 = { _id : 총게시물갯수 + 1, 작성자:요청.user._id, 제목:요청.body.title, 날짜:요청.body.date }
+    var 저장할거 = { _id : 총게시물갯수 + 1, 작성자:요청.user._id, 제목:요청.body.title, 날짜:요청.body.date }  //작성자 : 요청.user._id 추가
+
 
     //post에 새로운 데이터 저장될 때마다 id는 총게시물갯수에서 하나를 더한값으로 저장해주기 위해서! 그리고 counter콜렉션의 totalPost도 역시 1 증가시켜야 한다.
     db.collection('post').insertOne( 저장할거, function (에러, 결과) {
@@ -310,5 +306,38 @@ app.post('/add', function (요청, 응답) {
       })
     })
 
+  })
+})
+
+
+
+
+// console.log(요청.user);                               //{ _id: 630499c000ca9b23448508ea, id: 'test2', pw: 'test2' }
+// console.log(요청.user._id);                           //630499c000ca9b23448508ea
+
+
+
+//--------------------------------------------------------------삭제기능-----------------------------------------------------
+//7번 게시물을 삭제하라~라는 요청이 들어오면 제요청중인 유저의 요청.user._id와 그게 7번 글에 저장되어있는 작성자 정보랑 일치하면 삭제
+///delete경로로 DELETE 요청을 하면 이하 코드로 해주세요
+app.delete('/delete', function(요청, 응답){           //delete로 왔을때 뭘 수행할것이냐?
+  console.log(요청.body)         // 요청을 받았을때 보낸 데이터. 일반적으로 요청.body에 들어있으므로.
+                                 // list.ejs에서 data : {_id : 글번호 } 부분. { _id: '11'}, {_id: '13' } 이런식이므로 숫자가 아니므로 parseInt필요
+
+  //요청.body에 담겨온 게시물번호(data)를 가진 글을 db에서 찾아서 삭제하는 코드. 
+  요청.body._id = parseInt(요청.body._id)   //참고로 따옴표 제거를 위해서는 parseInt 사용. 비로소 숫자로 됌
+                                            //요청.body가 {_id : '1'}가 원래는 이렇게 생겼는데 1로 변환해주는 작업
+
+  //실제 로그인중인 유저의 _id와 글에 저장된 유저의_id가 일치할 경우 삭제 
+  
+  var 삭제할데이터 = {_id : 요청.body._id, 작성자 : 요청.user._id }
+
+  db.collection('post').deleteOne( 삭제할데이터 , function(에러, 결과){
+
+    console.log(요청.body._id)
+    console.log(요청.user._id)
+    console.log('삭제완료');
+
+    응답.status(200).send( {message : '삭제 성공했습니다. '});   //성공시
   })
 })
