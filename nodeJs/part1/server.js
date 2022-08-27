@@ -68,6 +68,24 @@ app.get('/write', function(요청, 응답) {
 });  
 
 
+////////////////////////////////////////////////////routes로 정리해보기
+
+//app.use()를 사용해서 전역 미들웨어의 형식으로 라우터를 넣어주시면 라우터를 적용
+app.use('/shop', require('./routes/shop.js'))  //요청과 응답 사이에 실행되는 코드가 바로 미들웨어
+
+// 누군가 /post 경로로 요청하면 실행할 미들웨어는 app.use('/post', 미들웨어명)
+// 누군가 /list 경로로 요청하면 실행할 미들웨어는 app.use('/list', 미들웨어명)
+app.get('/shop/shirts', function(요청, 응답){
+  응답.send('셔츠 파는 페이지입니다.');
+});
+
+app.get('/shop/pants', function(요청, 응답){
+  응답.send('바지 파는 페이지입니다.');
+}); 
+
+
+
+
 //------------------------------------------------------리스트 페이지 //------------------------------------------------------
 //list로 get요청 접속하면 실제 db에 저장된 데이터들로 html을 보여준다.
 app.get('/list', function(요청, 응답) { 
@@ -328,8 +346,7 @@ app.delete('/delete', function(요청, 응답){           //delete로 왔을때 
   요청.body._id = parseInt(요청.body._id)   //참고로 따옴표 제거를 위해서는 parseInt 사용. 비로소 숫자로 됌
                                             //요청.body가 {_id : '1'}가 원래는 이렇게 생겼는데 1로 변환해주는 작업
 
-  //실제 로그인중인 유저의 _id와 글에 저장된 유저의_id가 일치할 경우 삭제 
-  
+  //실제 로그인중인 유저의 _id이면서 작성자가 ~~~인 경우만 삭제. ex)게시판 필드중 _id가 1이고 작성자가 630499c000ca9b23448508ea 인걸 만족하는 게시물만 지워
   var 삭제할데이터 = {_id : 요청.body._id, 작성자 : 요청.user._id }
 
   db.collection('post').deleteOne( 삭제할데이터 , function(에러, 결과){
@@ -341,3 +358,25 @@ app.delete('/delete', function(요청, 응답){           //delete로 왔을때 
     응답.status(200).send( {message : '삭제 성공했습니다. '});   //성공시
   })
 })
+
+
+//////////////////////////////////////////////////이미지 업로드
+let multer = require('multer');   //require 어쩌구는 multer 설치한거 갖다쓰겠습니다~ 라는 뜻
+var storage = multer.diskStorage({  //diskStorage라는 함수를 쓰면 업로드된 파일을 하드에 저장
+
+  destination : function(req, file, cb){  //destination : 업로드된 파일을 하드 어떤 경로에 저장할지 정하는 부분
+    cb(null, './public/image') 
+  },
+  filename : function(req, file, cb){  // filename : 파일의 이름을 결정하는 부분입니다.
+    cb(null, file.originalname )   //file.originalname이라고 쓰면 그냥 원본 그대로라는 뜻
+                                   //file.originalname + '오늘날짜~' 이런 식으로 저장하면 중복없이 유니크하게 저장할 수도
+  }
+});
+
+var upload = multer({storage : storage});
+
+app.get('/upload', function(요청, 응답){
+  응답.render('upload.ejs')
+})
+
+//이미지 업로드 했을때 public/image에 저장하기
