@@ -201,9 +201,10 @@ passport.serializeUser(function (user, done) {   //★★★여기 user값은 �
 
 
 //마이페이지 접속시 발동. 이 세션 데이터를 가진 사람을 db에서 찾아주세요? = 로그인한 유저의 개인정보를 db에서 찾는 역할
-passport.deserializeUser(function (아이디, done) {
+passport.deserializeUser(function (아이디, done) {  //★★아이디는 위의 user.id와 동일
   db.collection('login').findOne({ id: 아이디 }, function (에러, 결과) {
-    done(null, 결과)
+    done(null, 결과)  
+    console.log(결과)  //결과는??
   })
 });
 
