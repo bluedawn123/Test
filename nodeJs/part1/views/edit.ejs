@@ -22,15 +22,22 @@
         <!-- 하지만, 어떤 데이터를 바꿀지는 없으므로(무슨 _id게시물을 바꿀지 모르는 상태) 이므로 폼 전송시 _id : ?? 정보를 함께 보내야 한다. -->
       <div class="form-group">
         <h3>이 글은 <%= post._id %> 번째 게시물 입니다.</h3>
-        <h3>오늘의 할일입니다.</h3>
+        <h3>오늘 한 일입니다.</h3>
         <input type="text" value="<%= post._id %>" name="id" style="display : none;">  <!--서버로 _id를 전송하기 위해 작성. 안보이는 상태 -->
         <input value="<%= post.제목 %>" type="text" class="form-control" name="title">
       </div>
+
       <div class="form-group">
         <h3>날짜입니다. </h3>
         <input value="<%= post.날짜 %>"type="text" class="form-control" name="date">
       </div>
-      <button type="submit" class="btn btn-outline-secondary">Submit</button>
+
+      <div class="form-group">
+        <h3>내용 할 내용입니다. </h3>
+        <input value="<%= post.내용 %>"type="text" class="form-control" name="what">
+      </div>
+
+      <button type="submit" class="btn btn-outline-secondary">수정하기</button>
     </form>
   </div>
 

@@ -121,7 +121,7 @@ app.get('/detail/:id', function(요청, 응답){      //   /:id에서 :id부분�
 //edit 페이지. 단 edit/숫자 로 접속하면 해당 숫자의 데이터를 보여줘야 한다.
 //예를들어, edit/2로 접속하면 2번 게시물의 데이터(제목, 날짜)를 edit.ejs 로 보내면 된다.
 app.get('/edit/:id', function(요청, 응답){
-  db.collection('post').findOne( {_id : parseInt(요청.params.id)}, function(에러, 결과){   //이 부분은 이해가 안되면 위를 보자. 그냥 암기해야한다.
+  db.collection('post').findOne( {_id : parseInt(요청.params.id)} , function(에러, 결과){   //이 부분은 이해가 안되면 위를 보자. 그냥 암기해야한다.
     console.log(결과)    //edit/10이면, { _id: 10, '제목': '일하기', '날짜': '1123123' } 를 출력(예시)
     응답.render('edit.ejs', {post : 결과 })  //찾은 결과데이터를 post로 해서 edit.ejs에 보낸다. 
   })
@@ -130,7 +130,7 @@ app.get('/edit/:id', function(요청, 응답){
 //서버로 put 요청 들어오면 게시물 수정 
 app.put('/edit', function(요청, 응답){
   //폼에 담긴 제목, 날짜 데이터를 가지고 db.collection에다가 업데이트를 해줘야 한다. 
-  db.collection('post').updateOne({ _id : parseInt(요청.body.id) }, { $set : { 제목 : 요청.body.title, 날짜 : 요청.body.date} }, function(에러, 결과){             //updateOne(어떤게시물을 수정할건지?, 수정값, 콜백함수)
+  db.collection('post').updateOne({ _id : parseInt(요청.body.id) }, { $set : { 제목 : 요청.body.title, 날짜 : 요청.body.date, 내용 : 요청.body.what } }, function(에러, 결과){             //updateOne(어떤게시물을 수정할건지?, 수정값, 콜백함수)
     //아이디가 ~~인 데이터를 찾아서 ~~ 이렇게 바꾼다.
     //_id 를 가져오는 방법 ==>> edit.ejs에 value="<%= post._id %>" name="id" 상태로 있는데 위 코드를 {_id : 요청.body.id } 이런식으로 가져온다. 
     console.log('수정완료...제발')
