@@ -38,6 +38,6 @@
 
 }
 .navbar a{   /*navbar 안의 모든 a태그 */
-    font-size: 16px;
+    font-size: 15px;
     text-decoration: none;   /* 누른 링크 보라색 혹은 밑줄 제거 */
 }
