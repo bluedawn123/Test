@@ -161,8 +161,9 @@ app.get('/login', function(요청, 응답){
 app.get('/fail', function(요청, 응답){
   응답.render('fail.ejs')
 });
-
-
+app.get('/notyet', function(요청, 응답){
+  응답.render('notyet.ejs')
+});
 
 
 
@@ -435,7 +436,7 @@ app.get('/image/:imageName', function(요청, 응답){
   응답.sendFile( __dirname + '/public/image/' + 요청.params.imageName )   //요청.params.이름 => 이건 중요하니 꼭 기억하자
 })
 // 일반 파일을 유저에게 보내고 싶으면 sendFile이라는 함수를 쓰면 됩니다. (강의 초반에 잠깐 보고 지나가긴 했습니다)
-// 그리고 __dirname은 특별한 기본 변수인데 출력해보시면 그냥 현재 파일의 경로가 나옵니다. 
+// 그리고 __dirname은 특별한 기본 변수인데 출력해보시면 그냥 현재 파일의 경로가 나옵니다. 현재는 server.js 
 
 
 
