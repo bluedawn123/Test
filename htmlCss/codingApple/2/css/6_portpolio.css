@@ -1,0 +1,165 @@
+body{margin: 0;}
+div{box-sizing: border-box;}
+h1{font-size: 30px;}
+h4{font-size: 22px;}
+
+/*-----------------------------메인 대문 페이지 만들기--------------------------*/
+.main-background {
+    background-image: linear-gradient(to bottom, #1d5e9b, #a75fa7);
+    height: 550px;
+    padding: 20px;
+}
+.main-container {
+    width: 1200px;
+    margin: auto;  /*1200px짜리 main-container가 중앙으로 오게*/
+} 
+.main-text {
+    color: white;
+    float: left;
+    margin-top : 50px;
+    margin-left : 50px; 
+}
+.main-iphone {
+    width: 400px;
+    float: right;
+    margin-right : 10px;
+    margin-top: 95px; 
+} 
+.btn-black {
+    padding: 15px;border-radius:10px;font-size: 20px;color : white;background-color: rgb(82, 78, 78);border: 0;outline: 0; margin-top: 5px;
+    border:none; cursor: pointer;font-weight: 600;font-family: 'nanumsquare';
+}
+/*
+.btn-black:hover {
+    마우스올렸을시 스타일
+  }
+  .btn-black:active {
+    커서가찍혔을시 스타일 
+}
+*/
+
+
+/* ------------------------중간에 흰색 배경에 글씨 있는 부분------------------- */
+.blank {
+    background-color: white;
+    width: 100%;
+    height: 300px;
+    padding: 10px;
+    margin-top: 10px;
+}
+.blank-text{
+    text-align: center;
+}
+.btn-blank{  /*버튼도 글자취급해서 text-align하면 중앙정렬!*/
+    padding: 10px;border-radius:10px;font-size: 18px;color : white;background-color: rgb(82, 78, 78);border: 0;outline: 0; margin-top: 5px;
+    border:none; cursor: pointer;font-weight: 600;font-family: 'nanumsquare';
+}
+
+/* ------------------------동그라미 4개 레이아웃 있는 부분------------------- */
+
+.service {
+    background-color: #4e61c0;
+    width: 100%;
+    color: white;  /*하위 요소(아이콘, 글자)등의 색을 부모에서 정함*/
+    text-align: center;
+    padding: 60px 30px 50px 30px;  /*이건 보통 마지막에*/
+
+  }
+  .service-items {  /*4개의 아이콘 일렬배치*/
+    display: flex;
+  }
+  
+  .service-items div {
+    width: 25%;
+  }
+  .service-icon {
+    background: white;
+    color: #1d5e9b;
+    width: 100px;
+    height: 100px;
+    border-radius: 40%;
+    box-sizing: border-box;
+    padding: 23px;
+  }
+
+/* ------------------------포트폴리오 4개 사진 + 애니메이션 주기-------- */
+/*일단 부모태그 만들고 자식태그 영향 받게 중앙정렬 + 패딩(추후에해도됌)*/
+  .portfolio { 
+    padding-top: 60px;
+    padding-bottom: 60px;
+    text-align: center;
+}
+
+/* 최대폭은 역시 1200px로 중앙으로, 글자 왼쪽, 이미지는 중앙*/
+.portfolio-container {
+    text-align: left;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* 아이템들 4개를 넣고싶은데 두개두개 넣으려고 50퍼씩 넣고 띄워서 정렬 */
+.portfolio-items {
+    float: left;
+    width: 25%;
+    height: 350px;
+    background-size: cover;
+}
+/* 사진넣기 */
+.portfolio-one{
+    background-image: url(../img/portfolio-1.jpg);
+}
+.portfolio-two{
+    background-image: url(../img/portfolio-2.jpg);
+}
+.portfolio-three{
+    background-image: url(../img/portfolio-3.jpg);
+}
+.portfolio-four{
+    background-image: url(../img/portfolio-4.jpg);
+}
+   
+
+.portfolio-text {
+    color: white;
+    padding: 50px;
+    width: 100%;
+} 
+
+/* ----------------------------footer -----------------*/
+
+.footer{
+    background-color: white;
+    width: 100%;
+    height: 250px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.blank-text{
+    text-align: center;
+}
+
+.blank-image{
+    display: flex;
+}
+
+
+
+
+
+/*반응형 웹은 나중에 손을 좀더 보자..*/
+
+/* @media screen and (max-width : 992px) {
+  .main-iphone {
+    width: 260px;
+    display: block;
+    float: none;
+    margin: auto;
+    margin-top: 42px;
+  }
+  .main-text {
+    float: none;
+    margin-top: 50px;
+    text-align: center;
+  }
+} */

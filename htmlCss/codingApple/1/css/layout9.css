@@ -1,13 +1,24 @@
-/*메인버튼을 만들고 재사용 */
+/*미리 만들어서 클래스 필요한 부분에만 재사용 */
+.f-small{
+    font-size: 12px;
+}
+
+.f-mid{
+    font-size: 18px;
+}
+
+.f-lg{
+    font-size: 23px;
+}
 
 .main-btn{
     padding:15px;
-    font-size: 15px;
     border: none;
+    border-radius: 25px;
 }
 
 .bg-red{
-    background: red;
+    background: rgb(44, 112, 44);
 }
 
 .bg-blue{

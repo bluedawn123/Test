@@ -4,6 +4,7 @@
     margin-top: 50px;
     margin-bottom: 50px;
     width: 100%;
+    background-color :aquamarine
 }
 
 .product-container div{  /*product-container의 div태그들*/
@@ -15,12 +16,12 @@
 /*테블릿(1200px 이하 적용) 사이즈에선 가로폭 ~~%, 최대폭 ~~px로 해주세요 */
 @media screen and (max-width : 1200px){
     .product-container div{width: 50%;}   /*태블릿에선 각div는 50%만큼 차지 (700px의 50%) */
-    .product-container{max-width: 700px;}
+    .product-container{max-width: 600px;}
 }
 
 
 /*모바일(768px) 사이즈에선 가로폭 ~~%, 최대폭 ~~px로 해주세요 */
 @media screen and (max-width : 768px){
     .product-container div{width: 100%;}
-    .product-container{max-width: 400px;}
+    .product-container{max-width: 300px;}
 }

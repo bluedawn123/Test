@@ -45,12 +45,12 @@ div {
 
 .main-button{
     top : 500px;
-    border-radius : 30px;
+    border-radius : 20px;
     border: none;
     padding: 15px;
     font-size: 20px;
     /* position 속성사용. 공중에 뜬다고 생각 */
-    position : absolute;
+    position : absolute; /*main-button의 부모태그는 여기서 main-background이다. */
     
 /* position absolute 사용시 버튼을 가운데로 */
     left : 0;    
@@ -77,16 +77,17 @@ div {
 
 
 .explain-box{
-    width: 80%;       /* %는 부모대비 %를 의미한다. 여기서 부모는 body태그. => 반응형 레이아웃*/
-    max-width: 2500px; /* 참조 : padding은 width와 상관없다. */
+    font-size : 20px;
+    width : 1500px;    /* %는 부모대비 %를 의미한다. 여기서 부모는 body태그. => 반응형 레이아웃*/
+    max-width: 1500px; /* 참조 : padding은 width와 상관없다. */
     margin : 0px auto;      /* 박스 가운데정렬*/
-    padding : 30px;
+    padding : 20px;
     text-align : center;
     background-color: #eee;
     position: relative;   /*붕 뜨게하고   */                  
-    top : -30px;          /*  위로 -30만큼 올린다*/
-    box-sizing: border-box;   /*border-box =>content부분만 width로 설정하지 말고 padding, border포함
-                               content box =>  padding border 포함 ㄴㄴ*/
+    top : -60px;          /*  위로 -60만큼 올린다*/
+    box-sizing: border-box;   /*border-box =>content부분만 width로 설정하지 말고 padding, border까지 포함한 총 길이
+                               *content box =>  padding border 포함 ㄴㄴ*/
 
     /*z-index : 붕뜬 녀석들의 우선순위. 숫자가 클수록 높이 온다. 앞으로 보낼때 사용*/
 
@@ -99,10 +100,15 @@ div {
     3. 시작할때 div{}에 넣어두고 시작하면 편하다.*/
 }
 
-input[type=text]{    /*input 태그중 타입이 text인 것만*/  
+input[type=text]{   /* input 태그중 타입이 text인 것만*/
     padding: 10px;
     font-size: 10px;
     border: 2px solid red;
     border-radius: 5px;
-
+    width: 310px;
 }
+
+input[type=email]{
+    width : 500px;
+}
+

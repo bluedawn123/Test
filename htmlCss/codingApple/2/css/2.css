@@ -3,6 +3,9 @@
     height: 50px;
     align-items: center;
     padding : 5px;
+    height: 80px;
+    background-color :blanchedalmond
+    /* flex-wrap : wrap */
     /*justify-content: center;    flex 이용시 가운데 정렬
     
     flex-direction: row; => 가로배치
@@ -16,6 +19,15 @@
     margin-right : 50px;
     margin-left : 50px;
 }
+.nav-shop{
+    font-size: 52px;
+}
+.nav-etc{
+    margin-top: 25px;
+    font-size: 25px;
+}
+
+
 
 /*  rem, vw, vh, em 등등
     width: 100vw;     브라우저 폭에 비례한 넓이
@@ -23,6 +35,9 @@
     height: 100px;    브라우저 높이에 비례 
     background :  grey;
 }*/
+
+
+
 
 
 
@@ -159,28 +174,45 @@ div, input, textarea {          /* div,input,textarea태그에 border-box를 다
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 @media screen and (max-width : 1200px){
-    .main-title{font-size: 30px;}
-    .nav-item{font-size: 12px;}
+    .main-title{font-size: 50px;}
+    .nav-item{
+        margin-right : 20px;
+        margin-left : 20px;
+    }
+    .nav-etc{
+        font-size : 20px;
+    }
+    .nav-shop{
+        font-size : 28px
+    }
+
+
 }
 /* 1200px이하에서는 .클래스에서 {} 을 적용하라
    여러개를 만들 수 있다.
    보통 1200, 992, 768, 576px 기준( 4개 정도가 적당)
 */
-@media screen and (max-width : 768px){
-    .main-title{font-size: 20px;}
-    .nav-item{font-size: 8px;}
+@media screen and (max-width : 968px){
+    .main-title{font-size: 30px;}
+    .nav-etc{font-size: 18px;}
+    .nav-shop{
+        font-size : 23px
+    }
+    .nav-item{
+        margin-right : 10px;
+        margin-left : 10px;
+    }
+
 }
+
+@media screen and (max-width : 564px){
+    .nav-item{width: 30%}
+    .main-title{font-size: 20px;}
+    .nav-shop{font-size: 19px;}
+    .nav-etc{font-size: 15px;}
+
+}
+
+
+

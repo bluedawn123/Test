@@ -3,6 +3,8 @@
     height: 50px;
     align-items: center;
     padding : 5px;
+    height: 80px;
+
     /*justify-content: center;    flex 이용시 가운데 정렬
     
     flex-direction: row; => 가로배치
@@ -15,8 +17,16 @@
 .nav-item{
     margin-right : 50px;
     margin-left : 50px;
+    font-size : 32px;
+}
+.nav-shop{
+    font-size: 52px;
 }
 
+.nav-etc{
+    margin-top: 25px;
+    font-size: 25px;
+}
 /*  rem, vw, vh, em 등등
     width: 100vw;     브라우저 폭에 비례한 넓이
     width : 10rem     html폰트사이즈(기본은 16px)의 10배 
@@ -190,6 +200,8 @@ div, input, textarea {          /* div,input,textarea태그에 border-box를 다
     text-align: center;
 }
 
+
+
 /*테블릿(1200px 이하 적용) 사이즈에선 가로폭 ~~%, 최대폭 ~~px로 해주세요 */
 @media screen and (max-width : 1200px){
     .product-container div{width: 50%;}   /*태블릿에선 각div는 50%만큼 차지 (700px의 50%) */
@@ -207,18 +219,16 @@ div, input, textarea {          /* div,input,textarea태그에 border-box를 다
 /* ---------------------------------------------------------------------------------------- */
 
 
-
-
-
-
-
-
-
-
-
 @media screen and (max-width : 1200px){
     .main-title{font-size: 30px;}
-    .nav-item{font-size: 12px;}
+    .nav-item{
+        margin-right : 10px;
+        margin-left : 10px;
+    }
+    .nav-shop{
+        font-size : 23px
+    }
+    .nav-etc{font-size: 18px;}
 }
 /* 1200px이하에서는 .클래스에서 {} 을 적용하라
    여러개를 만들 수 있다.
@@ -226,5 +236,8 @@ div, input, textarea {          /* div,input,textarea태그에 border-box를 다
 */
 @media screen and (max-width : 768px){
     .main-title{font-size: 20px;}
-    .nav-item{font-size: 8px;}
+    .nav-etc{font-size: 18px;}
+    .nav-shop{
+        font-size : 23px
+    }
 }
