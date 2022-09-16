@@ -3,6 +3,73 @@ div{box-sizing: border-box;}
 h1{font-size: 30px;}
 h4{font-size: 22px;}
 
+
+/* -----------------------------------navbar------------------------------- */
+
+
+.nav-container{
+    background-color: #eee;
+    display: flex;     /* 가로배치*/
+    height: 80px;
+    align-items: center;
+    padding : 10px;
+    /*justify-content: center;    flex 이용시 가운데 정렬
+    
+    flex-direction: row; => 가로배치
+    flex-direction: colmun; => 세로배치
+    flex-wrap : wrap; => width가 크면 밑으로 내려간다.
+    align-items : ; => 상하정렬
+    */
+}
+
+.nav-item{
+    margin-right : 0px;
+    margin-left : 50px;
+}
+
+/*  rem, vw, vh, em 등등
+    width: 100vw;     브라우저 폭에 비례한 넓이
+    width : 10rem     html폰트사이즈(기본은 16px)의 10배 
+    height: 100px;    브라우저 높이에 비례 
+    background :  grey;
+}*/
+
+
+.navs-shop{
+    font-size: 38px;
+}
+
+
+.nav-etc {
+    font-size: 20px;
+    margin-top: 18px;
+}
+
+.navs-shops {
+    font-size: 28px;
+}
+
+.navs-login{
+    font-size: 24px;
+    margin-right : 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*-----------------------------메인 대문 페이지 만들기--------------------------*/
 .main-background {
     background-image: linear-gradient(to bottom, #1d5e9b, #a75fa7);
@@ -55,6 +122,10 @@ h4{font-size: 22px;}
     border:none; cursor: pointer;font-weight: 600;font-family: 'nanumsquare';
 }
 
+
+
+
+
 /* ------------------------동그라미 4개 레이아웃 있는 부분------------------- */
 
 .service {
@@ -82,6 +153,10 @@ h4{font-size: 22px;}
     padding: 23px;
   }
 
+
+
+
+
 /* ------------------------포트폴리오 4개 사진 + 애니메이션 주기-------- */
 /*일단 부모태그 만들고 자식태그 영향 받게 중앙정렬 + 패딩(추후에해도됌)*/
   .portfolio { 
@@ -95,14 +170,18 @@ h4{font-size: 22px;}
     text-align: left;
     max-width: 1200px;
     margin: auto;
+    padding-top: 60px;
+    padding-bottom: 60px;
+
 }
 
 /* 아이템들 4개를 넣고싶은데 두개두개 넣으려고 50퍼씩 넣고 띄워서 정렬 */
 .portfolio-items {
     float: left;
-    width: 25%;
+    width: 50%;
     height: 350px;
     background-size: cover;
+    padding: 0px;
 }
 /* 사진넣기 */
 .portfolio-one{
@@ -122,44 +201,74 @@ h4{font-size: 22px;}
 .portfolio-text {
     color: white;
     padding: 50px;
-    width: 100%;
+    width: 33%;
 } 
 
-/* ----------------------------footer -----------------*/
+
+
+
+
+.portfolio-itemz {
+    display: flex;
+    background-size: cover;
+
+}
+
+.portfolio-itemz div{
+    max-width: 33%;
+}
+
+
+
+
+/* ---------------------------이미지 3개 넣는 부분---------------- */
+
+.footer-container {
+    max-width: 1200px;
+    padding: 0px;
+    margin: auto;
+    display: flex;   /*가로 배치 */
+    justify-content: center; /* 시작?끝?중앙? 배치 방식 선택 */
+    flex-direction: row;   /* 행,렬 정렬 배치 방식 선택*/
+    align-items : center;  /* y축(위~아래)의 위차 방식 정렬 */
+    flex-wrap : wrap;  /* 폭이 넘치는 요소 wrap 처리 */
+    margin-top: 50px;
+    height: 200px;
+    
+}
+
+.footer-item {
+    margin: auto;
+    display: block;
+    width: 80px;
+    height : 80px;
+    background-size: cover;
+    margin : 35px;
+    border-radius: 20px;
+}
+.item-one{background-image: url(../img/google.jpg);}
+.item-two{background-image: url(../img/insta.jpg);}
+.item-three{background-image: url(../img/twitter.jpg);}
+
+.footer-text{
+    text-align: center;
+    height: 200px;
+}
+
+
+
+
+
+/* --------------------------footer----------------------------- */
+
 
 .footer{
     background-color: white;
     width: 100%;
-    height: 250px;
+    height: 150px;
     padding: 10px;
-    margin-top: 10px;
 }
 
 .blank-text{
     text-align: center;
 }
-
-.blank-image{
-    display: flex;
-}
-
-
-
-
-
-/*반응형 웹은 나중에 손을 좀더 보자..*/
-
-/* @media screen and (max-width : 992px) {
-  .main-iphone {
-    width: 260px;
-    display: block;
-    float: none;
-    margin: auto;
-    margin-top: 42px;
-  }
-  .main-text {
-    float: none;
-    margin-top: 50px;
-    text-align: center;
-  }
-} */
