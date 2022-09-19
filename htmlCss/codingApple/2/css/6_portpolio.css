@@ -5,12 +5,10 @@ h4{font-size: 22px;}
 
 
 /* -----------------------------------navbar------------------------------- */
-
-
 .nav-container{
     background-color: #eee;
     display: flex;     /* 가로배치*/
-    height: 80px;
+    height: 60px;
     align-items: center;
     padding : 10px;
     /*justify-content: center;    flex 이용시 가운데 정렬
@@ -24,7 +22,7 @@ h4{font-size: 22px;}
 
 .nav-item{
     margin-right : 0px;
-    margin-left : 50px;
+    margin-left : 40px;
 }
 
 /*  rem, vw, vh, em 등등
@@ -33,22 +31,16 @@ h4{font-size: 22px;}
     height: 100px;    브라우저 높이에 비례 
     background :  grey;
 }*/
-
-
 .navs-shop{
     font-size: 38px;
 }
-
-
 .nav-etc {
     font-size: 20px;
     margin-top: 18px;
 }
-
 .navs-shops {
     font-size: 28px;
 }
-
 .navs-login{
     font-size: 24px;
     margin-right : 50px;
@@ -57,20 +49,7 @@ h4{font-size: 22px;}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*-----------------------------메인 대문 페이지 만들기--------------------------*/
+/*-----------------------------------메인 대문 페이지 만들기--------------------------------*/
 .main-background {
     background-image: linear-gradient(to bottom, #1d5e9b, #a75fa7);
     height: 550px;
@@ -106,7 +85,7 @@ h4{font-size: 22px;}
 */
 
 
-/* ------------------------중간에 흰색 배경에 글씨 있는 부분------------------- */
+/* ------------------------------------중간에 흰색 배경에 글씨 있는 부분------------------------------- */
 .blank {
     background-color: white;
     width: 100%;
@@ -119,14 +98,14 @@ h4{font-size: 22px;}
 }
 .btn-blank{  /*버튼도 글자취급해서 text-align하면 중앙정렬!*/
     padding: 10px;border-radius:10px;font-size: 18px;color : white;background-color: rgb(82, 78, 78);border: 0;outline: 0; margin-top: 5px;
-    border:none; cursor: pointer;font-weight: 600;font-family: 'nanumsquare';
+    border:none; cursor:pointer; font-weight: 600;font-family: 'nanumsquare';
 }
 
 
 
 
 
-/* ------------------------동그라미 4개 레이아웃 있는 부분------------------- */
+/* ------------------------------------동그라미 4개 레이아웃 있는 부분------------------------------- */
 
 .service {
     background-color: #4e61c0;
@@ -141,7 +120,7 @@ h4{font-size: 22px;}
   }
   
   .service-items div {
-    width: 25%;
+    width: 25%; cursor:pointer;
   }
   .service-icon {
     background: white;
@@ -157,7 +136,7 @@ h4{font-size: 22px;}
 
 
 
-/* ------------------------포트폴리오 4개 사진 + 애니메이션 주기-------- */
+/* ------------------------------포트폴리오 4개 사진 + 애니메이션 주기-------------------- */
 /*일단 부모태그 만들고 자식태그 영향 받게 중앙정렬 + 패딩(추후에해도됌)*/
   .portfolio { 
     padding-top: 60px;
@@ -185,28 +164,19 @@ h4{font-size: 22px;}
 }
 /* 사진넣기 */
 .portfolio-one{
-    background-image: url(../img/portfolio-1.jpg);
-}
+    background-image: url(../img/portfolio-1.jpg); cursor: pointer;}
 .portfolio-two{
-    background-image: url(../img/portfolio-2.jpg);
-}
+    background-image: url(../img/portfolio-2.jpg); cursor: pointer;}
 .portfolio-three{
-    background-image: url(../img/portfolio-3.jpg);
-}
+    background-image: url(../img/portfolio-3.jpg); cursor: pointer;}
 .portfolio-four{
-    background-image: url(../img/portfolio-4.jpg);
-}
+    background-image: url(../img/portfolio-4.jpg); cursor: pointer;}
    
 
 .portfolio-text {
     color: white;
     padding: 50px;
-    width: 33%;
-} 
-
-
-
-
+    width: 33%; } 
 
 .portfolio-itemz {
     display: flex;
@@ -246,9 +216,9 @@ h4{font-size: 22px;}
     margin : 35px;
     border-radius: 20px;
 }
-.item-one{background-image: url(../img/google.jpg);}
-.item-two{background-image: url(../img/insta.jpg);}
-.item-three{background-image: url(../img/twitter.jpg);}
+.item-one{background-image: url(../img/google.jpg); cursor: pointer; }
+.item-two{background-image: url(../img/insta.jpg); cursor: pointer;}
+.item-three{background-image: url(../img/twitter.jpg); cursor: pointer;}
 
 .footer-text{
     text-align: center;
