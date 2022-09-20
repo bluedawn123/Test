@@ -1,10 +1,10 @@
 .alert-box{
-    background-color: blue;
+    background-color: rgb(135, 135, 197);
     color: white;
     padding: 20px;
     border-radius: 5px;
 
-    display: none;  /*ui 숨기기*/
+    display: none;  /*평소엔 ui 숨기기*/
 
 }
 
@@ -70,4 +70,3 @@
     display: none;
     margin-top: 15px;
 }
-

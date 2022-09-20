@@ -20,10 +20,25 @@
     id="alert" 요소를 가져와 display:block으로 바꿔라   -->
 
     <script>
+
         document.getElementById('close').addEventListener('click', function(){
           document.getElementById('alert').style.display = 'none'
         });
+
+        //위와 아래코드는 같다. addEventListener가 좀 더 간단하다. (위쪽 html도 더 깔끔하고)
+        //function alert_control(parameter){
+        //    document.getElementById('alert').style.display = parameter; 
+        //}
+
+
         
+
+         /*버튼 누르면 여는 기능 + 눌러서 열게 되면 안의 alert 박스가 변경되는 기능*/
+         function open_alert(parameter){  
+            document.getElementById('alert').style.display = 'block'; 
+            document.getElementById("title").innerHTML = parameter  /*위에 id=title인 innerHTML을 가져와 아이디를 입력하세요로 변경*/
+
+        }
 
 
     </script>

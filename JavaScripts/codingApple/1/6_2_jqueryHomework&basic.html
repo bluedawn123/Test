@@ -30,7 +30,7 @@
 
         document.getElementsByClassName('greeting')[0].innerHTML = '안녕';  /*class='greeting'인걸 바꾸려면 하나씩 해야한다. */
         $('.greeting').html('후아');         /*3개가 다 바뀐다.*/
-        $('.greeting').eq(3).html('힝');     /*4번째 것만 힝으로 바뀐다.*/
+        $('.greeting').eq(3).html('힝');     /*4번째 것만 힝으로 바뀐다. 0부터 시작. 0,1,2,3이니깐 4번째 껏*/
 
       //1. 코드의 압축 + 여러클래스를 쉽게 선택
       //document.getElementsByClassName('greeting')[0].addEventListener()
@@ -41,12 +41,12 @@
         document.getElementsByClassName('greeting')[3].style.display = 'none'
       })
 
-      //3. 두 버튼을 누르면 4글자가 사라지는 코드  ==> 모두 선택이 가능하고 더 간편하다.
+      //3. 두 버튼을 누르면 class가 greeting인 것들이 사라지는 코드  ==> 모두 선택이 가능하고 더 간편하다.
       $('.btn2').on('click', function(){
         $('.greeting').hide();          
       })
       
-      //4. 3 버튼을 누르면 4글자가 사라지는 코드  ==> 모두 선택이 가능하고 더 간편하다.
+      //4. 3 버튼을 누르면 4글자가 나타지는 코드  ==> 모두 선택이 가능하고 더 간편하다.
       $('.btn3').on('click', function(){
         $('.greeting').show();          
       })
