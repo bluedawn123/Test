@@ -1,0 +1,171 @@
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="css/10.css" rel="stylesheet"> 
+    <script  
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+
+    <!-- 로그인 모달창 맨 위에 위치하는 게-->
+    <div class="black-bg">
+      <div class="white-bg">
+        <h4>로그인하세요</h4>
+        <form action="success.html" class="form-frame">
+            <div class="my-3">
+              <input type="text" class="form-control" id="email">
+            </div>
+            <div class="my-3">
+              <input type="password" class="form-control" id="password">
+            </div>
+            <div class="submit-close">
+              <button type="submit" class="btn btn-primary" id="send">로그인</button>
+              <button type="button" class="btn btn-danger" id="login-close">닫기</button>
+            </div>
+          </form> 
+    </div>
+    </div>
+
+    <!-- 메뉴 -->
+    <div class="nav-menu">
+        <h4 style="margin : 0">Shoes Studio</h4>
+        <span class="badge bg-grey" class="ms-auto mx-3">DarkMode 🔄</span>
+        <a id="nav-sub-button">Products</a>
+    </div>
+    <!--products 눌렀을때 메뉴바 -->
+    <ul class="list-group nav-sub">
+        <li class="list-group-item">Outer</li>
+        <li class="list-group-item">InnerWear</li>
+        <li class="list-group-item">Shirts</li>
+    </ul>
+    <!-- 메인 배경 -->
+    <div class="jumbotron main-background">
+      <h1 class="display-4">Shoes Studio!</h1>
+      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+      <hr class="my-4">
+      <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+      <a id="login" class="btn btn-primary btn-lg" href="#" role="button">Log In</a>
+    </div>
+
+    <div class="alert alert-danger">
+        <span id="num">5</span>초 이내 구매시 사은품 증정
+    </div>
+
+
+    <script>
+        // 기존 방식
+        // //로그인 버튼
+        // $('#login').on('click', function(){    //id=login이라는 로그인창 누르면, 모달창인 black-background 뜨는 코드
+        //   $('.black-background').fadeIn();
+        // })
+
+        // //로그인 후 닫기 버튼
+        // $('#login-close').on('click', function(){    
+        //   $('.black-background').fadeOut();
+        // }) 
+
+        //css 클래스 탈부착 방식
+        $('#login').on('click', function(){
+          $('.black-bg').addClass('show-modal');
+        });
+
+        $('#login-close').on('click', function(){
+          $('.black-bg').removeClass('show-modal');
+        });
+
+        //아이디, 비번 창 검증해보자 
+        $('#send').on('click', function(e){
+          var 입력한아이디 = document.getElementById('email').value;
+          var 입력한비번 = document.getElementById('password').value;
+
+          if(입력한아이디 == ''){
+            e.preventDefault();
+            alert('아이디를 입력하지 않았습니다.')
+          }
+ 
+          else if(입력한비번  == ''){
+            e.preventDefault();
+            alert('비밀번호를 입력하지 않았습니다.')
+          }
+        
+        });
+
+
+        //다크모드 만들어보기 
+        //버튼 누른 횟수가 홀수면 버튼 내부 글자를 Light로, 버튼 누른 횟수가 짝수면 버튼 내부 글자를 Dark로 변경
+        var count = 0;
+
+        $('.badge').on('click', function(){
+          count += 1;  //버튼누를 때 마다 버튼누른 횟수를 계속 업데이트
+          if (count % 2 == 1) {
+            $('.badge').html('Light Mode 🔄');  //jQuery로 찾은 요소 innerHTML을 바꾸고 싶으면 .html('바꿀내용') 
+          }
+          else {
+            $('.badge').html('Dark Mode 🔄')
+          }
+        });        
+
+
+        //products 버튼 (위와 같다)
+        $('#nav-sub-button').click(function(){    //id=nav-sub-button이라는 로그인창 누르면, 슬라이드 바 내려오는 코드
+          $('.nav-sub').slideToggle();          //눌렀을때 내리고 올리고 자유롭게
+        })
+
+        //setTimeOut 사용해보자
+        var count = 5;
+
+        setInterval(function(){
+            if (count >= 0){
+                document.querySelector('#num').innerHTML = count;
+            } 
+
+            count -= 1;
+        }, 1000);
+
+        //
+
+
+
+
+
+    </script>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+
+  <p>수업내용(참고로 수업이 필기가 많아 다른 코드들은 이 강의에선 삭제)</p>
+  <p>이메일 검증 등등!</p>
+  <p>1. /abc/.test('abcdef') => /정규식/.test(정규식으로 검사해볼문자) 쓰면 됨. true or false</p>
+  <p>ex) /a/.test('abcde')</p>
+  <2>2. [ ] 기호를 이용해서 문자 범위를 지정할 수 있습니다.</2>
+  <p>/[a-d]/.test('aefg')  //true</p>
+  <p>/[가-다]/.test('다라마바')  //true</p>
+  <p>3. [a-zA-Z] 이건 아무 알파벳 하나라는 뜻입니다.[ㄱ-ㅎ가-힣ㅏ-ㅣ] 이건 아무 한글 하나라는 뜻입니다.  </p>
+  <p>/[ㄱ-ㅎ가-힣ㅏ-ㅣ]/.test('반가워요')  //true</p>
+  <p>4.백슬래시S 는 특수문자 포함 아무문자 1개라는 뜻입니다. 여러개랑 쓰려면 + 가 필요</p>
+  <p>/\S/.test('abcde')   //true  </p>
+  <p>5.^ 라고 적으면 시작하는지 검사. => /^a/.test('abcde')   //a로 시작하는지 검사하므로 참</p>
+  <p>6. $ 라고 적으면 e로 끝나는지 검사 => /e$/.test('abcde') //e로 끝나므로 참</p>
+  <p>7. | 이건 or 기호 => /(e|f)/.test('abcde')   //true</p>
+  <p>8. + 기호를 붙여주시면 뒤에 오는 글자들도 a와 일치하면 반복해서 쭉 찾아달라는 뜻</p>
+  <p>/\S+t/ => 모든 문자 여러개 다음에 t라는 글자가 있냐를 검사해주는 정규식</p>
+  <p>/a+/ => aaaaa 이런걸 찾고 싶으면 /a+/ </p>
+  <p>9 .을 사용하려면 \. 으로 써야한다.</p>
+  <br>
+  <p>이메일 검증을 해보자. => 어쩌구@어쩌구.어쩌구 이런 형식! 즉, 모든 문자 사이에 @ 그리고 .이라는 특수문자가 와야합니다</p>
+  <p>답 => /\S+@\S+\.\S+/</p>
+  <p>해석 => 모든아무글자여러개 + @로 끝나면서 + 다시 모든문자여러개 + .으로 끝나면서 + 다시 아무문제여러개 </p>
+  <p>예시 =>         asdfsadf     @               naver              .                com  </p>
+
+</html>
