@@ -62,6 +62,38 @@
     </div> -->
 
 
+    <div style="overflow: hidden"> <!--넘치는 거 안보이게 하려고-->
+      <div class="slide-container">
+        <div class="slide-box">
+          <img src="image/car1.jpg">
+        </div>
+        <div class="slide-box">
+          <img src="image/car2.jpg">
+        </div>
+        <div class="slide-box">
+          <img src="image/car3.jpg">
+        </div>
+
+        <button class="slide-before">Before</button>
+        <button class="slide-next">Next</button>
+
+        
+      </div>
+   </div> 
+
+   <button class="slide-1">1</button>
+   <button class="slide-2">2</button>
+   <button class="slide-3">3</button>
+
+
+
+
+
+
+
+
+
+
     <script>
         //css 클래스 탈부착 방식
         $('#login').on('click', function(){
@@ -105,6 +137,24 @@
         })
 
 
+        //carousel 만들기
+        $('.slide-1').on('click', function() {
+          //슬라이드콘테이너의 css에 transform + X축 -100vw (x축으로 -100vw만큼 변경)하라라는 코드 추가. (css참조)
+          $('.slide-container').css('transform', 'translateX(0vw)');
+        });
+
+        $('.slide-2').on('click', function() {
+          //슬라이드콘테이너의 css에 transform + X축 -100vw (x축으로 -100vw만큼 변경)하라라는 코드 추가. (css참조)
+          $('.slide-container').css('transform', 'translateX(-100vw)');
+        });
+
+        $('.slide-3').on('click', function() {
+          //슬라이드콘테이너의 css에 transform + X축 -100vw (x축으로 -100vw만큼 변경)하라라는 코드 추가. (css참조)
+          $('.slide-container').css('transform', 'translateX(-200vw)');
+        });
+
+        // 쌩자바스크립트로 만들어보기
+        // document.querySelector('.slide-container').style.transform='translateX(-100vw)'
 
 
 
@@ -114,9 +164,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 
-  <p>수업내용</p>
-  <p>setTimeOut을 사용해 시간이 지난 후 특정 코드를 실행시켜 보자</p>
-  <p></p>
-  <p></p>
+  <p>수업내용 : carousel 만들기</p>
+  <p>1.시작화면 2.최종화면 3.원할때 최종화면으로 변하게 js코드 작성 4.transition으로 변화주기</p>
+  <p>1. 콘테이너 300vw(사진 3개니깐), 사진100vw로 해서 일단 밀어넣는다. </p>
+  <p>2. -1oovw만큼 이동하기 만듬.  </p>
+  <p>3. 버튼눌렀을때 이동하는 코드 작성</p>
+  <p>4.</p>
 
 </html>
