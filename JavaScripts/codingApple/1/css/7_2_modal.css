@@ -1,0 +1,31 @@
+.black-bg {
+    display: block;
+    margin-left: 50px;
+    margin-top: 50px;
+    width: 560px;
+    height: 360px;
+    position: fixed;
+    background: rgb(0, 0, 0, 0.5);
+    z-index: 5;
+    padding: 30px;
+    /*display: none;  평소에 숨김. 근데 애니메이션 대용으로는 visibility : hidden; 사용*/
+
+    /* 애니메이션 관련 */
+    visibility: hidden;  /*애니메이션 만들때 자주씀*/
+    opacity: 0;   /*투명도 0*/
+    transition: all 0.2s;
+
+}
+  
+/*show-modal 클래스 부착시 모달창 보이게*/
+.show-modal {
+    visibility: visible;   /*display:block 과 유사 */
+    opacity: 1;
+}
+
+
+/* 애니메이션 만들기 */
+/* black-bg에 시작스타일 , show-modal에 최종스타일 
+즉, 처음엔 안보임. 근데 로그인 버튼을 누르면 show-modal이 붙어서 보이게 만드는 방식
+그리고 마지막으로 transition으로 애니메이션을 준다.
+*/
