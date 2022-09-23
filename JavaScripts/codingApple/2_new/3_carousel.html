@@ -8,7 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="css/10.css" rel="stylesheet"> 
+    <link href="css/1.css" rel="stylesheet"> 
     <script  
     src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -62,7 +62,7 @@
     </div> -->
 
 
-    <div style="overflow: hidden"> <!--넘치는 거 안보이게 하려고-->
+    <div style="overflow: hidden; position: relative;"> <!--넘치는 거 안보이게 하려고-->
       <div class="slide-container">
         <div class="slide-box">
           <img src="image/car1.jpg">
@@ -73,24 +73,16 @@
         <div class="slide-box">
           <img src="image/car3.jpg">
         </div>
+      </div>
 
         <button class="slide-before">Before</button>
         <button class="slide-next">Next</button>
-
-        
       </div>
    </div> 
 
-   <button class="slide-1">1</button>
+   <!-- <button class="slide-1">1</button>
    <button class="slide-2">2</button>
-   <button class="slide-3">3</button>
-
-
-
-
-
-
-
+   <button class="slide-3">3</button> -->
 
 
 
@@ -156,6 +148,39 @@
         // 쌩자바스크립트로 만들어보기
         // document.querySelector('.slide-container').style.transform='translateX(-100vw)'
 
+
+        //버튼 누르면 넘어가기
+        //다음 버튼을 눌렀을때, 지금보이는 사진이 1이면 2번사진 보여주고 지금보이는 사진이 2면 3번 사진 보여줘야 한다.
+        
+        // 방법1
+        // var 지금사진 = 1;
+        // $('.next').on('click', function(){
+        //   if (지금사진 == 1) {
+        //     $('.slide-container').css('transform', 'translateX(-100vw)');
+        //     지금사진 += 1;
+        //   } 
+        //   else if (지금사진 == 2){
+        //     $('.slide-container').css('transform', 'translateX(-200vw)');
+        //     지금사진 += 1;
+        //   }   
+        // });
+
+        //방법2
+        var 지금보이는사진 = 1;
+        
+        $('.slide-next').click(function(){
+            if( 지금보이는사진 < 3){            //총 사진의 갯수가 3이므로
+                $('.slide-container').css('transform', 'translateX(-' + 지금보이는사진 + '00vw)');  // 'translateX(-n00vw)'); 처럼사용하기 위해서
+                지금보이는사진 = 지금보이는사진 + 1;
+            }
+        });
+
+        $('.slide-before').click(function() {
+            if ( 지금보이는사진 > 1 ) { 
+            $('.slide-container').css('transform', 'translateX(-' + (지금보이는사진 - 2) + '00vw)');  
+            지금보이는사진 = 지금보이는사진 - 1;
+        }
+        });
 
 
     </script>
