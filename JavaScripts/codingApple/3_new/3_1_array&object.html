@@ -1,0 +1,53 @@
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="css/tap.css" rel="stylesheet"> 
+    <script  src="https://code.jquery.com/jquery-3.6.0.min.js"integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script>
+  </head>
+  <body>
+    
+    <div class="container mt-3">
+        <div class="card p-3">
+          <span class="car-title">상품명</span>
+          <span class="car-price">가격</span>
+        </div>
+    </div> 
+
+
+    <script>
+    //array => 왼쪽에 자료의 이름을 붙여서 저장해야한다. 순서개념이 필요한 많은 것들을 할 수 있다.
+    var car = '소나타';
+    var carPrice = 50000;
+    var carColor = 'white';  //이거 대신에,
+
+    var car = ['소나타', 50000, 'white'];
+    //array자료.sort() 하면 가나다순 정렬. 
+    //array자료.slice(x, y) 하면 x번부터 y번 전까지 자를 수 있고, array자료.push(x) 하면 x를 맨 뒤에 입력할 수 있고
+
+    
+    //object
+    var car2 = { name : '소나타', price : [50000, 3000, 4000] };
+    document.querySelector('.car-title').innerHTML = car2.name;
+
+    //어레이와 오브젝트의 차이??
+    //array는 순서개념이 있다. 왼쪽에 적을수록 더 앞에 있는 자료. object는 순서개념이 없다. 가장 왼쪽에 적었다고 1빠임을 보장 않습니다.
+
+
+    //퀴즈 1.그럼 car2 에 있는 50000 이라는 데이터를 뽑아서 html의 가격표시부분에 꽂아넣고 싶으면 코드를 어떻게 짜야할까요? 
+    document.querySelector('.car-price').innerHTML = car2.price[0];
+    
+
+    </script>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+
+  <p>수업내용 : array, object의 기본 특성과 그 차이!! 용도!! 중요하다.
+
+
+</html>

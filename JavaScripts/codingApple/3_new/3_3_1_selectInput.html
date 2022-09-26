@@ -1,0 +1,138 @@
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="css/select.css" rel="stylesheet"> 
+    <script  src="https://code.jquery.com/jquery-3.6.0.min.js"integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script>
+  </head>
+  <body>
+    
+    <form class="container my-5 form-group">
+        <p>상품선택</p>
+        <select class="form-select mt-2">
+            <option>선택해주세요</option>
+            <option>모자</option>
+            <option>셔츠</option>
+            <option>바지</option>
+
+        </select>
+        <select class="form-select mt-2 form-hide1">
+            <option>95</option>
+            <option>100</option>
+          </select>
+          <select class="form-select mt-2 form-hide2">
+            <option>s</option>
+            <option>m</option>
+            <option>l</option>
+          </select>
+          <select class="form-select mt-2 form-hide3">
+            <option>28</option>
+            <option>30</option>
+            <option>32</option>
+          </select>
+    </form>
+
+
+    <div id="test">
+
+    </div>
+
+
+
+
+    <script>
+    //선택한 것이 셔츠면 사이즈를 선택할 수 있게!. 참고로 $('.form-select').eq(0)는 모자,셔츠 덩어리 의미
+    var 유저선택1 = $('.form-select').eq(0).val();
+    if (유저선택1 == '셔츠') {   //모자, 셔츠 중 셔츠!
+        $('.form-select').eq(1).removeClass('form-hide');
+    }
+    //근데 안된다... script는 한번만 실행하고 끝나기 때문에 연속된 것은 못해서, select할때마다 작동시키도록 변경해야한다. 
+
+    //다시.. click -> input이벤트로 (변경할때마다 발동시키려고)
+    $('.form-select').eq(0).on('input', function(){         //모자,셔츠군을 선택할때마다! 
+        var value = this.value;
+        if (value == '셔츠') {
+            $('.form-select').eq(2).addClass('form-hide2');    //모자항목(s,m,l)숨기는 css 추가
+            $('.form-select').eq(3).addClass('form-hide3');    //모자항목(s,m,l)숨기는 css 추가
+
+            $('.form-select').eq(1).removeClass('form-hide1'); //셔츠항목 숨기는걸 없애는 css 추가    
+        }
+
+        else if(value =='모자'){
+            $('.form-select').eq(1).addClass('form-hide1');    //셔츠항목 숨기는 css추가
+            $('.form-select').eq(3).addClass('form-hide3');    //모자항목(s,m,l)숨기는 css 추가
+            
+
+            $('.form-select').eq(2).removeClass('form-hide2'); //모자항목 숨기는걸 없애는 css 추가
+        }
+        
+        else if(value =='바지'){
+            $('.form-select').eq(1).addClass('form-hide1');    //셔츠항목 숨기는 css추가
+            $('.form-select').eq(2).addClass('form-hide2');    //모자항목 숨기는 css추가
+
+            $('.form-select').eq(3).removeClass('form-hide3'); //모자항목 숨기는걸 없애는 css 추가
+        }
+
+        else if(value =='선택해주세요'){
+            $('.form-select').eq(1).addClass('form-hide1');    //셔츠항목 숨기는 css추가
+            $('.form-select').eq(2).addClass('form-hide2');     //모자항목 숨기는 css 추가
+            $('.form-select').eq(3).addClass('form-hide3');     //바지항목 숨기는 css 추가
+
+        }
+    });
+
+    //정말정말정말 중요한 것 
+    // var 선택한거 = $('.form-select').eq(0).val(); 이것과
+    // var 선택한거 = this.value 혹은, 
+    // var 선택한거 =e.currentTarget.value   (단 함수에 (e)) 다 같다.
+    //이유 ? => 지금 이벤트리스너가 발생하는 곳을 의미하기 때문에
+
+
+    //새로운 방식으로 바지 선택하면 28, 30 옵션 나오게 만들자
+
+
+
+
+
+
+
+
+
+
+    //html로 태그 생성 후 div에 넣는 방법1
+    var a = document.createElement('p');  //p태그 생성. innerHTML, 등등과 같이 쓸수있다.
+    a.innerHTML ='하이ㅇ';
+    document.querySelector('#test').appendChild(a);  //id="test"안에 a(p태그 생성)
+
+
+    //html로 태그 생성 후 div에 넣는 방법2
+    var b = '<p>안녕</p>';
+    document.querySelector('#test').insertAdjacentHTML('beforeend', b);
+    //insertAdjacentHTML = id="test"에 추가해주세요, beforeend' 이건 안쪽 맨 밑에 추가하라는 뜻
+
+    //html로 태그 생성 후 div에 넣는 방법3
+    var b = '<p>안녕333</p>';
+    $('#test').append(b);
+    
+
+
+
+    </script>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+
+<p>수업내용 : select 첫 수업과 다르게 이번에는 자바스크립트로 만들어보자.
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+
+
+
+</html>
