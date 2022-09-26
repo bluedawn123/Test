@@ -1,0 +1,158 @@
+.nav-menu{
+    display: flex;  /*가로배치*/
+    justify-content: space-between;  /*양쪽정렬*/
+    padding : 15px;
+    align-items: center;
+    
+    position: fixed;
+    width: 100%;
+    color: black;
+    background-color: white;
+    height: 70px;
+    z-index: 6;
+
+}
+
+.nav-sub{
+    margin-top: 50px;
+    display: none;
+    position: fixed;
+    width: 100%;
+    z-index: 6;
+}
+
+.close-bar{
+    font-size: 15px;
+}
+
+.main-background{
+    background-image: url(main1.jpg);
+    background-size : cover;
+    color : white;
+    border-radius: 0px;
+    height : 850px;
+}
+
+.background-text{
+    margin-top: 20px;
+}
+
+
+
+.black-bg {
+    margin: 0px auto;
+    width: 100%;
+    /* max-width: 1200px; */
+    height: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+    padding: 30px;
+    /*display: none;  평소에 숨김. 근데 애니메이션 대용으로는 visibility : hidden; 사용*/
+
+    /* 애니메이션 관련 */
+    visibility: hidden;  /*애니메이션 만들때 자주씀*/
+    opacity: 0;   /*투명도 0*/
+    transition: all 0.2s;
+}
+.white-bg{
+    margin: auto;
+    margin-top: 200px;
+    height: 500px;
+    width: 550px;
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.show-modal {
+    visibility: visible;   /*display:block 과 유사 */
+    opacity: 1;
+}
+
+/* 애니메이션 만들기 */
+/* black-bg에 시작스타일 , show-modal에 최종스타일 
+즉, 처음엔 안보임. 근데 로그인 버튼을 누르면 show-modal이 붙어서 보이게 만드는 방식
+그리고 마지막으로 transition으로 애니메이션을 준다.
+*/
+.form-frame{
+    margin-top: 25px;
+}
+.form-control{
+    padding: 5px;
+    width: 450px;
+}
+.submit-close{
+    margin-top: 25px;
+}
+
+
+
+.btn-lg{
+    margin-top: -1125px;
+    margin-left: 25px;
+
+}
+
+
+/* ------------------carousel---------------- */
+.slide-container {
+    width: 300vw;
+    transition: all 1s;
+    /* transform: translateX(-100vw); */
+  } 
+
+  .slide-box {
+    width: 100vw;
+    float: left;
+  }
+  .slide-box img {
+    padding: 50px;
+    width: 100%;
+  } 
+
+
+
+#email-alert{
+    display : none;
+    margin-top: 15px;
+
+}
+#psw-alert{
+    display: none;
+    margin-top: 15px;
+}
+.alert-box{
+    background-color: rgb(135, 135, 197);
+    color: rgb(49, 30, 30);
+    padding: 20px;
+    border-radius: 5px;
+
+    display: none;  /*평소엔 ui 숨기기*/
+}
+
+.alert-box p{
+    display: inline;
+}
+.yellow-bg{
+    background: yellow;
+}
+
+
+/* --------------------before, next 버튼 디자인---------------------- */
+.slide-next{
+    position : absolute; /*요소 겹치기 (띄우기) ★★단 상위요소에 position relative필요!!*/
+    top : 50%;
+    right : 50px;
+    border-radius: 20px;border:none;background-color: white;color: black;padding: 15px 30px;text-align: center;
+    text-decoration: none;font-size: 20px;margin: 1px 2px;cursor: pointer;
+}
+.slide-before{
+    position : absolute; /*요소 겹치기 (띄우기) ★★단 상위요소에 position relative필요!!*/
+    top : 50%;
+    left : 65px;
+    border-radius: 20px;border:none;background-color: black;color: white;
+    padding: 15px 30px;text-align: center;text-decoration: none;font-size: 20px;cursor: pointer;
+}
+
+
