@@ -165,7 +165,9 @@ app.get('/notyet', function(요청, 응답){
   응답.render('notyet.ejs')
 });
 
-
+app.get('/testing', function(요청, 응답){
+  응답.render('testing.ejs')
+});
 
 
 //-----------------------------------------------------------로그인 기능 --------------------------------------------------------------------
@@ -551,4 +553,9 @@ app.get('/message/:parentid', 로그인했니, function(요청, 응답){
 app.get('/projects', function(요청, 응답) { 
   // 응답.sendFile(__dirname +'/index.html') -> ejs로 변경
   응답.render('projects.ejs');
+});
+
+app.get('/aboutme', function(요청, 응답) { 
+  // 응답.sendFile(__dirname +'/index.html') -> ejs로 변경
+  응답.render('aboutme.ejs');
 });
