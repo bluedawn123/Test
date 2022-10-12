@@ -1,0 +1,67 @@
+// @use => 불러오기 기능. 단 맨 처음 사용되어져야한다.
+// @use 다른 파일에 있는 내용을 가져오고 싶을때 @use '경로'
+@use '_usetest';
+
+
+$main-color : #2a4cb2;
+.background{
+    background-color: $main-color;
+}
+
+// 네스팅 문법
+.main-bg123123{
+    h4{
+        font-size : 16px;
+    }
+    button{
+        color: red;
+    }
+}
+
+// %와 extend 사용하기
+// 예를들어, 여러 버튼을 만드는데 중복이 많은 경우,
+%btn {
+    width: 100px;
+    height: 50px;
+    padding : 10px;
+}
+
+.btn-black{
+    @extend %btn;
+    color: black;
+}
+.btn-green{
+    @extend %btn;
+    color: green;
+}  //이런식으로 사용가능
+
+// @mixin = 함수처럼 쓰면 된다.
+// 공통된 것들을 class로 묶고 @mixin을 써준다.
+h2{
+    font-size: 30px;
+    letter-spacing: 3px;
+}
+
+h3{
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+
+//이거를 mixin으로 지정하고, @include로 소환한다.
+//다른 파라미터들을 조절하고 싶을때는 ($파라미터)를 사용한다.
+//다른 파일에 있던 변수를 쓰려면, 파일명.$변수 를 써야한다.
+@mixin 폰트스타일($파라미터, $흠냐) {
+    font-size: $파라미터;
+    letter-spacing: $흠냐;
+}
+
+h5{
+    @include 폰트스타일(200px, 15px);
+    color: usetest.$main-color;
+}
+
+h4{
+    @include 폰트스타일(30px, 10px)
+}
+
