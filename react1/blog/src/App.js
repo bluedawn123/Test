@@ -24,11 +24,13 @@ function App() {
         글제목변경(copy)            //남자코트추천 -> 여자코트 추천
       } }> 수정버튼 </button>
 
+
       { 
         글제목.map(function(a, i){    //항목수(어레이갯수)만큼 반복시켜주고 파라미터를 받아 출력시키는게 map함수의 특징이므로. i는0부터 시작
           return (
+          
           <div className="list" key={i}>
-              <h4 onClick={ ()=> {setModal(!modal); setTitle(i)} }>{ 글제목[i] } 
+              <h4 onClick={ ()=> { setModal(!modal); setTitle(i)} }>{ 글제목[i] } 
                 <span onClick={(e)=>{ 
                   e.stopPropagation();    //이벤트버블링 막기
                   let copy = [...따봉];   //복사본 생성
@@ -37,13 +39,20 @@ function App() {
                  }}>👍</span> {따봉[i]}     
               </h4>
             
-              <p>2월 18일 발행</p>
               <button onClick={(e)=>{
                   e.stopPropagation();
                   let copy = [...글제목];
                   copy.splice(i, 1);         //(i, 1)에서 i번째가 삭제된다.(i는 첫 게시글)
                   글제목변경(copy);
               }}>삭제</button>
+
+            <button onClick={ ()=>{ setModal(!modal); setTitle(i) } }> 모달창 버튼 </button>    {/* 클릭하면 모달창도 뜨면서, title도 바뀌게!! */}    
+            
+            {/* { 
+              modal == true ? <Modal title={title} color={'yellow'} number='8' 글제목={글제목} 글제목변경={글제목변경}/> : null          
+            } */}
+
+            
           </div>)
         }) 
       }

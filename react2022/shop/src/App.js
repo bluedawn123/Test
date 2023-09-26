@@ -12,6 +12,7 @@ import Nopage from './routes/Nopage.js'
 import About from './routes/About.js'
 import Cart from './routes/Cart.js'
 import EventPage from './routes/EventPage'
+import styled from 'styled-components'
 // import axios from 'axios'
 
 
@@ -39,6 +40,7 @@ return (
         <Nav.Link onClick={ ()=> {navigate('/women')}}>Women</Nav.Link>
         <Nav.Link onClick={ ()=> {navigate('/about')}}>About Us</Nav.Link>
         <Nav.Link onClick={ ()=> {navigate('/cs')}}>Customer Service</Nav.Link>
+        
       </Nav>
       </Container>
     </Navbar>
@@ -51,7 +53,7 @@ return (
     <Route path="/" element={
         <> 
             <div className='main-bg'></div>
-            <div className='new-lines'>New Lines</div>
+            {/* <div className='new-lines'>New Lines</div> */}
             <div className="container"> 
               <div className="row">
               {shoes.map(function(a, i){
