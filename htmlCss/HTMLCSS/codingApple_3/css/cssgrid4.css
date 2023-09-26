@@ -1,0 +1,32 @@
+.grid-container2{
+    display: grid;
+    width: 50%;
+    max-width: 800px;
+    max-height: 800px;
+    margin: auto;
+    grid-template-columns: 1fr 1fr 1fr; /*가로3칸*/
+}
+
+.grid-container2 img{
+    width: 100%;
+    display: block; /* 경계선 선 없애기*/
+}
+
+.grid-first-img{
+    grid-column: 1/3;
+    grid-row: 1/3;
+}
+
+@media screen and (max-width : 768px){
+
+    .grid-container2 {
+      grid-template-columns: 1fr;
+    }
+}
+  /* 일단 모바일에선
+
+  1. grid 자체를 가로로 3칸이 아니라 가로로 1칸만 만들어달라고 수정했습니다.
+  
+  2. 첫 이미지가 1/2만큼 차지하게 해주시면 되겠습니다. 
+  
+  이게 끝이군요  */

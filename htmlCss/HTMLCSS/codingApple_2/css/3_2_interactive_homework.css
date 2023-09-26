@@ -1,0 +1,119 @@
+.product-container{
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 100%;
+    background-color :aquamarine
+}
+
+.product-container div{  /*product-container의 div태그들*/
+    float : left;
+    width : 25%;         /*pc사이즈에선 최대max경우 각 div는 1000px/4 (25%)만큼 차지 */
+    text-align: center;
+}
+
+/*테블릿(1200px 이하 적용) 사이즈에선 가로폭 ~~%, 최대폭 ~~px로 해주세요 */
+@media screen and (max-width : 1200px){
+    .product-container div{width: 50%;}   /*태블릿에선 각div는 50%만큼 차지 (700px의 50%) */
+    .product-container{max-width: 600px;}
+}
+
+
+/*모바일(768px) 사이즈에선 가로폭 ~~%, 최대폭 ~~px로 해주세요 */
+@media screen and (max-width : 768px){
+    .product-container div{width: 100%;}
+    .product-container{max-width: 300px;}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.form-background{
+    margin:auto;
+    background-color: black;
+    max-width: 700px;
+    padding: 50px;
+}
+
+.form-white{
+    background-color: white;
+    padding : 30px;
+    width: 80%;
+    max-width: 600px;
+    margin: auto;
+}
+
+.form-input{
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+    box-sizing: border-box;      /*width 100%라 해도 더 튀어나가기 때문. 
+                                 content영역이기 때문.  => border-box 사용 */
+}
+
+div, input, textarea {          /* div,input,textarea태그에 border-box를 다 주는 방법 */
+    box-sizing: border-box;   /*border-box =>content부분만 width로 설정하지 말고 padding, border포함. 
+                                즉 튀어나가는 거 방지*/
+}
+
+.w-50{
+    width: 50%;
+    float: left;
+    padding: 10px;           /* 상자2개 붙는거 띄어놓기 */
+
+}
+
+.w-100{
+    width: 100%;
+    padding: 10px      /* 위에 w-50에 상자2개 붙는거 띄어놓기 때문에 간격 벌어진거 맞추는 용도*/
+}
+
+.textarea{
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+    box-sizing: border-box;    
+}
+
+.yellow-button{
+    padding: 10px;
+    display : block;
+    margin-left: auto;
+
+}

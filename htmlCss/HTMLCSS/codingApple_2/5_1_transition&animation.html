@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <link href="css/5_animation.css" rel="stylesheet">
+ 
+  </head>
+  <body>
+    <div class="shop-bg">
+        <div class="shop-container">
+            <div class="shop-item">
+                <div style="position: relative;">     <!--붕 띄우는 position absoulte를 사용하려면 position relative도 필요해서 div생성-->
+                    <div class="overlay"></div>
+                    <img src="img/brownwalker.jpg">
+                </div>
+            </div>
+            <div class="shop-item">
+                <div style="position: relative;">     <!--붕 띄우는 position absoulte를 사용하려면 position relative도 필요해서 div생성-->
+                    <div class="overlay"></div>
+                    <img src="img/redhighheel.jpg">
+                </div>
+            </div>
+            <div class="shop-item">
+                <div style="position: relative;">     <!--붕 띄우는 position absoulte를 사용하려면 position relative도 필요해서 div생성-->
+                    <div class="overlay"></div>
+                    <img src="img/brownshoes.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
+
+
+  <p>one-way 애니메이션 만드는 step
+  <p>0. 시작스타일 만들기 
+  <p>1. 최종스타일 만들기             이거 먼저만드는 게 편하다
+  <p>2. 언제 최종 스타일로 변하는지
+  <p>3. transition 으로 애니메이션
+
+<p>요약</p>
+<p>1. 사실 시작스타일은 만들어진 경우가 많으므로 최종스타일부터 만든다고 생각하면된다.</p>
+<p>2. 최종스타일은 기존 사진위에 숫자나 무언가가 떠있는 상태이다. 요소들을 위에서 띄우려면 position 속성 필요!그래서 div overlay클래스를 만든다. 덮어씌우려고</p>
+<p>3. 2번을 하기위해선(띄우기) position absolute가 필요하고 그러려면 부모한테 position relative도 필요하다. 그래서 부모div를 또 만들고 클래스 귀찮아서 relative생성</p>
+<p>4. 최종스타일은 반투명하게 덮어씌워진 것이므로 코딩해주기</p>
+<p>5. 시작스타일을 만들기(투명도0)그리고 최종스타일 완성시키기(마우스 올렸을때 불투명도1로)</p>
+<p>6. transition 주기</p>
+</html>
+

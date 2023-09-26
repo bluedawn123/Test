@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <link href="css/layout_contactUs.css" rel="stylesheet">
+ 
+  </head>
+  <body>
+    
+    <div class="form-background">  <!--까만박스-->
+      <div class="form-white">     <!--하얀박스-->
+        <form>
+          <div class="w-100">   <!--위아래 큰박스와 중간의 작은박스 2개와 간격을 맞추기 위해 div태그 생성-->
+            <h3>Contact Us</h3>
+            <p>Your Email</p>
+            <input class="form-input" placeholder="right your email" type="email">  
+         </div>        
+
+          <!--왼쪽박스-->
+          <div class="w-50">
+            <p>First Name</p>
+            <input class="form-input" type="text">
+          </div>
+          <!--오른쪽박스-->
+          <div class="w-50">
+            <p>Last Name</p>
+            <input class="form-input" type="text">
+          </div>
+          <div style="clear: both;"></div>  <!--float때매 위의 w-50두개 이상해지는 것 방지-->
+          
+          <!--큰박스-->
+          <div class="w-100">
+            <p>Message</p>
+            <textarea rows="5" class="textarea"></textarea>
+          </div>
+
+          <div>
+            <input id="sub"type="checkbox">  
+            <label for="sub">Subscribe</label> <!--label,for,id? => label(subscribe)을 누르면 input도 누른거로 간주 -->
+            <button class="yellow-button">send</button>
+          </div>
+          
+        </form>
+      </div>
+    </div>
+
+
+
+
+  </body>
+  <p>
+  
+</html>
+

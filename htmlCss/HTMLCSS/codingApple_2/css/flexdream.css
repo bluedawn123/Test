@@ -1,0 +1,38 @@
+body{margin: 0px;}
+.container{
+    background: beige;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;  /*아래로 밀려나느냐 아니냐 기본값은 nowrap*/
+
+    /* 중심축에서 어떻게 배치할것인가? center, space-around,
+    space-between 등등*/
+    justify-content: flex-start;
+    
+    /* 반대축에서 어떻게 배치할것인가? */
+    align-items: center;
+
+    /* 반대축에서 배치한 것들을 다시 배치 */
+    /* align-content: ; */
+}
+
+.item{
+    width: 100px;
+    height: 100px;
+
+}
+
+.item1{ background: red; 
+    flex-grow: 1;    /*늘어날 때 비율*/
+    flex-shrink: 2;  /*줄어들때 비율*/
+    flex-basis : auto /*기본값은 auto %로 결정할수있고
+    줄어들때, 늘어날때 비율을 정할 수 있다.*/
+
+}
+.item2{ background:  blue;}
+.item3{ background: yellow;}
+.item4{ background: teal;}
+.item5{ background: salmon;}
+
+

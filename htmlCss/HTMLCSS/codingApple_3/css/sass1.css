@@ -1,0 +1,59 @@
+body {
+  margin: 1px;
+}
+
+div {
+  font-size: 15px;
+}
+
+.background {
+  background-color: #3e57a3;
+  font-size: 10px;
+}
+
+.main-bg1 h4 {
+  font-size: 16px;
+}
+.main-bg1 button {
+  color: red;
+}
+
+.btn-green, .btn-black {
+  width: 100px;
+  height: 60px;
+  padding: 20px;
+}
+
+.btn-black {
+  color: rgb(43, 8, 8);
+}
+
+.btn-green {
+  color: rgb(68, 112, 68);
+}
+
+h2 {
+  font-size: 30px;
+  letter-spacing: 3px;
+}
+
+h3 {
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+h4 {
+  font-size: 40px;
+  letter-spacing: 2px;
+}
+
+h5 {
+  font-size: 150px;
+  letter-spacing: 15px;
+  color: green;
+}
+
+h4 {
+  font-size: 30px;
+  letter-spacing: 17px;
+}/*# sourceMappingURL=sass1.css.map */

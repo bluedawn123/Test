@@ -1,0 +1,148 @@
+/* 여백제거 */
+body {
+    margin : 0px;
+}
+
+/* 모든박스는 실제박스 사이즈 기준으로 */
+div {
+    box-sizing: border-box;
+}
+
+.main-background{
+    
+    width: 90%;
+    height: 800px;
+    background-image: url(../img/camera.jpg);   /*배경으로 이미지 넣고 싶은 경우 */
+    background-size: cover;        /*cover? => 니가 알아서 div에 배경을 채워라*/
+                                   /*contain =? 배경을 자르지 않게!*/
+    background-repeat: no-repeat;  /*배경화면 반복 안되게 */
+    background-position: center;  /*배경화면을 어디서부터 채울거니?*/
+    /*filter:brightness(50%)         글씨에도 필터는 적용된다. */
+
+    padding : 20px;           /* margin collapse 방지=> 박스 2개가 겹쳤을때 마진이 겹쳐진다. 그래서 안쪽 박스에 마진을 줘도 둘다 이동하게 되는 현상*/
+    position : relative;      /* 부모가 된다. */
+    text-align: center;  
+    margin: 1px auto;           /*사진 중앙 정렬 */
+    box-sizing : border-box;
+}
+
+.main-title{
+    color:white;
+    padding : 25px;
+    font-size: 50px;
+    margin-top: 15px;         /*박스 2개의 경우 테두리가 겹쳐지면 marin도 합쳐져서 margin collapse가 발생 */
+                              /*=> 테두리를 안 겹치게 하면 된다. 예를들어 안 박스에 padding을 준다. */
+}
+
+.main-text{
+    /* margin-top : 10px; */
+    color: white;
+    padding : 1px;
+    margin-bottom : 50px;  
+    font-size: 25px;
+
+}
+
+.main-button{
+    top : 500px;
+    border-radius : 20px;
+    border: none;
+    padding: 15px;
+    font-size: 20px;
+    /* position 속성사용. 공중에 뜬다고 생각 */
+    position : absolute; /*main-button의 부모태그는 여기서 main-background이다. */
+    
+/* position absolute 사용시 버튼을 가운데로 */
+    left : 0;    
+    right : 0;
+    margin : auto;
+    width: 150px;
+
+    /* 
+   1. 좌표이동 => 포지션 속성이 있어야 한다.  
+        position : relative => top, bottom, left, right등을 조정
+        1 relative(내 원래 위치를 기준점) float와 비슷하게 공중에 뜬다. 
+        2 static => 좌표이동 x
+        3 fixed => 뷰포트(지금기준화면) 화면고정.
+                => 상단 고정할때 자주 쓰인다. 
+
+        4 absolute => 내 부모태그중 position relative를 가진 태그가 기준으로 이동 
+        여기선, main-background가 부모
+        4-2. absolute + relative(부모요소)(내 부모 태그중 position relative를 갖고 있는 것이 기준)
+
+   2. position absolute 준 요소를 가운데 정렬 시키려면 left 0 right 0 margin:auto, width=??를 적절히 주면 된다.  
+*/
+}
+
+
+
+.explain-box{
+    font-size : 20px;
+    width : 1500px;    /* %는 부모대비 %를 의미한다. 여기서 부모는 body태그. => 반응형 레이아웃*/
+    max-width: 1500px; /* 참조 : padding은 width와 상관없다. */
+    margin : 0px auto;      /* 박스 가운데정렬*/
+    padding : 20px;
+    text-align : center;
+    background-color: #eee;
+    position: relative;   /*붕 뜨게하고   */                  
+    top : -60px;          /*  위로 -60만큼 올린다*/
+    box-sizing: border-box;   /*border-box =>content부분만 width로 설정하지 말고 padding, border까지 포함한 총 길이
+                               *content box =>  padding border 포함 ㄴㄴ*/
+
+    /*z-index : 붕뜬 녀석들의 우선순위. 숫자가 클수록 높이 온다. 앞으로 보낼때 사용*/
+
+    /* width:600을 줘도 padding을 50을 주면 실제 width는 700정도가 된다. 실제폭은 콘텐츠(내용)이고
+    폭은 padding과 상관없기 때문!
+    => 그래서 실제로 보이는 영역의 넓이로 기준을 삼고 싶으면, box-sizing: border-box; 를 사용한다. 이거의 반대는 box-sizing : content-box; 
+    
+    ★★1. 박스 사이즈를 정확하게 하고 싶으면 content영역이 아닌 
+    2. padding border를 포함시켜야 한다. => box-sizing : border-box;
+    3. 시작할때 div{}에 넣어두고 시작하면 편하다.*/
+}
+
+input[type=text]{   /* input 태그중 타입이 text인 것만*/
+    padding: 10px;
+    font-size: 10px;
+    border: 2px solid red;
+    border-radius: 5px;
+    width: 310px;
+}
+
+input[type=email]{
+    width : 500px;
+}
+/* ---------------=========------ 수업내용 -------------------------------------------- */
+/* -----------------------------수도엘리먼트-------------------- */
+.pesudo::first-line{
+    color: red;
+    font-size: 30px;
+}
+
+.pesudo::after{ /*맨뒤에 넣고 싶은 경우*/
+    content : '안녕';
+}
+
+.pesudo::before{ /*맨앞에넣고싶은경우*/
+    content : '흠ㅇㅇ';
+}
+
+/* clear-both를 사용하기 귀찮을때에
+.클래스명::after{    //클래스의 제일 마지막
+    content : '';
+    display : block;
+    clear : both;
+    float : none;
+}
+*/
+
+/*파일버튼 꾸며보기*/
+.input-file::file-selector-button {
+    background: skyblue;
+    border: none;
+    padding : 20px;
+
+}
+
+.input-file::file-selector-button:hover {
+    background: red;
+}

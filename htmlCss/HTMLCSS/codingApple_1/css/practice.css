@@ -1,0 +1,66 @@
+.container{
+    width: 1000px;
+    margin:auto;
+    background: red;
+}
+
+.blog-content{
+    width: 80%;
+    background : grey;
+    height: 500px;
+    float: left;
+}
+
+.blog-profile{
+    float: left;
+    width: 100px;
+    margin-top: 15px;
+    margin-left: 15px;
+    /* display: block; */
+}
+
+.blog-name{
+    float: left;
+    margin-top: 25px;
+    margin-left: 10px;
+}
+
+.blog-name1{
+    margin: 5px; margin-top: 10px;}
+.blog-name2{
+    margin: 5px; margin-top: 35px;}
+
+.blog-about{
+    margin-top: 35px;
+    margin-left: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+.blog-img{
+    float: left; 
+    width: 20%;
+    background-color: rgb(109, 52, 52);
+    height: 600px;
+}
+
+.blog-img-in{
+    width: 180px;
+    margin: auto;
+    margin-top : 50px;
+    display: block;
+}
+/* .blog-img-in{
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+    display:block;
+
+} */

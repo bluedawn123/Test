@@ -1,0 +1,63 @@
+.container{
+    width: 1000px;
+    /* background-color: aqua; */
+    margin-left:auto;  
+    margin-right:auto; 
+
+}
+
+.blog-content{
+    width: 70%;
+    height: 500px;
+    background-color: bisque;
+    float: left;
+}
+
+
+.blog-profile{
+    width: 70px;
+    display: block;
+    float: left;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.blog-name{
+    float: left;
+    margin-top: 25px;
+    margin-left: 10px;
+}
+
+.blog-name1{
+    margin: 5px;margin-top: 10px;}
+.blog-name2{
+    margin: 5px
+    ;margin-top: 15px;}
+
+.blog-about{
+    /* clear: both; ★★★지운이유?
+    => float를 쓰고 clear both를 쓰는게 국룰인데 차라리 이렇게 쓸 바엔
+    새로운 div를 만들고 clear both를 쓰는 게 더 효과적이다.
+    이럼 그 다음부터 바로 margin-top등을 쓸 수 있다. 
+    */
+    
+    margin: 15px;
+    margin-top: 10px;
+}
+
+
+.blog-img{
+    width: 30%;
+    height: 600px;
+    background-color: yellow;
+    float: left; 
+}
+
+.blog-img img{
+    width: 80%;
+    margin-right: auto;
+    margin-left : auto;
+    margin-top: 50px;
+    display:block;
+
+}

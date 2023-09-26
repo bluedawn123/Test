@@ -1,0 +1,65 @@
+div,input,textarea{
+    box-sizing : border-box;   /*쓴 이유는 28번째 줄 참조*/
+}
+
+.form-background{
+    width: 800px;
+    height: 900px;
+    background-color: black;
+    padding : 30px;
+    margin: auto;
+    position: relative;  /*그냥한번 해봄.. 얘가 부모고 아래 버튼이 자식*/
+}
+
+.form-white{
+    background-color: white;
+    padding : 30px;
+    width: 80%;
+    height: 90%;
+    max-width: 600px;
+    margin: auto;   
+}
+
+.form-input{
+    padding: 10px;
+    font-size: 20px;
+    border : 1px solid black;
+    border-radius: 5px;
+    width: 100%;  
+    
+    /*box-sizing : border-box; 해줘야 딱 100프로로 됌. 맨위에 명시
+    
+    왜냐하면 padding등이 있기 때문에 안해주면 영향을 받아 부모보다 더 튀어나오게 된다.
+    */
+}
+
+.w-50{
+    width: 50%;
+    float: left;
+    padding: 10px;
+}
+
+.w-100{
+    padding: 10px;
+}
+
+.check-box{
+    float: left;  /*띄우면 버튼이 옆으로 이동하게 됨.*/
+    font-size: 20px;
+    
+}
+
+.button{
+    background-color: rgb(218, 218, 113);
+    color: white;
+    position: absolute;  
+    /*그냥한번 해봄.. 얘가 부모고 아래 버튼이 자식
+      사실 부모,자식 안하고 relative만 단독으로 써서 위치 조정해도됌
+    */
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    font-size: 20px;
+    left : 550px;
+}

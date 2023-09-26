@@ -1,0 +1,247 @@
+.nav-container{
+    display: flex;     /* 가로배치*/
+    height: 50px;
+    align-items: center;
+    padding : 5px;
+    height: 80px;
+
+    /*justify-content: center;    flex 이용시 가운데 정렬
+    
+    flex-direction: row; => 가로배치
+    flex-direction: colmun; => 세로배치
+    flex-wrap : wrap; => width가 크면 밑으로 내려간다.
+    align-items : ; => 상하정렬
+    */
+}
+
+.nav-item{
+    margin-right : 50px;
+    margin-left : 50px;
+    font-size : 32px;
+}
+.nav-shop{
+    font-size: 52px;
+}
+
+.nav-etc{
+    margin-top: 25px;
+    font-size: 25px;
+}
+/*  rem, vw, vh, em 등등
+    width: 100vw;     브라우저 폭에 비례한 넓이
+    width : 10rem     html폰트사이즈(기본은 16px)의 10배 
+    height: 100px;    브라우저 높이에 비례 
+    background :  grey;
+}*/
+
+
+
+body{ 
+    margin:0px
+}
+
+.main-background{
+    width: 100%;
+    height: 500px;
+    background-image: url(../img/shoes.jpg);   /*배경으로 이미지 넣고 싶은 경우 */
+    background-size: cover;        /*cover? => 니가 알아서 div에 배경을 채워라*/
+                                   /*contain =? 배경을 자르지 않게!*/
+    background-repeat: no-repeat;  /*배경화면 반복 안되게 */
+    background-position: center;
+    /*filter:brightness(50%)         글씨에도 필터는 적용된다. */
+
+    padding : 2px;   /* margin collapse 방지 */
+    position : relative;
+    text-align: center;
+}
+
+.main-title{
+    color:white;
+    font-size: 50px;
+    margin-top: 10px;         /*박스 2개의 경우 테두리가 겹쳐지면 marin도 합쳐져서 margin collapse가 발생 */
+                              /*=> 테두리를 안 겹치게 하면 된다. 예를들어 안 박스에 padding을 준다. */
+}
+
+.main-text{
+    margin-top : 10px;
+    color: white;
+    font-size: 25px;
+
+}
+
+.main-button{
+    top:350px;
+    padding: 15px;
+    font-size: 20px;
+    position : absolute;
+    left : 0;
+    right : 0;
+    margin-left: auto; 
+    margin-right: auto;
+    width: 150px;}/* 
+   1. 좌표이동 => 포지션 속성이 있어야 한다.  
+        position : relative 하고 top, bottom, left, right등을 조정
+        1 relative(내 원래 위치를 기준점) float와 비슷하게 공중에 뜬다. 
+        2 static(좌표이동 x)
+        3 fixed(화면고정)
+        4 absolute + relative(부모요소)(내 부모 태그중 position relative를 갖고 있는 것이 기준)
+
+   2. position absolute 준 요소를 가운데 정렬 시키려면 left 0 right 0 margin:auto, width=??를 적절히 주면 된다.  
+*/
+
+
+
+
+/* ------------------------------------------------------------------------------------- */
+
+
+.explain-box{
+    width: 70%;       /* %는 부모대비 %를 의미한다. 반응형 레이아웃*/
+    max-width: 1000px; /* 참조 : padding은 width와 상관없다. */
+    margin:auto;      /* 박스 가운데정렬*/
+    padding: 30px;
+    text-align: center;
+    background-color: #eee;
+    position: relative;   /*붕 뜨게하고   */                  
+    top : -30px;          /*  위로 -30만큼 올린다*/
+    box-sizing: border-box;   /*content box를 하면 padding border 포함 ㄴㄴ*/
+
+    /*z-index : 붕뜬 녀석들의 우선순위. 숫자가 클수록 높이 온다. 앞으로 보낼때 사용*/
+    /* width:600을 줘도 padding을 50을 주면 실제 width는 700정도가 된다.
+    
+    ★★1. 박스 사이즈를 정확하게 하고 싶으면 content영역이 아닌 
+    2. padding border를 포함시켜야 한다. => box-sizing : border-box;
+    3. 시작할때 div{}에 넣어두고 시작하면 편하다.*/
+}
+
+.form-background{
+    margin:auto;
+    background-color: black;
+    max-width: 700px;
+    padding: 50px;
+}
+
+.form-white{
+    background-color: white;
+    padding : 30px;
+    width: 80%;
+    max-width: 600px;
+    margin: auto;
+}
+
+.form-input{
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+    box-sizing: border-box;      /*width 100%라 해도 더 튀어나가기 때문. 
+                                 content영역이기 때문.  => border-box 사용 */
+}
+
+div, input, textarea {          /* div,input,textarea태그에 border-box를 다 주는 방법 */
+    box-sizing: border-box;   /*border-box =>content부분만 width로 설정하지 말고 padding, border포함. 
+                                즉 튀어나가는 거 방지*/
+}
+
+.w-50{
+    width: 50%;
+    float: left;
+    padding: 10px;           /* 상자2개 붙는거 띄어놓기 */
+
+}
+
+.w-100{
+    width: 100%;
+    padding: 10px      /* 위에 w-50에 상자2개 붙는거 띄어놓기 때문에 간격 벌어진거 맞추는 용도*/
+}
+
+.textarea{
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+    box-sizing: border-box;    
+}
+
+.yellow-button{
+    padding: 10px;
+    display : block;
+    margin-left: auto;
+
+}
+
+
+
+/* ----------------------------------------------------------------------------------------- */
+.product-container{
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 100%;
+    background-color: aquamarine;
+}
+
+
+.product-container>div>i{   /*아이콘 디자인 변경 => 동그란 원으로*/
+    background-color: burlywood;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    padding-top: 25px;
+    box-sizing: border-box;
+    color : white;
+    margin-top: 20px;
+}
+
+
+
+.product-container>div{  /*product-container의 div태그들*/
+    float : left;
+    width : 25%;         /*pc사이즈에선 최대max경우 각 div는 1000px/4 (25%)만큼 차지 */
+    text-align: center;
+}
+
+
+
+/*테블릿(1200px 이하 적용) 사이즈에선 가로폭 ~~%, 최대폭 ~~px로 해주세요 */
+@media screen and (max-width : 1200px){
+    .product-container div{width: 50%;}   /*태블릿에선 각div는 50%만큼 차지 (700px의 50%) */
+    .product-container{max-width: 700px;}
+}
+
+
+/*모바일(768px) 사이즈에선 가로폭 ~~%, 최대폭 ~~px로 해주세요 */
+@media screen and (max-width : 768px){
+    .product-container div{width: 100%;}
+    .product-container{max-width: 400px;}
+}
+
+
+/* ---------------------------------------------------------------------------------------- */
+
+
+@media screen and (max-width : 1200px){
+    .main-title{font-size: 30px;}
+    .nav-item{
+        margin-right : 10px;
+        margin-left : 10px;
+    }
+    .nav-shop{
+        font-size : 23px
+    }
+    .nav-etc{font-size: 18px;}
+}
+/* 1200px이하에서는 .클래스에서 {} 을 적용하라
+   여러개를 만들 수 있다.
+   보통 1200, 992, 768, 576px 기준( 4개 정도가 적당)
+*/
+@media screen and (max-width : 768px){
+    .main-title{font-size: 20px;}
+    .nav-etc{font-size: 18px;}
+    .nav-shop{
+        font-size : 23px
+    }
+}

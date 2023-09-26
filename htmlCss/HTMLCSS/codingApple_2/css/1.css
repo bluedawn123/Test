@@ -1,0 +1,14 @@
+@font-face{
+    font-family: '123123';
+    src : url(../font/nanumsquare.ttf)
+}
+
+div, input, textarea{
+    box-sizing: border-box;
+}
+
+body {
+    margin : 0px;
+    font-family: 'gulim', 'dotum';   /*폰트는 자동상속*/
+
+}

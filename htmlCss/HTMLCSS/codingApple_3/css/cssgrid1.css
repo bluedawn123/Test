@@ -1,0 +1,26 @@
+.grid-container{
+    display: grid;
+    grid-template-columns: 100px 100px 100px 100px; /*행*/
+    grid-template-rows: 100px 100px 100px;    /*열*/
+    grid-gap : 5px;
+
+    /* fr = 전체 폭에 대한 배수(균등하게 쪼갤때 유용) 단 rows는 height필요 */
+}
+.grid-container div{
+    border: 3px solid black;
+}
+
+.grid-nav{
+    /* grid-column은 display:grid 자식들에게만 허용된다.*/
+    grid-column: 1 / 5; /*세로선 1~4만큼 차지하게 해주세요*/
+
+}
+
+.grid-sidebar{
+    grid-row: 2/4;
+}
+
+.grid-main{
+    grid-column: 2/5;
+    grid-row : 2/4; 
+}

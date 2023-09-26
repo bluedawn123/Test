@@ -1,0 +1,68 @@
+div,input,textarea{
+    box-sizing : border-box; /*28번쨰와 같은 이유*/
+}
+.form-background{
+    margin: auto;
+    width: 800px;
+    height: 900px;
+    background-color: black;
+    padding : 30px;
+}
+
+.form-white{
+    background-color: white;
+    padding : 30px;
+    width: 80%;
+    height: 100%;
+    max-width: 600px;
+    margin: auto;
+}
+.text-input{
+    padding: 10px;
+    font-size: 20px;
+}
+.form-input{
+    padding: 10px;
+    font-size: 20px;
+    border : 1px solid black;
+    border-radius: 5px;
+    width: 100%;  /*box-sizing : border-box; 해줘야 딱 100프로로 됌.
+    
+    왜냐하면 padding등이 있기 때문에 안해주면 영향을 받아 부모보다 더 튀어나오게 된다.
+    */
+}
+.w-50{
+    margin-top: -30px;  /*위로 조금 끌어올리기*/
+    float: left;
+    width: 50%;
+    padding : 15px; /*딱 붙는 거 떨어지게*/
+}
+
+
+.w-100{
+    padding: 15px; /*★★★쓴 이유? w-50에만 padding 15를 주면 안 맞기때문*/
+    /* margin-top: -30px; */
+}
+
+/*존나중요. 기존의 w-100의 패딩은 이어받되 새 클래스를 안 만들고
+살짝만 변형을 주기위해 새 클래스 little-up를 추가(html참고)하여 작성*/
+.little-up{
+    margin-top: -15px;
+    
+}
+
+.check-box{
+    float: left;
+    font-size: 20px;
+}
+
+
+.yellow-button{
+    position: relative;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 15px;
+    left : 290px;
+}
+

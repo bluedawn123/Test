@@ -1,0 +1,37 @@
+
+.flex-container {
+    background-color : bisque;
+    height: 500px;
+    width: 2000px;
+    margin: auto;    /*컨테이너 가운데 정렬*/
+    display: flex;   /*가로 배치 */
+    flex-direction: column;   /* 행,렬 정렬 배치 방식 선택*/
+    justify-content: start; /* 진행방향에 대한 정렬방식 */
+    align-items : end;  /* 진행방향의 반대에 대한 정렬방식 */
+    flex-wrap : wrap;  /* 폭이 넘치는 요소 wrap 처리 */
+    
+}
+
+.flex-item {
+    width: 80px;
+    height : 80px;
+    object-fit: cover;     /*존나 유용. 사진을 딱 맞게 줄이고 싶을때!! 
+                            가로세로 비율은 유지하면서 컨테이너에 꽉 차도록 설정
+                            background의 cover과 같다.*/
+
+    background-size: cover; /**/
+    margin : 35px;
+    border-radius: 20px;
+}
+
+.item-one{
+    background-image: url(../img/google.jpg);
+}
+
+.item-two{
+    background-image: url(../img/insta.jpg);
+}
+
+.item-three{
+    background-image: url(../img/twitter.jpg);
+}

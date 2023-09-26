@@ -1,0 +1,40 @@
+.grid-container{
+    display: grid;
+    grid-template-columns: 100px 100px 100px 100px; /*행*/
+    grid-template-rows: 100px 100px 100px;    /*열*/
+
+
+    /* fr = 전체 폭에 대한 배수(균등하게 쪼갤때 유용) 단 rows는 height필요 */
+
+    /* 방법2 색칠하듯 */
+    grid-template-areas: 
+    "header header header header"
+    "side main main main"
+    "side main main main "
+
+}
+.grid-container div{
+    border: 0.1px solid rgb(100, 76, 76);
+}
+
+.grid-nav{
+ /*그리드 이름 명명*/
+    grid-area : header;
+}
+
+.grid-sidebar{
+    grid-area : side;
+}
+
+.grid-main{
+    grid-area: main;
+}
+
+@media screen and (max-width : 768px){
+    .grid-container {
+      grid-template-areas: 
+      "header header header header"
+      "side side side side"
+      "main main main main "
+    }
+  }

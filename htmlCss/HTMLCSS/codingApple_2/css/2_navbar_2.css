@@ -1,0 +1,13 @@
+.nav-container{
+    display: flex;
+    height: 50px;
+    background-color: #eee;
+    
+    align-items: center; /*상하에 어떻게 정렬시킬지*/
+    padding: 15px;
+}
+
+.nav-item{
+    margin-right: 15px;
+    font-size: 30px;
+}

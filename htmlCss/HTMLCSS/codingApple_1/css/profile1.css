@@ -1,0 +1,43 @@
+.profile{
+    width : 350px;
+    
+    /* 아래 3개 적용시 가운데 정렬 */
+    display: block; 
+    margin-right: auto;
+    margin-left: auto
+}
+
+.name{
+    font-size:30px; 
+    color:rgb(25, 56, 38); 
+    letter-spacing: 10px; 
+    text-align: center
+}
+
+#special { 
+    text-align: center; 
+    font-weight: bold;
+    color:green;
+    font-size:25px;
+}
+
+.content{
+    color:white;
+}
+
+p {
+    color:blue
+}
+
+.box{
+    width : 1150px;
+    background-color: rgb(219, 166, 166);
+    margin : 11px;
+    padding : 20px;
+    border : 5px solid rgb(0, 13, 14);
+    border-radius: 15px;
+    display: block;
+    margin : auto;
+    font-size: 20px;
+    box-shadow: 10px 10px green;
+}

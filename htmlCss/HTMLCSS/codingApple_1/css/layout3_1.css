@@ -1,0 +1,51 @@
+.container{             /*전체 layout  */
+    width: 800px;
+    /* margin: auto; 전체 가운데정렬 */
+}
+
+.blog-content{          /* 박스  */
+    width: 80%;
+    height: 100px;
+    float: left;
+    background-color: aqua;
+}
+.blog-img{             /*사진박스 */
+    width: 20%;
+    float: left;
+    background-color: red;
+}
+
+
+.blog-profile{
+    width: 100px;
+    float: left;
+}
+
+.blog-name{         /* h4, p 이런 것 다 한 행을 차지하기 때문에 float 사용 
+                    기본 마진을 갖고 있어서 칸이 벌어진다. 그래서 style margin을 적게 준다 */
+    float: left;    /*띄워서 위쪽에 붙히기 */
+    margin-left: 20px;
+    margin-top: 30px;
+}
+
+
+
+/* ------------------아래는 셀럭터 관련 ------------------------ */
+
+.navbar>li{   /* 1.모든 li태그들이 inline-block을 갖게한다. (자기자신크기만 해서 가로로 만드려고)
+                 2.띄어쓰기는 ~~안에 있는 이라는 의미 (자식의 자식같은 모든 자손 포함)
+                   예를들어 navbar li 는 navbar 클래스의 모든 li태그 의미. 그 자식들까지
+                 3. > => ~안에 있는 직계자식*/
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+    background: rgb(201, 184, 184);
+    padding: 10px;
+    border-radius: 15px;
+
+}
+.navbar a{   /*navbar 안의 모든 a태그 */
+    font-size: 25px;
+    color: red;
+    text-decoration: none;   /* 누른 링크 보라색 혹은 밑줄 제거. 원래는 자동으로 붙는게 그거 보기싫을때 */
+}

@@ -1,0 +1,39 @@
+div,input,textarea{
+    box-sizing : border-box;   /*쓴 이유는 28번째 줄 참조*/
+}
+
+.form-background{
+    width: 800px;
+    height: 900px;
+    background-color: black;
+    padding : 30px;
+    margin: auto;
+    position: relative;  /*그냥한번 해봄.. 얘가 부모고 아래 버튼이 자식*/
+}
+
+.form-white{
+    background-color: white;
+    padding : 30px;
+    width: 80%;
+    height: 90%;
+    max-width: 600px;
+    margin: auto;   
+}
+
+.form-input{
+    font-size :20px;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px; 
+}
+
+.w-50{
+    width: 45%;
+    float: left;
+}
+
+.w-502{
+    float: left;
+    width: 45%;
+    margin-left: 50px;
+}

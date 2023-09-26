@@ -1,0 +1,69 @@
+
+.btn{
+    padding : 15px;
+    font-size : 20px;
+    border : none;
+    border-radius : 10px;
+    background-color: coral;
+    color : white;
+    cursor: pointer;      /* 커서의 모양을 포인터로! 다른것들도 가능 */
+}
+
+/*마우스 올렸을때 초콜릿, 클릭중 블루, 유지중일땐 그린 */
+.btn:hover{         /*  마우스가 올라갈 때의 클래스  */
+    background-color: rgb(107, 51, 11);
+}
+
+.btn:focus{  /*포커스 된 상태(클릭하고 나서 */
+    background-color: green;
+}
+
+.btn:active{    /*마우스를 쭈욱 누르고 있을 떄의 스타일 변경*/
+    background-color: blue;
+}
+
+/* => 결론 : 중요 active와 focus는 순서가 중요하다. => focus 먼저, 그다음 active*/
+
+/*아래는 기타사항*/
+:any-link /*방문 전, 방문 후 링크 한번에 선택할 때*/
+:playing /*동영상, 음성이 재생중일 때*/
+:paused /*동영상, 음성이 정지시*/
+:autofill /*input의 자동채우기 스타일*/
+:disabled /*disabled된 요소 스타일*/
+:checked /*체크박스나 라디오버튼 체크되었을 때*/
+:blank /*input이 비었을 때*/
+:valid /*이메일 input 등에 이메일 형식이 맞을 경우*/
+:invalid /*이메일 input 등에 이메일 형식이 맞지 않을 경우*/
+:required /*필수로 입력해야할 input의 스타일*/
+:nth-child(n) /*n번째 자식 선택*/
+:first-child /*첫째 자식 선택*/
+:last-child /*마지막 자식 선택*/
+
+
+
+
+.input-test{
+    font-size: 20px;
+}
+
+.input-test:focus{  /*역시 찍었을때 효과*/
+    border: 5px solid red;
+}
+
+
+
+/* 방문전 링크 스타일링은 : link */
+.custom-link:link{
+    color: rgb(114, 250, 166);
+}
+/* 방문 후 링크 스타일링 */
+.custom-link:visited{
+    color: rgb(19, 2, 2);
+}
+
+.custom-link{
+    text-decoration: none;  /* 밑줄제거 */
+
+}
+
+

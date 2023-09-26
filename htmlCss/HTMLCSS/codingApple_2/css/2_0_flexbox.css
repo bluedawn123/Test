@@ -1,0 +1,61 @@
+
+.flex-container {
+    height: 500px;
+    background-color: red;
+
+    display: flex;   /*flex로 배치하겠다. */
+    
+    flex-direction: column;   /* 가로,세로의 정렬 배치 방식 선택*/
+
+    justify-content : space-between;
+    /* 메인축의 방향성 영향을 받는다.
+    시작?끝?중앙? 배치 방식 선택 
+    center, flex-start, end, space-between 등이 있다. 
+    */
+    
+
+    
+    align-items : end;
+    /* flex-direction 반대의 정렬 방식 
+    만약 이게 가로정렬이면 세로에 영향, (세로면 가로에 영향)
+    */
+    
+    flex-wrap : wrap;  /* 폭이 넘치는 요소 wrap 처리.
+    넘칠때 wrap을 쓰면 아래로 밀려가고 안쓰면 그냥 꽉찬다. */
+    
+    /* 정리
+    flex-direction = 가로,세로중 어떻게 할래?
+    align-items = 세로 결정했을때 어떻게 정렬할래?
+    justify-content = 가로 결정했을때 어떻게 정렬할래?
+
+    */
+
+    /*flex-grow = 박스크기를 비율로 설정가능*/
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.flex-item {
+    width: 200px;
+    height : 100px;
+    background-color : rgb(192, 167, 167);
+    margin : 5px;
+}
