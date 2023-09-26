@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <link href="css/1.css" rel="stylesheet"> 
+
+  </head>
+  <body>
+
+    <div class="alert-box" id="alert">
+      <p>alert 박스</p>
+      <button onclick="close_alert()">닫기</button>
+    </div>
+
+    <button onclick="document.getElementById('alert').style.display = 'block'; ">버튼1</button>
+      
+    <button onclick="open_alert()">버튼2</button>
+    <button onclick="알림창열기('block')">버튼3</button>            
+
+    <!--onclick => 이 버튼을 클릭하면 이하 코드를 실행하게 하라.id="alert" 요소를 가져와 display:block으로 바꿔라   -->
+    
+
+    <script>
+        function open_alert(){
+            document.getElementById('alert').style.display = 'block'; 
+        }
+        function close_alert(){
+            document.getElementById('alert').style.display = 'none';
+        }
+      
+        function 알림창열기(a){
+            document.getElementById('alert').style.display = a;
+        }
+
+
+    </script>
+   
+
+    <br>
+    <p>-------------------------------------------------수업 내용--------------------------------------------</p>
+    
+  </body>
+  <p>1. 닫기 버튼 누르면 alert박스 사라지는 것. onclick="" 에 작성을 안하고 스크립트에 작성
+  <p>2. function문법 = 코드의 간소화
+        원할 때 자바스크립트를 이용해서 보여준다.
+  <p>3. html조작은 script 단에서 코드로 조작
+  <p>4. 숙제
+  <P>
+  <P>
+  
+</html>
+
+
+

@@ -1,0 +1,72 @@
+.alert-box{
+    background-color: rgb(135, 135, 197);
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+
+    display: none;  /*평소엔 ui 숨기기*/
+
+}
+
+.alert-box p{
+    display: inline;
+}
+
+.yellow-bg{
+    background: yellow;
+}
+
+
+
+.main-background{
+    background-image: url(shoes.jpg);
+    background-size : cover;
+    color : white;
+    border-radius: 0px;
+    height : 650px;
+}
+
+.black-background{
+    background : rgba(0,0,0,0.5);
+    position : fixed;
+    z-index : 5;    /*부트스트랩이 1~4를 사용해서 제일 앞으로 보여주기 위함*/
+    width: 100%;
+    height: 100%;
+    display : none;
+    /* visibility: hidden;    */
+}
+
+.white-background{
+    background : white;
+    width : 30%;
+    height: 500px;
+    margin : 100px auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.nav-menu{
+    display: flex;  /*가로배치*/
+    justify-content: space-between;  /*양쪽정렬*/
+    padding : 15px;
+    align-items: center;
+}
+
+.nav-sub{
+    display: none;
+}
+
+.btn-lg{
+    margin-top: 35px;
+}
+
+#email-alert{
+    display : none;
+    margin-top: 15px;
+
+}
+
+#psw-alert{
+    display: none;
+    margin-top: 15px;
+}

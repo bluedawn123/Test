@@ -1,0 +1,96 @@
+@charset "utf-8";
+*{margin: 0; padding: 0;}
+ul,li{list-style: none;}
+a{text-decoration: none; color: black;}
+.blind{
+    display: block;
+    overflow: hidden;
+    position: absolute;
+    border: 0;
+    width: 1px;
+    height: 1px;
+    clip:rect(1px, 1px, 1px, 1px);
+}
+
+backgroud
+
+
+
+/* .clear::after{
+    content: "";
+    display: block;
+    clear: both;
+} */
+
+.inner::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.header{background: #926666; height: 50px;}
+.inner{
+    width: 1200px; 
+    margin: 0 auto;
+}
+
+
+h1{float: left; margin-top: 10px;}  /*로고 왼쪽 구석으로*/
+
+/* 주메뉴 기초 정렬*/
+nav{
+    position: absolute;
+    left: 50%;  /*left 50%를 쓰면 딱 가운데서 시작*/
+    top:0;
+    transform: translateX(-50%); /*딱 가운데서 시작하는 곳에서 좀더 떙기려고*/
+    z-index: 5;
+}
+
+/* 1차메뉴 손보기. 얘가 기준점*/
+header > div > nav > ul > li  {  /* ==>  .gnb >  li { 얘와 같다!*/
+    position: relative;
+    float: left;
+}
+
+/* 2차메뉴 손보기 */
+.gnb ul {
+    position: absolute;  /*1차 메뉴와 독립해야하기 때문*/
+    left: 0;
+    display: none;
+    background-color: rgb(228, 10, 10);
+}
+
+.gnb > li  a {
+    padding: 20px;
+    display: block;
+}
+
+header > div > nav > ul > li:hover >ul  {  /* ==>  .gnb >  li { 얘와 같다!*/
+    display: block;
+
+}
+
+
+.sns{float: right;} /*sns 오른쪽 구석으로*/
+
+.main-background{
+    width: 90%;
+    height: 800px;
+    background-image: url(../img/main1.jpg);   /*배경으로 이미지 넣고 싶은 경우 */
+    background-size: cover;        /*cover? => 배경이잘려도좋으니 빈공간없이 채워라(반복x)*/
+                                   /*contain =? 배경을 자르지 않게!*/
+
+    background-repeat: no-repeat;  /*배경화면 반복x. 반복되지 않는 공간에 공백이 남을수도있다. */
+    background-position: center;  /*배경화면을 어디서부터 채울거니?*/
+    /*filter:brightness(50%)         글씨에도 필터는 적용된다. */
+
+    padding: 0.1px;          /* margin collapse 방지=> 박스 2개가 겹쳤을때 마진이 겹쳐진다. 그래서 안쪽 박스에 마진을 줘도 둘다 이동하게 되는 현상*/
+    position : relative;      /* position absolute의 부모가 된다. */
+    text-align: center;  
+    margin: 1px auto;           /*사진 중앙 정렬 */
+    box-sizing : border-box;
+    z-index: 1;
+}
+
+
+

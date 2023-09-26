@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>웹 개발 입문입니다ㅇㅇㅇㅇ</title>
+    <link href="css/1.css" rel="stylesheet"> 
+
+  </head>
+  <body>
+    
+    <h2 id="hello">안녕하세요</h2>
+    <h2 id="hi">안녕하세요2</h2>
+
+    
+    <div class="alert-box" id="alert">alert 박스
+        <button onclick="document.getElementById('alert').style.display = 'none'; ">버튼닫기</button>  
+    </div>
+    <button onclick="document.getElementById('alert').style.display = 'block'; ">버튼</button>   
+        
+
+    <!--onclick => 이 버튼을 클릭하면 이하 코드를 실행하게 하라.
+    id="alert" 요소를 가져와 display:block으로 바꿔라   -->
+
+
+
+
+    <script>
+    document.getElementById("hello").innerHTML = "안녕"; /*웹문서의 id hello인 html요소를 가져와 내부글자 를 = "안녕"*/
+    document.getElementById("hi").style.fontSize = '35px';  /*글자사이즈 5px으로 변경*/
+
+    
+      
+
+    
+    </script>
+   
+
+    <br>
+    <p>-------------------------------------------------수업 내용--------------------------------------------</p>
+    
+  </body>
+  <p>ui만드는 법 
+  <p>1. 미리 디자인을 해 놓고 숨긴다.
+  <p>2. 원할 때 자바스크립트를 이용해서 보여준다. 
+  <p>
+  
+</html>
