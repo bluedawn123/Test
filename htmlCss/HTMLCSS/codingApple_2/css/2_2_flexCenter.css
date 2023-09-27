@@ -1,13 +1,13 @@
 
 .flex-container {
     background-color : bisque;
-    height: 500px;
+    height: 800px;
     width: 2000px;
     margin: auto;    /*컨테이너 가운데 정렬*/
-    display: flex;   /*가로 배치 */
+    display: flex;   /*가로 배치이나 아래에서 세로로 설정변경 ㅎ */
     flex-direction: column;   /* 행,렬 정렬 배치 방식 선택*/
     justify-content: start; /* 진행방향에 대한 정렬방식 */
-    align-items : end;  /* 진행방향의 반대에 대한 정렬방식 */
+    align-items : center;  /* 진행방향의 반대에 대한 정렬방식 */
     flex-wrap : wrap;  /* 폭이 넘치는 요소 wrap 처리 */
     
 }

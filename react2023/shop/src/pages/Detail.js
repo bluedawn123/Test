@@ -29,12 +29,14 @@ function Detail2(props){ //불필요하나 그냥 남겨둠ㅋ
         {/* <YellowBtn></YellowBtn> */}
         <div className="row">
             <div className="col-md-6">
+              {/* <img src={'https://codingapple1.github.io/shop/shoes' + props.사진번호 + '.jpg'} width="80%" /> */}
                 <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
             </div>
             <div className="col-md-6">
                 <h4>{props.detail에서쓸shoes데이터[id].title}</h4>
                 <p>{props.detail에서쓸shoes데이터[id].content}</p>
                 <p>{props.detail에서쓸shoes데이터[id].price}</p>
+                
                 <button className="btn btn-danger">주문하기</button> 
             </div>
           </div>
@@ -73,6 +75,7 @@ function Detail(props){
             <h6 className="pt-2">Price : {찾은상품.price}원</h6>
             <h6 className="pt-2">할인판매가 : {찾은상품.price}원</h6>
             <h6 className="pt-2">특별할인기간 : {찾은상품.saleterm}</h6>
+            <h6 className="pt-2">상품id : {찾은상품.id}</h6>
             <button className="btn btn-primary mt-3 m-2 ">주문하기</button> 
             <button className="btn btn-secondary mt-3 m-2 ">장바구니 담기</button> 
           </div>
