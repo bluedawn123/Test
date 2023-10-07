@@ -1,89 +1,97 @@
 import { useEffect, useState} from "react";
+import '../css/resetlogin.css';
+import '../css/Detail.css';
 import { useParams } from "react-router-dom";
-import './Detail.css';
-import {  Nav} from 'react-bootstrap';
+import styled from 'styled-components';
+import {Nav} from 'react-bootstrap'
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 
 
 
 function Detail(props){
 
-    
-
-    let [탭, 탭변경] = useState(0)  //true, false보단, 상태가 여러가지 일수 있으니 숫자로 지정
     let {id} = useParams();   //유저가 :id 에 적은거 갖고와줌
     let 찾은상품 = props.shoes.find(function(x){
         return x.id == id
     });
-    let [alert, setAlert] = useState(true)
-
-    //useEffect는 장작되고 업데이트 될때 실행된다.
-    useEffect( ()=>{
-        let a = setTimeout( ()=> { setAlert(false) }, 3000)
-        return ()=>{
-            clearTimeout(a)
-        }
-    }, [])
 
 return( 
-    <div className="container">
-        
-        {/* state에 따른 Ui기능위해서 3항연산자 생성 */}
-        {
-            alert === true
-            ?  <div className="alert-waring">
-                5월 31일까지 무료배송입니다.
-            </div>
-            : null
-        }
-
-        
-        <div className="row">
-            <div className="col-md-6">
-                <img src={process.env.PUBLIC_URL + '/product' + id + '.jpg'} width="90%" />
-            </div>     
-            <div className="col-md-6 mt-4">
-            <h4 className="pt-5">{찾은상품.title}</h4>
-            <p>{찾은상품.content}</p>
-            <p>{찾은상품.price}원</p>
-          <button className="btn btn-danger">주문하기</button> 
+<div className="container">
+    <div id="order_wrap">
+        <div class="left">
+            {/* <img src={process.env.PUBLIC_URL + '/testpic' + '.jpg'} /> */}
+            <img src={process.env.PUBLIC_URL + '/product' + id + '.jpg'} />
         </div>
-      </div>
-
-    <Nav variant="tabs"  defaultActiveKey="link0">           {/*디폴트는첨에뭐로보여줄지 */}
-        <Nav.Item>
-            <Nav.Link onClick={ ()=> {탭변경(0)}} eventKey="link0">버튼0</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-            <Nav.Link onClick={ ()=> {탭변경(1)}} eventKey="link1">버튼1</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-            <Nav.Link onClick={ ()=> {탭변경(2)}} eventKey="link2">버튼2</Nav.Link>
-        </Nav.Item>
-    </Nav> 
-
-    {/* 조건문(3항연산자)에 따른 각 다른 내용 보여주기  */}
-    <TabContent 탭={탭}/>
-
-</div> 
-)
-
-// 3항연산자보다는 if문으로 써보자. 단, html안에서 if조건문이 안되므로 바깥에서 만들고 불러오기 + 컴포넌트는 return이 필수!!
-function TabContent({탭}){
-    return (<div className="start end">
-        { [<div>내용000</div>, <div>내용1</div>, <div>내용2</div>][탭] }
-    </div>)
+        <div class="right">
+            <div class="top">
+                <h1>{찾은상품.title}</h1>
+                <p>{찾은상품.content} dd</p>
+                <dl>
+                    <dt>판매가격</dt>
+                    <dd class="price">{찾은상품.price}krw </dd>
+                    <dt>적립금</dt>
+                    <dd>1%</dd>
+                    <dt>원산지</dt>
+                    <dd>대한민국</dd>
+                </dl>
+                <div class="number">
+                    <p class="order_name">{찾은상품.title}</p>
+                    <div class="order_number">
+                        <span class="number_price">{찾은상품.price}krw</span>
+                    </div>
+                </div>
+                <div class="total_price">
+                    <p>총 상품 금액</p>
+                    <p class="result_price">{찾은상품.price}krw</p>
+                </div>
+            </div>
+            <div class="bottom">
+                <button type="button" id="order_btn">주문하기</button>
+                <button type="button" id="cart_btn">장바구니</button>
+                <button type="button" id="like_btn">찜하기</button>
+            </div>
+        </div>
+    </div>
+    <div className="carousel">
+      <div>아아</div>
+      <div>아아</div>
+      <div>아아</div>
+      <div>아아</div>
+      <div>아아</div>
+      <div>아아</div>
+      <div>아아</div>
+      <div>아아</div>
+      <div>아아</div>
+      <div>아아</div>
+    </div>
+    <Tabs
+      defaultActiveKey="profile"
+      id="fill-tab-example"
+      className="mb-3 mt-5"
+      fill
+    >
+      <Tab eventKey="home" title="Home">
+      <div>아아</div>
+      <div>아아</div>
+      <div>아아</div>
+      <div>아아</div>
+      <div>아아</div>
+      </Tab>
+      <Tab eventKey="profile" title="Profile">
+        Tab content for Profile
+      </Tab>
+      <Tab eventKey="longer-tab" title="Loooonger Tab">
+        Tab content for Loooonger Tab
+      </Tab>
+      <Tab eventKey="contact" title="Contact" >
+        Tab content for Contact
+      </Tab>
+    </Tabs>
     
-    // if (탭 == 0){
-    //     return <div>내용0</div>
-    // } 
-    // if (탭 == 1){
-    //     return <div>내용1</div>
-    // } 
-    // if (탭 == 2){
-    //     return <div>내용2</div>
-    // }
-
-    }
+</div>
+    
+)
 
 }
 

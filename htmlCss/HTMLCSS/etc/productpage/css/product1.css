@@ -1,13 +1,13 @@
 #order_wrap {
-    background: aqua; width: 1000px; margin: 0 auto;
+    width: 1000px; margin: 0 auto;
     display: flex; flex-wrap:row nowrap;
     justify-content: space-around
 }
 /* 그림이 전체의 100프로라고 하고 left에서 줄여서 크기를 조절함 */
-#order_wrap .left {background: yellow; width: 500px;}
+#order_wrap .left { width: 500px;}
 #order_wrap .left img{width: 100%;}
-#order_wrap .right {background: coral; width: calc(100% - 550px);}
-#order_wrap .right .top{background-color: lime;}
+#order_wrap .right { width: calc(100% - 550px);}
+#order_wrap .right .top{}
 #order_wrap .right .top h1 {font-size: 1.2rem; padding: 20px 0px;}
 
 /*top클래스 안에 p태그가 여러개 있으므로 그중 고르는것*/
@@ -23,19 +23,22 @@
     /* 이상태만 하면 옆으로 쭈욱늘어서고 나머지는 떨어진 상태다. 
     이걸 띄워주고 떨어뜨려주는 방식은 아래에서 조절가능하다. 비율만큼 차지하기 때문 */
 }
-#order_wrap .right .top dl dt{width: 30%; background-color: red; padding: 10px 0; }
-#order_wrap .right .top dl dd{width: 70%; background-color: blue; padding: 10px 0;}
+#order_wrap .right .top dl dt{width: 30%;  padding: 10px 0; }
+#order_wrap .right .top dl dd{width: 70%;  padding: 10px 0;}
 #order_wrap .right .top dl dd.price{font-weight: 900;} /* dl > dd:nth-child(2)와같다. */
 
 #order_wrap .right .top .number {
     display: flex; flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center; padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
 }
 #order_wrap .right .top .number .order_name {}
 #order_wrap .right .top .number .order_number{}
 #order_wrap .right .top .number .order_number input[name=num]{
     background: #fff; width: 50px; padding: 5px;
+    border: 1px solid #ddd;
 }
 #order-wrap .right .top .number .order_number .number_price{}
 
@@ -46,13 +49,17 @@
 }
 #order_wrap .right .top .total_price p {}
 #order_wrap .right .top .total_price p:nth-child(1) {}
-#order_wrap .right .top .total_price .result_price{}
+#order_wrap .right .top .total_price .result_price{color: #cc0202; font-size: 1.2rem;}
 
-#order_wrap .right .bottom {background-color: beige;}
-#order_wrap .right .bottom button {}
-#order_wrap .right .bottom #order_btn{}
-#order_wrap .right .bottom #cart_btn{}
-#order_wrap .right .bottom #like_btn{}
+
+#order_wrap .right .bottom { text-align: right; padding:20px 0;}
+#order_wrap .right .bottom button {
+    padding: 15px 0px;
+
+}
+#order_wrap .right .bottom #order_btn{width: 100px; background-color:#cc0202;}
+#order_wrap .right .bottom #cart_btn{width: 80px; background-color:#a9a9a9;}
+#order_wrap .right .bottom #like_btn{width: 80px; background-color: #ddd;}
 
 
 

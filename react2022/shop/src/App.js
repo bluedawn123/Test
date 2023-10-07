@@ -1,7 +1,7 @@
  // eslint-disable-next-line
 import './App.css';
 import { createContext, useState} from "react";
-import { Button, Container, Nav, Navbar, Card } from 'react-bootstrap';
+import { Button, Container, Nav, Navbar, Card, NavDropdown} from 'react-bootstrap';
 import data from './data.js'
 import mendata from './mendata.js'
 import kidsdata from './kidsdata.js'
@@ -12,6 +12,8 @@ import Nopage from './routes/Nopage.js'
 import About from './routes/About.js'
 import Cart from './routes/Cart.js'
 import EventPage from './routes/EventPage'
+import Login from './routes/Login.js'
+import Join from './routes/Join.js'
 import styled from 'styled-components'
 // import axios from 'axios'
 
@@ -31,7 +33,7 @@ function App() {
 return (
 <div className="App">
 
-    <Navbar className="navbar" bg="dark" variant="dark">
+    {/* <Navbar className="navbar" bg="dark" variant="dark">
       <Container>
       <Navbar.Brand onClick={ ()=> {navigate('/')}}>Shoes</Navbar.Brand>
       <Nav className="me-auto">
@@ -43,8 +45,39 @@ return (
         
       </Nav>
       </Container>
-    </Navbar>
+    </Navbar> */}
 
+    <Navbar className='navbar' collapseOnSelect expand="lg" bg="dark" variant="dark" position="fixed">	
+        <Container>	
+          <Navbar.Brand href="/">Shoes Select Shop</Navbar.Brand>	
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />	
+          <Navbar.Collapse id="responsive-navbar-nav">	
+            <Nav className="me-auto">	
+              
+              <Nav.Link href="/">All Products</Nav.Link>
+              <NavDropdown href="/Product" title="Product Lines" id="collasible-nav-dropdown">	
+              <NavDropdown.Item href="/men">New Lines</NavDropdown.Item>	
+                <NavDropdown.Item href="/men">Men</NavDropdown.Item>	
+                <NavDropdown.Item href="/women">Women</NavDropdown.Item>	
+                <NavDropdown.Item href="/kids">Kids</NavDropdown.Item>
+                <NavDropdown.Item href="/etc">ETC</NavDropdown.Item>	
+                <NavDropdown.Divider />	
+                <NavDropdown.Item href="#/sales">Sale-Items</NavDropdown.Item>	
+              </NavDropdown>	
+              <Nav.Link onClick={ ()=> {navigate('/About')} }>About Us</Nav.Link>	
+              <NavDropdown href="/Product" title="Cusomter Service" id="collasible-nav-dropdown">	
+                <NavDropdown.Item href="/notice">Notice</NavDropdown.Item>	
+                <NavDropdown.Item href="/Q & A">Q&A</NavDropdown.Item>	
+              </NavDropdown>	
+            </Nav>	
+            {/* 위, 아래중 골라서하면된다. */}
+            <Nav>	
+              <Nav.Link href='/login'>Log in</Nav.Link>	
+              <Nav.Link href='/join'>	Join Us</Nav.Link>	
+            </Nav>	
+          </Navbar.Collapse>	
+        </Container>	
+      </Navbar>	
 
 
 
@@ -123,8 +156,6 @@ return (
           </div>
         </>} 
         />
-
-
 {/*------------------------------------------------------- women 끝 ---------------------------------- */}
       <Route path="/detail/:id" element={
 
@@ -145,9 +176,11 @@ return (
         <Route path="one" element={<p>첫 주문시 양배추즙 서비스</p>}></Route>
         <Route path="two" element={<p>생일기념 쿠폰받기</p>}></Route>
       </Route>
-          
-  
+        
       <Route path="/*" element={<Nopage/>} />
+      <Route path="/login" element={<Login/>} />
+      <Route path="/Join" element={<Join/>} />
+
     
       
 
@@ -171,14 +204,13 @@ return (
 
 {/*-----------------------------------------fotter..컴포넌트화하기 추후에---------------------------------- */}
 
-    <div id='wrap'>
+<div id='wrap'>
         <footer>
           <nav>
               <a href='https://www.instagram.com/blawn1/' target='_blank'>INSTAGRAM</a> |
               <a href='https://map.naver.com/v5/entry/address/14131948.72047941,4520623.418677382,%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EC%84%9C%EB%8C%80%EB%AC%B8%EA%B5%AC%20%ED%99%8D%EC%A0%9C%EB%8F%99%2085-2,jibun?c=14131878.7450475,4520647.5234642,18,0,0,0,dh' target='_blank'>LOCATION</a> |
               <a href='http://localhost:3000/guide' target='_blank'>GUIDE</a> |
               <a href='http://localhost:3000/privacy' target='_blank'>PRIVACY POLICY</a> |
-
           </nav>
           <p>
               <span>010-9218-8609</span><br/>
@@ -203,9 +235,11 @@ function TheCard(props){
   let navigate = useNavigate();
   return (
     <div className="col-md-3" onClick={ ()=> {navigate('/detail/' + props.i) }}>
-        <img src={process.env.PUBLIC_URL + '/product' + props.i + '.jpg'} width="80%" />
+        <img src={process.env.PUBLIC_URL + '/product' + props.i + '.jpg'} width="100%" />
         {/* <img src={'https://codingapple1.github.io/shop/shoes' + props.i + '.jpg'} width="80%" /> */}
+        <h4>{ props.shoes.id }</h4>
         <h4>{ props.shoes.title }</h4>
+        <h4>{ props.shoes.content }</h4>
         <p>{ props.shoes.price }</p>
     </div>
   )

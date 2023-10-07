@@ -94,16 +94,16 @@ function Detail(props){
         </Nav>
         <TabContent 탭={탭}/> */}
       
-        <EmblaCarousel/>
+        {/* <EmblaCarousel/> */}
 
         <Tabs defaultActiveKey="Detail" id="fill-tab-example" className="mb-3 mt-5"fill>
           <Tab eventKey="Detail" title="Detail">
-            <div>
+            {/* <div>
                 <h4>{props.detail에서쓸shoes데이터[id].title}</h4>
                 <p>{props.detail에서쓸shoes데이터[id].content}</p>
                 <p>{props.detail에서쓸shoes데이터[id].price}</p>
                 <button className="btn btn-danger">주문하기</button> 
-            </div>
+            </div> */}
           </Tab>
           <Tab eventKey="Note" title="Note">
             Tab content for Profile
