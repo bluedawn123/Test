@@ -258,8 +258,9 @@ function TheMen(props){
 }
 
 function TheWomen(props){
+  let navigate = useNavigate();
   return (
-    <div className="col-md-3">
+    <div className="col-md-3" onClick={ ()=> {navigate('/detail/' + props.i) }}>
         <img src={process.env.PUBLIC_URL + '/womenproduct' + props.i + '.jpg'} width="80%" />
         <h4>{ props.womenshoes.title }</h4>
         <p>{ props.womenshoes.price }</p>

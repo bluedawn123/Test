@@ -1,42 +1,42 @@
 let data = [
     {
       id : 1,
-      title : "White and Black",
+      title : "White Running",
       content : "Born in France",
       price : 120000
     },
   
     {
       id : 2,
-      title : "Red Knit",
+      title : "Pink Sneakers",
       content : "Born in Seoul",
       price : 110000
     },
   
     {
       id : 3,
-      title : "modnine",
+      title : "Rainbow Running",
       content : "Born in the States",
       price : 130000
     },
 
     {
         id : 4,
-        title : "tomhardy",
+        title : "DarkGray Sneakers",
         content : "Born in the States",
         price : 130000
     },
 
     {
         id : 5,
-        title : "jordan",
+        title : "White Hi",
         content : "Born in the States",
         price : 130000
     },
 
     {
         id : 6,
-        title : "sleeping",
+        title : "Purple Sneakers",
         content : "Born in the States",
         price : 130000
     },

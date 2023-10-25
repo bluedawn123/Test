@@ -1,14 +1,14 @@
 let mendata = [
     {
       id : 0,
-      title : "White and Black",
+      title : "White Running",
       content : "Born in France",
       price : 120000
     },
   
     {
       id : 1,
-      title : "Red Knit",
+      title : "driving shoes",
       content : "Born in Seoul",
       price : 110000
     },
@@ -22,7 +22,7 @@ let mendata = [
 
     {
         id : 3,
-        title : "Grey Yordan",
+        title : "White Hi",
         content : "Born in the States",
         price : 130000
     },
