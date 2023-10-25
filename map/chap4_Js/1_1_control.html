@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>맛집지도</title>
+    <meta name="author" content="동네코딩" />
+    <meta name="description" content="맛집지도 서비스" />
+    <meta
+      name="keywords"
+      content="동네코딩, 맛집지도, 유튜버맛집, 맛집유튜버"
+    />
+    <link rel="stylesheet" href="./1.css" />
+  </head>
+
+  <body>
+    <div></div>
+    <div id="hi"></div>
+    <div class="welcome"></div>
+
+    
+  </body>
+  <!-- 아래는 콘솔로 찍어보면 됌 -->
+    <script>
+        console.log(document.querySelector("div.welcome"));
+        //<div class="welcome"></div>
+        
+        console.log(document.querySelectorAll("div"))
+        //NodeList(3) 모든 ""안에 해당되는 것들을 찾아줌
+
+        console.log(document.getElementsByTagName("div"))
+        //HTMLCollection(3) [div, div#hi, div.welcome, hi: div#hi]
+        //태그이름이 div인 것들을 찾아줌
+
+        console.log(document.getElementById("hi"));
+        //<div id="hi"></div>
+        //id가 hi인것을 찾아줌
+
+        console.log(document.getElementsByClassName("welcome"));
+        //HTMLCollection [div.welcome]
+
+    </script>
+
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>맛집지도</title>
+    <meta name="author" content="동네코딩" />
+    <meta name="description" content="맛집지도 서비스" />
+    <meta
+      name="keywords"
+      content="동네코딩, 맛집지도, 유튜버맛집, 맛집유튜버"
+    />
+    <link rel="stylesheet" href="./2.css" />
+  </head>
+
+  <body>
+    <div class="container">
+        <div class="inner first">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+        <div class="inner second">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+      </div>
+    
+  </body>
+  <!-- 아래는 콘솔로 찍어보면 됌 -->
+    <script>
+    const container = document.querySelector(".container");
+      console.log(container);
+
+      // 부모 태그
+      console.log(container.parentElement); //container의 부모 -> body
+      
+      // 자식 태그
+      console.log(container.children); //container아이들 -> 
+      //0:div.inner.first 1:div.inner.second
+      
+      // 형제 태그
+      console.log(container.nextElementSibling); //없어서 안나옴ㅅㄱ
+
+    </script>
+
+    수업내용:
+    <p>parentElement : </p>
+    <p>children : </p>
+    <p>nextElementSibling : </p>
+    <p></p>
+    <p></p>
+    <p></p>
+
+
+
+</html>
