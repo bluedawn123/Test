@@ -1,0 +1,72 @@
+body{ 
+    margin:0px
+}
+
+.nav-container{
+    background-image: linear-gradient(to bottom, #4a85c0, #f1f4f8);
+    display: flex;     /* 가로배치*/
+    height: 80px;
+    align-items: center;
+    padding : 10px;
+    /*justify-content: center;    flex 이용시 가운데 정렬
+    
+    flex-direction: row; => 가로배치
+    flex-direction: colmun; => 세로배치
+    flex-wrap : wrap; => width가 크면 밑으로 내려간다.
+    align-items : ; => 상하정렬
+    */
+}
+
+.nav-item{
+    margin-right : 10px;
+    margin-left : 50px;
+    color: black;
+}
+
+/*  rem, vw, vh, em 등등
+    width: 100vw;     브라우저 폭에 비례한 넓이
+    width : 10rem     html폰트사이즈(기본은 16px)의 10배 
+    height: 100px;    브라우저 높이에 비례 
+    background :  grey;
+}*/
+
+
+.navs-shop{
+    font-size: 38px;
+}
+
+
+.nav-etc {
+    font-size: 20px;
+    margin-top: 18px;
+}
+
+.navs-shops {
+    font-size: 28px;
+}
+
+.navs-login{
+    font-size: 24px;
+    margin-right : 50px;
+}
+
+
+
+/*
+
+@media screen and (max-width : 1200px){
+    .main-title{font-size: 30px;}
+    .nav-item{font-size: 12px;}
+}
+/* 1200px이하에서는 .클래스에서 {} 을 적용하라
+   여러개를 만들 수 있다.
+   보통 1200, 992, 768, 576px 기준( 4개 정도가 적당)
+*/
+
+/*
+@media screen and (max-width : 768px){
+    .main-title{font-size: 20px;}
+    .nav-item{font-size: 8px;}
+}
+*/
+
