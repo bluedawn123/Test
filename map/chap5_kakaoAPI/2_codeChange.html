@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>맛집지도</title>
+    <meta name="author" content="동네코딩" />
+    <meta name="description" content="맛집지도 서비스" />
+    <meta
+      name="keywords"
+      content="동네코딩, 맛집지도, 유튜버맛집, 맛집유튜버"
+    />
+    <link rel="stylesheet" href="./1.css" />
+    <link rel="stylesheet" href="./map.css" />
+
+  </head>
+
+  <body>
+    <nav>
+      <div class="inner">
+        <div class="nav-container">
+          <h1 class="nav-title">맛집지도</h1>
+          <button class="nav-contact">Contact</button>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section id="category">
+        <div class="inner">
+          <div class="category-container">
+            <h2 class="category-title">윤준호의 맛집지도 카테고리를 선택해보세요</h2>
+            <div class="category-list">
+              <button class="category-item" id="korea">한식</button
+                ><button class="category-item" id="china">중식</button
+                ><button class="category-item" id="japan">일식</button
+                ><button class="category-item" id="america">양식</button
+                ><button class="category-item" id="wheat">분식</button
+                ><button class="category-item" id="meat">구이</button
+                ><button class="category-item" id="sushi">회/초밥</button
+                ><button class="category-item" id="etc">기타</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- 카테고리 -->
+
+      <div id="map" class="inner"></div>
+
+
+      <!-- 카카오지도 -->
+    </main>
+
+    <!-- 썸네일 -->
+    <!-- <div class="infowindow">
+      <div class="infowindow-img-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3YbYrs1pP0WwRfXAeCm2s41eIlC4lkpI8NA&usqp=CAU" class="infowindow-img">
+      </div>
+      <div class="infowindow-body">
+        <h5 class="infowindow-title">할머니집</h5>
+        <p class="infowindow-address">서울특별시 중구 명동3길 43</p>
+        <a href="" class="infowindow-btn" target="_blank"></a>
+      </div>
+    </div> -->
+
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c36f3c20254f16dd27f3600d213a0b9f&libraries=services"></script>
+    <script src="script2.js"></script>
+  </body>
+</html>

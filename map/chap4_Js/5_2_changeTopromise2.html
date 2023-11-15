@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>콜백지옥</title>
+    <meta
+      name="keywords"
+      content="동네코딩, 맛집지도, 유튜버맛집, 맛집유튜버"
+    />
+    <link rel="stylesheet" href="./2.css" />
+  </head>
+
+  <body>
+
+
+  </body>
+    <script>
+const loginUser =  (id,password) => 
+    new Promise((resolve,reject) => {
+        setTimeout(()=>{
+            if(
+                (id === 'ellie' && password === 'dream') ||
+                (id === 'coder' && password === 'academy')
+            ){
+                resolve(id);
+            }else{
+                reject(new Error('not found'));
+            }
+        } , 2000);
+    })
+
+const getRoles = (user) =>
+    new Promise((resolve,reject) => {
+        setTimeout(()=>{
+            if(user === 'ellie'){
+                resolve({name: 'ellie', role: 'admin'});
+            } else{
+                reject(new Error('no access'));
+            }
+        }, 1000);
+    })
+
+const id = prompt('enter your id');
+const password = prompt('enter your password');
+
+loginUser(id,password)
+.then(user => getRoles(user))
+.then(user => alert(`Hello ${user.name}, you have a ${user.role}.`))
+.catch(error => console.log(error));
+
+
+    </script>
+
+    <p>4_callback지옥의 코드를 promise를 통해 변경해보자 </p>
+    <p></p>
+
+</html>

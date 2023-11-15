@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>동기</title>
+    <meta
+      name="keywords"
+      content="동네코딩, 맛집지도, 유튜버맛집, 맛집유튜버"
+    />
+    <link rel="stylesheet" href="./2.css" />
+  </head>
+
+<body>
+
+
+
+</body>
+
+
+  <!-- 아래는 콘솔로 찍어보면 됌 -->
+    <script>
+    async function asyncFunction() {
+        console.log("1등");
+        await second();
+        await third();
+    }
+
+    function second() {
+     return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          console.log("2등");
+          resolve();
+     }, 2000);
+    });
+    }
+
+    function third() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+            console.log("3등");
+            resolve();
+            }, 2000);
+        });
+    }
+
+    asyncFunction();
+
+
+
+    </script>
+
+    <p>async, await ? : 이것을 사용하는 것도 역시 Promise를 활용하는 것</p>
+    <p>async, await를 사용한 비동기처리는 무엇보다 사람이 읽기 쉽다는 장점</p>
+    <p>promise에서 resolve로 넘어온 값이 await 구문에 반환되는 것이라고 이해하면 됩</p>
+    <p>try-catch문은 try 블록에서 만약 에러가 발생한다면 catch 블록으로 에러를 던지고, 처리</p>
+    <p>aync/await 구문에서는 이렇게 try-catch문을 이용해서 에러를 처리</p>
+    <p>try-catch를 이용하면 비동기 처리 이외에도 일반적인 에러까지도 잡아낼 수 있는 장점</p>
+    <p></p>
+    <p></p>
+
+
+
+
+
+
+</html>

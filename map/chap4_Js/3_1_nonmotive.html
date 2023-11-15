@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>동기</title>
+    <meta
+      name="keywords"
+      content="동네코딩, 맛집지도, 유튜버맛집, 맛집유튜버"
+    />
+    <link rel="stylesheet" href="./2.css" />
+  </head>
+
+<body>
+
+
+
+</body>
+
+
+  <!-- 아래는 콘솔로 찍어보면 됌 -->
+    <script>
+    const helloPromise = new Promise( (resolve, reject) => {
+      // 생성 자체는 pending
+      let isSuccess = true;
+
+        if (!isSuccess) {
+          reject(false); // catch 호출
+          return;
+        }
+
+        console.log("1등");
+        setTimeout(() => {
+          resolve(); // then 호출
+          }, 2000);
+        });
+
+    helloPromise
+    .then( (res) => {
+      console.log("2등");
+      return 
+      new Promise((resolve, reject) => {
+        setTimeout(() => resolve(), 3000);
+        });
+      }
+    )
+    .then((res) => {   //바로위의 3초옆에 있는 resolve() 실행
+      console.log("3등");
+      })
+    .catch((err) => {
+      console.log(err);
+      });
+
+
+
+    </script>
+
+    <p>동기 : 한번에 한가지 일만 끝내고 다음으로 넘어감</p>
+    <p>비동기 : 여러 처리를 동시에 시작. 훨씬 더 효율적</p>
+    <p>비동기 대표적인 것들</p>
+    <p>1. setTimeOut => 실행되는 즉시 완료여부와 관계 없이 바로 다음 코드를 실행</p>
+    <p>동기화, 비동기처리 : 비동기되어 말아야 할때 동기처럼 만드는 방법</p>
+    <p>동기화 방법 3가지</p>
+    <p>1. 콜백함수 안에 넣어주기</p>
+    <p>2. </p>
+    <p>3. </p>
+    <p></p>
+
+
+
+
+</html>

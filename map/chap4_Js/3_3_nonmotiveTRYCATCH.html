@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>동기</title>
+    <meta
+      name="keywords"
+      content="동네코딩, 맛집지도, 유튜버맛집, 맛집유튜버"
+    />
+    <link rel="stylesheet" href="./2.css" />
+  </head>
+
+<body>
+
+
+
+</body>
+
+
+  <!-- 아래는 콘솔로 찍어보면 됌 -->
+    <script>
+async function asyncFunction() {
+  try {
+    console.log(1);
+    const result = await getResult();
+    console.log(result);
+    console.log(3);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+function getResult() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject(new Error("에러발생 예시"));
+    }, 500);
+  });
+}
+
+asyncFunction();
+
+
+
+    </script>
+
+    <p>try-catch문은 try 블록에서 만약 에러가 발생한다면 catch 블록으로 에러를 던지고, 처리</p>
+    <p>aync/await 구문에서는 이렇게 try-catch문을 이용해서 에러를 처리</p>
+    <p>try-catch를 이용하면 비동기 처리 이외에도 일반적인 에러까지도 잡아낼 수 있는 장점</p>
+    <p></p>
+    <p></p>
+
+
+
+
+
+
+</html>
