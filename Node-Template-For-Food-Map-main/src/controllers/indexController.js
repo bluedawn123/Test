@@ -7,7 +7,6 @@ const indexDao = require("../dao/indexDao");
 
 // 예시 코드
 exports.example = async function (req, res) {
-  //return res.send("더비 겟 요청 성공");
 
   try {
     const connection = await pool.getConnection(async (conn) => conn);
@@ -28,6 +27,31 @@ exports.example = async function (req, res) {
     }
   } catch (err) {
     logger.error(`example DB Connection error\n: ${JSON.stringify(err)}`);
+    return false;
+  }
+};
+
+
+exports.readStudents = async function (req, res) {
+  try {
+    const connection = await pool.getConnection(async (conn) => conn);
+    try {
+      const [rows] = await indexDao.selectStudents(connection);
+
+      return res.send({
+        result: rows,
+        isSuccess: true,
+        code: 200, // 요청 실패시 400번대 코드
+        message: "요청 성공",
+      });
+    } catch (err) {
+      logger.error(`readStudents Query error\n: ${JSON.stringify(err)}`);
+      return false;
+    } finally {
+      connection.release();
+    }
+  } catch (err) {
+    logger.error(`readStudents DB Connection error\n: ${JSON.stringify(err)}`);
     return false;
   }
 };
