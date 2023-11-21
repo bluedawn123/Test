@@ -9,6 +9,8 @@ module.exports = function (app) {
   });
 
   app.get("/dummy", index.example);
-  app.get("/students", index.readStudents);
+  app.get("/students/:studentIdx", index.readStudents);  //학생한명조회
+  
+
 
 };
