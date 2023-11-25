@@ -52,13 +52,35 @@ app.post('/add', async (요청, 응답)=>{
 
 ///상세페이지 만들기. 
 app.get('/detail/:id', async (요청, 응답) => {
-  let result = await db.collection('post').findOne( { _id : new ObjectId(요청.params.id) } ) 
-  //result에는 요청.params.id가 남는데, 요청.params가 {id:숫자}이므로, .id를 쓰면 결국 입력한 파라미터만 남게된다.
+  try {
+    let result = await db.collection('post').findOne( { _id : new ObjectId(요청.params.id) } ) 
+    //result에는 요청.params.id가 남는데, 요청.params가 {id:숫자}이므로, .id를 쓰면 결국 입력한 파라미터만 남게된다.
+    //result에는 컬렉션에서 불러온 한개의 데이터가 오브젝트형으로 들어있다. 
   
-  console.log(요청.params)   // detail/파라미터 에서 파라미터와 id를 같이 출력. ex) { id : 1234 }
-  응답.render('detail.ejs', { urlResult : result})
+    //console.log(요청.params)    detail/파라미터 에서 파라미터와 id를 같이 출력. ex) { id : 1234 }
+    if(result == null ){
+      응답.status(404).send('이상한 url 입력2')
+    } else{
+      응답.render('detail.ejs', { urlResult : result})
+    }
+  } catch (error) {
+    console.log(error)
+    응답.status(404).send('이상한 url 입력1')
+  }
 })
 
+//수정기능 만들기
+app.get('/edit/:id', async (요청, 응답) => {
+  let result = await db.collection('post').findOne( { _id : new ObjectId(요청.params.id) } ) 
+  응답.render('edit.ejs', {urlResult : result})
+})
+
+app.post('/edit', async (요청, 응답)=>{
+  await db.collection('post').updateOne({ _id : new ObjectId(요청.body.id) },
+    {$set : { title : 요청.body.title, content : 요청.body.content }
+  })
+  응답.redirect('/list')
+}) 
 
 
 

@@ -11,25 +11,14 @@
 </head>
 <body class="grey-bg">
 
-    <!--<%= JSON.stringify(글목록) %> [{"_id":"655f5685fbe746ff3d3c80fe","title":"첫 게시물","content":"내용임 111"}, ...]-->
-    <!-- server.js에서 보낸 데이터들의 집합이다. -->
-
     <%- include('nav.ejs') %>
     
-    <div class="white-bg">
-        <% for (let i = 0; i < 글목록.length; i++){ %> <!--length는 array안의 데이터 갯수-->
-        <div class="list-box">
-            <h4><a href="/detail/<%= 글목록[i]._id %>"> <%= 글목록[i].title %> </a></h4>
-            <a><%= 글목록[i].content %></a><a href="/edit/<%= 글목록[i]._id %>">✏️</a>
-        </div>
-        <% } %>
-    </div>
-
-
-        <div class="time">
-            <h6>Time : 현재 시각은 <%= time %> 입니다</h3>
-        </div>
-    </div>
+    <form class="form-box" action="/add" method="POST">
+        <h4>글쓰기</h4>
+         <input name="title">
+         <input name="content">
+         <button type="submit">전송</button>
+    </form> 
     
 
 
