@@ -1,0 +1,79 @@
+*{padding: 0;margin: 0;box-sizing: border-box;font-family: 'Josefin Sans', sans-serif;}
+
+.container{
+    height: 130px;
+    width: 100%;
+    background-color: rgba(228, 226, 213, 0.596);
+}
+
+.container:hover{
+    background-color: rgba(109, 106, 126, 0.3);
+    transition : 0.3s;
+    height: 130px;
+}
+
+nav{
+    display: flex;
+    align-items: center; 
+    flex-direction: row;   
+    /*기본적으로 row이나 column으로 바꿔서 해보면 신기*/
+    justify-content: space-between;
+    padding-top: 30px;
+    padding-left: 10%;
+    padding-right: 15%;
+}
+
+.logo{
+    color: rgb(172, 22, 22);
+    font-size: 38px;
+}
+.logo span{
+    color: #18090c;;
+}
+
+.menu li{  /*menu의 li들만*/
+    list-style-type: circle;  /*왜있는지모르겠네..*/
+    display: inline-block;
+    padding: 10px 60px;
+}
+
+.menu li a{
+    color: rgb(36, 32, 43);
+    text-decoration : none;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.menu li a:hover{
+    color: #0d0413;
+    transition : 0.3s;
+}
+
+.login_button{
+    margin-top: 15px;
+    border: none;
+    background: #f1ebed;
+    padding: 15px 40px;
+    color: rgb(48, 12, 12);
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 25px;
+}
+
+.login_button:hover{
+    transform: scale(1.2);
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+
+.background{
+    height: 100vh;
+    background: rgb(194, 184, 184);
+}
+
+.sub-menu{
+    height: 400px;
+    background: rgb(0, 0, 0,  0.3);
+    display: none;
+}

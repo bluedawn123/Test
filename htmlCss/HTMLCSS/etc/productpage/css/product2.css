@@ -1,0 +1,61 @@
+#order_wrap {
+
+}
+/* 그림이 전체의 100프로라고 하고 left에서 줄여서 크기를 조절함 */
+#order_wrap .left {}
+#order_wrap .left img{}
+#order_wrap .right {}
+#order_wrap .right .top{}
+#order_wrap .right .top h1 {}
+
+/*top클래스 안에 p태그가 여러개 있으므로 그중 고르는것*/
+#order_wrap .right .top > p:nth-child(2) {   /*top의 두번째 자식 p의미*/
+
+}
+/* 2번째 자식p 자식이므로 꺽쇠필요*/
+
+#order_wrap .right .top dl{
+
+    /*flex-flow :row wrap;과 같다.*/
+    /* 이상태만 하면 옆으로 쭈욱늘어서고 나머지는 떨어진 상태다. 
+    이걸 띄워주고 떨어뜨려주는 방식은 아래에서 조절가능하다. 비율만큼 차지하기 때문 */
+}
+#order_wrap .right .top dl dt{}
+#order_wrap .right .top dl dd{}
+#order_wrap .right .top dl dd.price{} /* dl > dd:nth-child(2)와같다. */
+
+#order_wrap .right .top .number {
+
+}
+#order_wrap .right .top .number .order_name {}
+#order_wrap .right .top .number .order_number{}
+#order_wrap .right .top .number .order_number input[name=num]{
+   
+}
+#order-wrap .right .top .number .order_number .number_price{}
+
+#order_wrap .right .top .total_price{
+
+}
+#order_wrap .right .top .total_price p {}
+#order_wrap .right .top .total_price p:nth-child(1) {}
+#order_wrap .right .top .total_price .result_price{}
+
+
+#order_wrap .right .bottom {}
+#order_wrap .right .bottom button {
+    
+}
+#order_wrap .right .bottom #order_btn{}
+#order_wrap .right .bottom #cart_btn{}
+#order_wrap .right .bottom #like_btn{}
+
+
+
+
+
+
+
+
+
+
