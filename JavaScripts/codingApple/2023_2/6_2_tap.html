@@ -1,0 +1,106 @@
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="css/tap.css" rel="stylesheet"> 
+    <script  src="https://code.jquery.com/jquery-3.6.0.min.js"integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script>
+  </head>
+  <body>
+
+    
+    
+    <div class="container mt-5">
+        <ul class="list">
+            <li class="tab-button">Products</li>
+            <li class="tab-button">Information</li>
+            <li class="tab-button">Shipping</li>
+        </ul>
+        
+        <div class="tab-content">
+            <p>상품설명입니다. Product</p>
+        </div>
+        <div class="tab-content">
+            <p>스펙설명입니다. Information</p>
+        </div>
+        <div class="tab-content">
+            <p>배송정보입니다. Shipping</p>
+        </div>
+    </div> 
+
+    <script>
+        //버튼0을 누르면 
+        //1=>  기존의 orange클래스 제거 + 버튼0에 orange 클래스명 추가
+        //2=> div0에 show 클래스명 추가 + 역시 기존의 show클래스 제거
+
+        //tab-button클래스를 가진 것들을 '다' 찾아준다. eq(0)는 그중 첫번째(인덱싱!)
+        for (let i = 0; i < 3; i++){
+
+    $('.tab-button').eq(i).on('click', function(){
+        $('.tab-button').removeClass('orange');
+        $('.tab-button').eq(i).addClass('orange');
+        $('.tab-content').removeClass('show');
+        $('.tab-content').eq(i).addClass('show');
+        })
+
+    };
+
+//함수로 축약해보자.
+//  for (let i = 0; i < $('.tab-button').length; i++){
+// $('.tab-button').eq(i).on('click', function(){
+//   탭열기(i)
+// })
+
+// function 탭열기(구멍){
+// $('.tab-button').removeClass('orange');
+// $('.tab-button').eq(구멍).addClass('orange');
+// $('.tab-content').removeClass('show');
+// $('.tab-content').eq(구멍).addClass('show');
+// }    
+
+//이벤트버블링을 알면 이벤트리스너 줄일 수 있음
+//지금 탭을 만들 때 이벤트리스너를 3개나 부착했습니다. (버튼이 3개니까요)  이벤트리스너 1개만 써도 충분히 기능구현이 가능
+//버튼 3개의 부모인 <ul class="list"> 여기에 이벤트리스너 1개만 있어도 탭기능만들 수 있을듯 =. <ul class="list">에 붙은 이벤트리스너도 동작
+    
+    //$('.list').click(function(){
+    //지금 누른게 버튼 0이면 탭열기(0) 실행
+    //지금 누른게 버튼 1이면 탭열기(1) 실행
+    //지금 누른게 버튼 2이면 탭열기(2) 실행 이렇게..
+
+    // $('.list').click(function(e){
+    //     if (e.target == document.querySelectorAll('.tab-button')[0] ){
+    //     탭열기(0)
+    //     }
+    //     if (e.target == document.querySelectorAll('.tab-button')[1] ){
+    //     탭열기(1)
+    //     }
+    //     if (e.target == document.querySelectorAll('.tab-button')[2] ){
+    //     탭열기(2)
+    //     }
+    // })
+
+    // function 탭열기(구멍){
+    //     $('.tab-button').removeClass('orange');
+    //     $('.tab-button').eq(구멍).addClass('orange');
+    //     $('.tab-content').removeClass('show');
+    //     $('.tab-content').eq(구멍).addClass('show');
+    // }    
+
+    
+
+    </script>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+
+  <p>수업내용 : tap을 만들어보자</p>
+  <p>방법? : 해당 카테고리를 누르면 해당 정보가 보여야 한다. </p>
+  <p>이걸 css 두 속성인 show(display block), orange를 탈부착해서 보여주는 방식으로 만들어보자. </p>
+  <p>그리고, 기존의 orange가 붙어있으면 그것이 제거되야한다.</p>
+  <p></p>
+
+
+</html>

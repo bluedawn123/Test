@@ -1,0 +1,185 @@
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="css/2.css" rel="stylesheet"> 
+    <script  src="https://code.jquery.com/jquery-3.6.0.min.js"integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <!-- 로그인 모달창 맨 위에 위치-->
+    <div class="black-bg">
+      <div class="white-bg">
+        <h4>로그인하세요</h4>
+        <form action="success.html" class="form-frame">
+            <div class="my-3">
+              <input type="text" class="form-control" id="email">
+            </div>
+            <div class="my-3">
+              <input type="password" class="form-control" id="password">
+            </div>
+            <div class="submit-close">
+              <button type="submit" class="btn btn-primary" id="send">로그인</button>
+              <button type="button" class="btn btn-danger" id="login-close">닫기</button>
+            </div>
+          </form> 
+        </div>
+    </div>
+
+    <!-- 메뉴바(네브바) -->
+    <div class="nav-menu">
+        <h4 class="navbar-brand">Demin Making Studiosss</h4>
+        <span class="badge bg-grey" class="ms-auto mx-3">DarkMode 🔄</span>
+        <a id="nav-sub-button">Products</a>
+    </div>
+
+    <!--products 눌렀을때 메뉴바 -->
+    <div class="hidenavsub">  <!--slidetoggle을 쓸꺼면 굳이 모달창처럼 안해도된다. -->
+      <ul class="list-group nav-sub">
+          <li class="list-group-item">Outer</li>
+          <li class="list-group-item">InnerWear</li>
+          <li class="list-group-item">Shirts</li>
+          <li class="list-group-item">Shoes</li>
+          <li class="list-group-item">Accesary</li>
+          <li class="list-group-item">Personal Custom</li>
+          <li class="list-group-item close-bar">[close]</li>
+      </ul>
+    </div>
+
+    <!-- 메인 배경 -->
+    <div class="jumbotron main-background">
+        <div class="background-text"></div>
+            <h1 class="display-4">Demin Making Studio!</h1>
+            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+            <hr class="my-2">
+            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            <hr class="my-2">
+            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        </div>
+        <a id="login" class="btn btn-primary btn-lg" href="#" role="button">Log In</a>
+    </div>
+
+    <div style="overflow: hidden">
+      <div class="slide-container">
+        <div class="slide-box">
+          <img src="./img/car1.jpg">
+        </div>
+        <div class="slide-box">
+          <img src="./img/car2.jpg">
+        </div>
+      </div>
+   </div> 
+
+   <!-- 회원약관이라고 가정하고 다 내렸을때 알림창 뜨도록 -->
+   <div class="lorem" style="width: 200px; height: 100px; overflow-y: scroll">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae voluptas voluptatum minus praesentium fugit debitis at, laborum ipsa itaque placeat sit, excepturi eius. Nostrum perspiciatis, eligendi quae consectetur praesentium exercitationem.
+  </div> 
+
+    <script>
+        //products 버튼 (위와 같다)
+        $('#nav-sub-button').mouseover(function(){    //id=nav-sub-button이라는 창 누르면, 슬라이드 바 내려오는 코드
+          $('.nav-sub').slideToggle();          //눌렀을때 내리고 올리고 자유롭게
+        })
+
+        //로그인 버튼 눌렀을 때 css 클래스 탈부착 방식
+        $('#login').on('click', function(){
+          $('.black-bg').addClass('show-modal');
+        });
+
+        $('#login-close').on('click', function(){
+          $('.black-bg').removeClass('show-modal');
+        });
+
+        $('#send').on('click', function(e){
+          if(document.getElementById('email').value == ''){
+            e.preventDefault();
+            alert('아이디를 입력하지 않았습니다.')
+          }  
+          else if(document.getElementById('password').value == ''){
+            e.preventDefault();
+            alert('비밀번호를 입력하지 않았습니다.')
+          }
+        });
+
+        //클릭시 토글바 사라지게 해보자.
+        $('.close-bar').click(function(){
+            $('.nav-sub').slideToggle();
+        });
+ //------------------------------스크롤바 관련------------------------------------------------
+        window.addEventListener('scroll', function(){  //이런식으로 사용한다. 
+          })
+
+        //y축 높이 알고싶으면?
+        // window.addEventListener('scroll', function(){
+        //   console.log( window.scrollY )
+        // });
+
+        //제이쿼리 방식
+        // $(window).on('scroll', function(){
+        //   $(window).scrollTop();
+        // })
+
+        //원하는만큼 움직이고싶으면?
+        // window.scrollTo(a, b) //이런식으로. 
+        
+        //제이쿼리로 움직이고 싶을때?
+        // $(window).on('scroll', function(){
+        //   $(window).scrollTop();   //100을쓰면 강제로 이동해준다. 
+        // })
+
+        //이용약관 예시
+        // div스크롤 관련. div의 스크롤바 내린 양 == div의 실제높이 
+        $('.lorem').on('scroll', function(){
+          var 스크롤양 = document.querySelector('.lorem').scrollTop;  //내린양
+        });
+
+        var 실제높이 = document.querySelector('.lorem').scrollHeight;  //div의 높이
+
+        $('.lorem').on('scroll', function(){
+          var 스크롤양 = document.querySelector('.lorem').scrollTop;
+          var 실제높이 = document.querySelector('.lorem').scrollHeight;
+          var 높이 = document.querySelector('.lorem').clientHeight;
+          if (스크롤양 + 높이 > 실제높이 - 10) {  //조금 여유를 둔다.
+            alert('다읽음')
+          }
+        });
+
+
+
+
+
+
+        //스크롤관련 숙제1
+        //현재 페이지를 300px정도 내렸을때 로고가 커지게 만들어보자. => 아랫건 로딩시에만 이므로 안된다 
+        // if (window.scrollY > 100) {
+        //   $('.navbar-brand').css('font-size', '20px');
+        // }
+        $(window).on('scroll', function(){
+          if (window.scrollY > 300) {
+          $('.navbar-brand').css('font-size', '35px');
+          // alert('안녕하세요');
+          }
+          else{
+            $('.navbar-brand').css('font-size', '25px');
+          }
+        });
+
+
+
+
+    </script>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+
+  <p>수업내용 : scroll 바 내렸을때 이벤트 발생하는 것 만들기</p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+
+
+</html>

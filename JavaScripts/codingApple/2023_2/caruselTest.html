@@ -1,0 +1,109 @@
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cormorant+Infant:700,700italic|Lato:400,400italic,700">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="css/caruselTest.css" rel="stylesheet"> 
+    <script  src="https://code.jquery.com/jquery-3.6.0.min.js"integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script>
+  </head>
+  <body>
+
+     <!-- 캐러셀 -->
+     <div style="overflow: hidden;">
+        <div class="slide-wrapper">
+          <div class="slides">
+            <li><img src="../2023_2/img/mainjean.jpg"></li>
+            <li><img src="../2023_2/img/okayama2.jpg"></li>
+            <li><img src="../2023_2/img/okayama3.jpg"></li>
+            <li><img src="../2023_2/img/okayama4.jpg"></li>
+          </div>
+        </div>
+    </div>    
+
+    <p class="controls">
+        <span class="prev">prev</span>
+        <span class="next">next</span>
+      </p>
+
+
+
+    <script>
+    var slides = document.querySelector('.slides'),      //ul
+        slide = document.querySelectorAll('.slides li')  //li들
+        currendInx = 0,
+        지금보이는사진 = 1,
+        slideCount = slide.length,
+        prevBtn = document.querySelector('.prev'),
+        nextBtn = document.querySelector('.next');
+        slideWidth = 100,
+
+        allLength = slideWidth * slideCount, //총 길이.
+        slides.style.width = allLength + 'vw';
+    
+    
+
+
+      makeClone();      
+      function makeClone(){
+        for (var i=0; i<slideCount; i++){
+          var cloneSlide = slide[i].cloneNode(true);
+          cloneSlide.classList.add('clone');
+          slides.appendChild(cloneSlide);
+        }
+        for(var i = slideCount-1; i>=0; i--){
+          var cloneSlide = slide[i].cloneNode(true);
+          cloneSlide.classList.add('clone');
+          slides.prepend(cloneSlide);
+        }
+        updateWidth();
+        setInitiaPos();
+        setTimeout(function(){
+          slides.classList.add('animated');
+        }, 100);
+      }
+
+      function updateWidth(){
+        var currendSlides = document.querySelectorAll('.slides li')
+        var newSlideCount = currendSlides.length;
+        var newWidth = slideWidth * newSlideCount + 'vw';
+        slides.style.width = newWidth;
+
+        console.log(newWidth)
+      }
+      function setInitiaPos(){
+        var initialTranslateValue = - slideWidth *slideCount ;
+        slides.style.transform = 'translateX(' + initialTranslateValue + 'vw)';
+      }
+
+    $('.next').on('click', function(){          
+        $('.slide-wrapper').css('transform', 'translateX(-' + 지금보이는사진 + '00vw)');  // 'translateX(-n00vw)'); 처럼사용하기 위해서
+        지금보이는사진 = 지금보이는사진 + 1;
+        console.log(지금보이는사진, slideCount)
+
+        if(지금보이는사진 === slideCount+1){
+            console.log('지금이니')
+            $('.slide-wrapper').css('transform', 'translateX(-' + (지금보이는사진) + '00vw)');
+        }
+    });
+
+
+
+
+    </script>
+
+    
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+
+
+</html>

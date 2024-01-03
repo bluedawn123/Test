@@ -1,0 +1,177 @@
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="css/1.css" rel="stylesheet"> 
+    <script  
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+
+    <!-- 로그인 모달창 맨 위에 위치하는 게-->
+    <div class="black-bg">
+      <div class="white-bg">
+        <h4>로그인하세요</h4>
+        <form action="success.html" class="form-frame">
+            <div class="my-3">
+              <input type="text" class="form-control" id="email">
+            </div>
+            <div class="my-3">
+              <input type="password" class="form-control" id="password">
+            </div>
+            <div class="submit-close">
+              <button type="submit" class="btn btn-primary" id="send">로그인</button>
+              <button type="button" class="btn btn-danger" id="login-close">닫기</button>
+            </div>
+          </form> 
+    </div>
+    </div>
+
+    <!-- 메뉴 -->
+    <div class="nav-menu">
+        <h4 style="margin : 0">Shoes Studio</h4>
+        <span class="badge bg-grey" class="ms-auto mx-3">DarkMode 🔄</span>
+        <a id="nav-sub-button">Products</a>
+    </div>
+    <!--products 눌렀을때 메뉴바 -->
+    <ul class="list-group nav-sub">
+        <li class="list-group-item">Outer</li>
+        <li class="list-group-item">InnerWear</li>
+        <li class="list-group-item">Shirts</li>
+    </ul>
+    <!-- 메인 배경 -->
+    <div class="jumbotron main-background">
+      <h1 class="display-4">Shoes Studio!</h1>
+      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+      <hr class="my-4">
+      <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+      <a id="login" class="btn btn-primary btn-lg" href="#" role="button">Log In</a>
+    </div>
+
+    <div class="alert alert-danger">
+        <span id="num">5</span>초 이내 구매시 사은품 증정
+    </div>
+
+        <!-- 캐러셀 -->
+        <div style="overflow: hidden">
+          <div class="slide-container">
+            <div class="slide-box">
+              <img src="./img/car1.jpg">
+            </div>
+            <div class="slide-box">
+              <img src="./img/car2.jpg">
+            </div>
+            <div class="slide-box">
+              <img src="./img/car3.jpg">
+            </div>
+          </div>
+       </div> 
+
+      <div class="dot">
+        <button class="slide-1">1</button>
+        <button class="slide-2">2</button>
+        <button class="slide-3">3</button>
+      </div>
+    
+    <script>
+        // 기존 방식
+        // //로그인 버튼
+        // $('#login').on('click', function(){    //id=login이라는 로그인창 누르면, 모달창인 black-background 뜨는 코드
+        //   $('.black-background').fadeIn();
+        // })
+
+        // //로그인 후 닫기 버튼
+        // $('#login-close').on('click', function(){    
+        //   $('.black-background').fadeOut();
+        // }) 
+
+        //css 클래스 탈부착 방식
+        $('#login').on('click', function(){
+          $('.black-bg').addClass('show-modal');
+        });
+
+        $('#login-close').on('click', function(){
+          $('.black-bg').removeClass('show-modal');
+        });
+
+        $('#send').on('click', function(e){
+          if(document.getElementById('email').value == ''){
+            e.preventDefault();
+            alert('아이디를 입력하지 않았습니다.')
+          }  
+          else if(document.getElementById('password').value == ''){
+            e.preventDefault();
+            alert('비밀번호를 입력하지 않았습니다.')
+          }
+        });
+
+
+        //다크모드 만들어보기 
+        //버튼 누른 횟수가 홀수면 버튼 내부 글자를 Light로, 버튼 누른 횟수가 짝수면 버튼 내부 글자를 Dark로 변경
+        var count = 0;
+
+        $('.badge').on('click', function(){
+          count += 1;  //버튼누를 때 마다 버튼누른 횟수를 계속 업데이트
+          if (count % 2 == 1) {
+            $('.badge').html('Light Mode 🔄');  //jQuery로 찾은 요소 innerHTML을 바꾸고 싶으면 .html('바꿀내용') 
+          }
+          else {
+            $('.badge').html('Dark Mode 🔄')
+          }
+        });        
+
+
+        //products 버튼 (위와 같다)
+        $('#nav-sub-button').click(function(){    //id=nav-sub-button이라는 로그인창 누르면, 슬라이드 바 내려오는 코드
+          $('.nav-sub').slideToggle();          //눌렀을때 내리고 올리고 자유롭게
+        })
+
+        //setTimeOut 사용해보자
+        var count = 5;
+
+        setInterval(function(){
+          count = count - 1;
+            if (count >= 0){
+            document.querySelector('#num').innerHTML = count;
+            } 
+            else if (count = 0){
+            document.querySelector('.alert').hide();
+            }
+        }, 1000);
+
+        var 지금보이는사진 = 1; 
+
+        var 템플릿반복 = setInterval(function(){
+          if( 지금보이는사진 < 3){            //총 사진의 갯수가 3이므로
+                $('.slide-container').css('transform', 'translateX(-' + 지금보이는사진 + '00vw)');  // 'translateX(-n00vw)'); 처럼사용하기 위해서
+                지금보이는사진 = 지금보이는사진 + 1;
+          }else{
+            $('.slide-container').css('transform', 'translateX(0vw)');
+          }
+        }, 3000)
+
+
+
+    
+    
+    </script>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+
+  <p>수업내용</p>
+  <p>setTimeOut을 사용해 시간이 지난 후 특정 코드를 실행시켜 보자</p>
+  <p></p>
+  <p></p>
+
+</html>

@@ -1,0 +1,177 @@
+:root { scroll-behavior : auto } 
+* {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialised;
+}
+
+.nav-menu{
+    display: flex;  /*가로배치*/
+    justify-content: space-between;  /*양쪽정렬*/
+    padding : 15px;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    color: black;
+    background-color: white;
+    height: 80px;
+    z-index: 6; /*혹시 몰라서 그냥 써본거;*/
+}
+
+.nav-sub{
+    margin-top: 65px;
+    display: none;  /*평상시 안보이다가 slidetoggle시보임*/
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    opacity: 0.90;   
+}
+
+
+.close-bar{
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.main-background{
+    background-image: url(../img/jeans.jpg);
+    background-size : cover;
+    color : white;
+    border-radius: 0px;
+    height : 950px;
+}
+
+.background-text{
+    margin-top: 20px;}
+
+.black-bg {
+    margin: 0px auto;
+    width: 100%;
+    /* max-width: 1200px; */
+    height: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+    padding: 30px;
+    /*display: none;  평소에 숨김. 근데 애니메이션 대용으로는 visibility : hidden; 사용*/
+
+    /* 애니메이션 관련 */
+    visibility: hidden;  /*애니메이션 만들때 자주씀*/
+    opacity: 0;   /*투명도 0*/
+    transition: all 0.2s;
+}
+.white-bg{
+    margin: auto;
+    margin-top: 200px;
+    height: 500px;
+    width: 550px;
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.show-modal {
+    visibility: visible;   /*display:block 과 유사 */
+    opacity: 1;
+}
+
+/* 애니메이션 만들기 */
+/* black-bg에 시작스타일 , show-modal에 최종스타일 
+즉, 처음엔 안보임. 근데 로그인 버튼을 누르면 show-modal이 붙어서 보이게 만드는 방식
+그리고 마지막으로 transition으로 애니메이션을 준다.
+*/
+.form-frame{
+    margin-top: 25px;
+}
+.form-control{
+    padding: 5px;
+    width: 450px;
+}
+.submit-close{
+    margin-top: 25px;
+}
+
+
+
+.btn-lg{
+    margin-top: -1500px;
+    margin-left: 25px;
+}
+
+
+
+#email-alert{
+    display : none;
+    margin-top: 15px;
+
+}
+#psw-alert{
+    display: none;
+    margin-top: 15px;
+}
+.alert-box{
+    background-color: rgb(135, 135, 197);
+    color: rgb(49, 30, 30);
+    padding: 20px;
+    border-radius: 5px;
+
+    display: none;  /*평소엔 ui 숨기기*/
+}
+
+.alert-box p{
+    display: inline;
+}
+.yellow-bg{
+    background: yellow;
+}
+
+/* ------------------carousel---------------- */
+.slide-container {
+    width: 300vw;
+    transition: all 2s;
+    /* transform: translateX(-100vw); */
+  } 
+
+  .slide-box {
+    width: 100vw;
+    float: left;
+  }
+
+  .slide-box img {
+    margin: auto;
+    display: block;
+    width: 80%;
+    height: 900px;
+  } 
+
+/* 스크롤 관련 */
+.navbar-brand{
+    font-size: 25px;
+    transition: all 1s;
+}
+
+#back-to-top {
+    position: fixed;
+    bottom: 5em;
+    right: 5em;
+    background-color: rgba(255, 255, 255, .9);
+    color: #253f5f;
+    padding: 2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 0 0 2em 0 rgba(0, 0, 0, .25);
+    transition: all .3s ease-in-out;
+    display: inline-block;
+    opacity: 0;
+    text-decoration: none;
+    font-size: .85em;
+}
+
+#back-to-top:hover {
+    background-color: #fff;
+    padding: 2em 4.5em;
+}
+
+#back-to-top.visible {
+    opacity: 1;
+}
