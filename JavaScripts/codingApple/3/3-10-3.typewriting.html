@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="css/eventBubbling.css" rel="stylesheet"> 
+    <script  
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    <button>버튼</button>
+    <h1>배고픕니다.</h1> 
+
+
+    <script>
+    //버튼을 누르면 h1을 빈칸을오 만들고 0.5후에 a를 h1안에 입력되고 0.5초 후에 h1안에 b를 더함..(반복)
+    var h1태그 = document.querySelector('h1');  //h1 전체 태그 
+    var 원래글씨 = document.querySelector('h1').innerHTML;  //h1 전체 태그 안의 원래 있던 글씨 
+
+    
+    $('button').click(function(){  //버튼 누르면
+      타이핑애니메이션(h1태그, 원래글씨)
+    })
+
+    //함수화시켜보기
+    function 타이핑애니메이션(a, b){
+        a.innerHTML = '';       //h1태그 안 빈칸으로 만들기. 제이쿼리라면 $('h1').html('');
+        
+        for (let i = 0; i < b.length; i++){
+            setTimeout(function(){
+            a.innerHTML = a.innerHTML + b[i]
+            }, 500 * i);
+
+      }
+    }
+
+
+
+    </script>
+   
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+  <p>--------------------------------------------수업 내용-----------------------------------</p>
+  <p>수업내용
+  <p>안녕하세요를 치는 경우 적용 => ㅇㅏㄴㄴㅕㅇ...이렇게 하나씩 치려면??  => 한글 타이핑 효과 라이브러리 사용!
+  <p>이번수업에서는 함수화를 해본다.
+
+    
+  <br>
+  <br>
+  <br>
+
+</html>
