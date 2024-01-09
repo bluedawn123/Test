@@ -19,7 +19,7 @@
     <div class="white-bg">
         <% for (let i = 0; i < 글목록.length; i++){ %> <!--length는 array안의 데이터 갯수-->
         <div class="list-box">
-            <h4><a href="/detail/<%= 글목록[i]._id %>"> <%= 글목록[i].title %> </a></h4>
+            <h4><a href="/detail/<%= 글목록[i]._id %>"> <%= 글목록[i].title %> </a></h4> <!--글목록.title을 누르면 detail/~~로 이동.-->
             <a><%= 글목록[i].content %></a><a href="/edit/<%= 글목록[i]._id %>">✏️</a>
         </div>
         <% } %>
