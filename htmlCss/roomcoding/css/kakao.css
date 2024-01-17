@@ -1,0 +1,84 @@
+body{
+    background-color: #e4e4e4;
+}
+
+:root{
+    --site-width: 1500px;
+}
+
+.con{
+    width:var(--site-width);
+}
+.con-min-width{
+    min-width:var(--site-width);
+}
+
+
+.con{
+    display: flex;
+    height: 100%;
+}
+
+.top-bar{
+    background-color: white;
+    height: 80px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.menu-items{
+    display: flex;
+    height: 100%;
+}
+
+.menu-1{
+    margin-left: 100px;
+}
+
+.menu-1 > ul > li > div{
+    background-color:  red;
+    position: absolute;
+    display: none;
+    left : 0px;
+    width: 100%;
+    transform: translateY(1px);
+}
+
+.menu-1 > ul > li > a{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.menu-1 > ul > li:hover > div{
+    display: block;
+}
+
+/* 2차메뉴 가운데정렬 */
+.menu-1 > ul > li > div > .con{
+    margin: auto;
+
+}
+
+.menu-1 > ul > li > div > div > ul > li > a{
+    display: block;
+    background-color: blue;
+    text-align: center;
+    padding: 30px 0;
+}
+
+.menu-1 > ul > li > div > div > ul > li > ul > li > a{
+    padding: 10px 0;
+
+}
+
+
+
+
+
+
+
+
+.btn-go-submit{
+    margin-left : 500px;
+}

@@ -1,0 +1,12 @@
+.cons{
+    background-color: rgb(184, 160, 160);
+    width: 350px;
+    display: inline-flex;
+}
+
+.box{
+    background-color: blue;
+    height: 100px;
+    width: 100px;
+    border: 1px solid;
+}
