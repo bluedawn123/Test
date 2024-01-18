@@ -1,0 +1,172 @@
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cormorant+Infant:700,700italic|Lato:400,400italic,700">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="css/1.css" rel="stylesheet"> 
+    <script  src="https://code.jquery.com/jquery-3.6.0.min.js"integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script>
+  </head>
+  <body>
+
+    <div class="slide_wrapper">
+      <ul class="slides">
+        <li>slide 01</li>
+        <li>slide 02</li>
+        <li>slide 03</li>
+        <li>slide 04</li>
+        <li>slide 05</li>
+      </ul>
+    </div>
+    
+
+    <p class="controls">
+      <span class="prev">prev</span>
+      <span class="next">next</span>
+    </p>
+
+    <script>
+      var slides = document.querySelector('.slides'),      //ul
+          slide = document.querySelectorAll('.slides li')  //li들
+          currendInx = 0,
+          slideCount = slide.length,
+          prevBtn = document.querySelector('.prev'),
+          slideWidth = 2400,
+          slideMargin = 30,
+          nextBtn = document.querySelector('.next');
+
+      //슬라이드 너비 정해주기
+      //슬라이드 의 스타일 의 width 이렇게 표현가능. 
+      slides.style.width = (slideWidth + slideMargin)*slideCount - slideMargin + 10 +'px';
+
+      makeClone();      
+      function makeClone(){
+        for (var i=0; i<slideCount; i++){
+          var cloneSlide = slide[i].cloneNode(true);
+          cloneSlide.classList.add('clone');
+          slides.appendChild(cloneSlide);
+        }
+        for(var i = slideCount-1; i>=0; i--){
+          var cloneSlide = slide[i].cloneNode(true);
+          cloneSlide.classList.add('clone');
+          slides.prepend(cloneSlide);
+        }
+
+        updateWidth();
+        setInitiaPos();
+
+        setTimeout(function(){
+          slides.classList.add('animated');
+        }, 100);
+      }
+      function updateWidth(){
+        var currendSlides = document.querySelectorAll('.slides li')
+        var newSlideCount = currendSlides.length;
+        var newWidth = (slideWidth + slideMargin)*newSlideCount- slideMargin + 10 +'px';
+        slides.style.width = newWidth;
+        
+        console.log(slides.style.width)
+      }
+      function setInitiaPos(){
+        var initialTranslateValue = - (slideWidth + slideMargin)*slideCount;
+        
+        //slide {transform:translateX(1000px);}
+        slides.style.transform = 'translateX(' + initialTranslateValue + 'px)';
+      }
+
+      
+
+      //버튼 기능 + 슬라이드의 움직임 = 슬라이드의 크기 + 슬라이드의 마진
+      //움직이는 기능은 현재 보고잇는 currentInx에 따라서!
+      nextBtn.addEventListener('click', function(){
+          moveSlide( currendInx + 1 )
+      });
+      prevBtn.addEventListener('click', function(){
+          moveSlide( currendInx - 1 );
+      })
+
+      function moveSlide(num){
+        slides.style.left = - num * (slideWidth+ slideMargin)+ 'px';
+        currendInx = num;
+        console.log(currendInx, slideCount); 
+        //넘긴값, 찍어놓은 인덱스가 같아야 원래 처음 보던 1로 시작하는 페이지가 나오는데,
+        //그때 보고있는 (복사본1번에 와 있을때!)것들을 다시 원위치 시켜 눈속임을 준다.!
+
+        if(currendInx==slideCount){
+          setTimeout(function(){
+            slides.classList.remove('animated');  //움직임변화 없이해서 복사본1에서 원본1로 이동
+            slides.style.left = '0px';
+            currendInx = 0;
+          }, 500);
+          //setTimeOut을 쓰는 이유???
+          setTimeout(function(){
+            slides.classList.add('animated');
+          }, 600);
+        }
+
+        if(-currendInx==slideCount){
+          setTimeout(function(){
+            slides.classList.remove('animated');  //움직임변화 없이해서 복사본1에서 원본1로 이동
+            slides.style.left = '0px';
+            currendInx = 0;
+          }, 500);
+          //setTimeOut을 쓰는 이유???
+          setTimeout(function(){
+            slides.classList.add('animated');
+          }, 600);
+        }
+      }
+
+
+      //자동으로 넘어가는 기능
+      var timer = undefined;
+
+      function autoSlide(){
+        if(timer == undefined){
+          timer = setInterval(function(){
+            moveSlide( currendInx + 1 );
+          }, 3000)
+        }
+      }
+
+      // autoSlide();
+
+      // //마우스 올라갔을때 멈추는 함수
+      // function stopSlide(){
+      //   clearInterval(timer);
+      //   console.log(timer);
+      //   timer = undefined;
+      // }
+
+      // slides.addEventListener('mouseenter', function(){
+      //   stopSlide();
+      // })
+      // slides.addEventListener('mouseleave', function(){
+      //   autoSlide();
+      // })
+
+
+      
+      // $('.next').on('click', function(){
+      //   moveSlide( currendInx + 1);
+      // });
+
+      // $('.prev').on('click', function(){
+      //   moveSlide( currendInx - 1);
+      // })
+
+    </script>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+
+  <p></p>
+  <p></p>
+  <p></p>
+  <p></p>
+
+
+</html>
