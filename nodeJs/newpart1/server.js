@@ -92,20 +92,35 @@ app.post('/edit', async (요청, 응답)=>{
 //요청.body에는 유저가 입력한 데이터들이 들어있다. 
 //위 코드를 해석해보면, _id가 ~~~인 document를 찾아서, title과 content를 바꾼다!
 
+//pagination
+//  list/1이면 1~5 글, list/2이면 6~10글을 가져오는 방식
+// app.get('/list/1', async (요청, 응답) => {
+//   let result = await db.collection('post').find().skip(0).limit(5).toArray() 
+//   응답.render('list.ejs', { 글목록 : result })
+// }) 
 
+// app.get('/list/2', async (요청, 응답) => {
+//   let result = await db.collection('post').find().skip(5).limit(5).toArray()  
+//   응답.render('list.ejs', {글목록 : result, time :new Date() })  
+// }) 
 
+// app.get('/list/2', async (요청, 응답) => {
+//   let result = await db.collection('post').find().skip(10).limit(5).toArray()  
+//   응답.render('list.ejs', {글목록 : result, time :new Date() })   
+// }) 
 
+//이런식이다. 하지만 하드코딩하지말아보자
 
+app.get('/list/:id', async (요청, 응답) => {
+  let result = await db.collection('post').find()
+    .skip( (요청.params.id - 1) * 5 ).limit(5).toArray() 
+  응답.render('list.ejs', { 글목록 : result })
+}) 
 
-
-
-
-
-
-
-
-
-
+app.get('/list/next/:id', async (요청, 응답) => {
+  let result = await db.collection('post').find({_id : {$gt : new ObjectId(요청.params.id) }}).limit(5)
+  응답.render('list.ejs', { 글목록 : result })
+}) 
 
 
 
