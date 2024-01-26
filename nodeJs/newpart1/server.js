@@ -112,16 +112,11 @@ app.post('/edit', async (요청, 응답)=>{
 //이런식이다. 하지만 하드코딩하지말아보자
 
 app.get('/list/:id', async (요청, 응답) => {
-  let result = await db.collection('post').find()
-    .skip( (요청.params.id - 1) * 5 ).limit(5).toArray() 
-  응답.render('list.ejs', { 글목록 : result })
+  let results = await db.collection('post').find().toArray()
+  let result = await db.collection('post').find().skip( (요청.params.id - 1) * 5 ).limit(5).toArray() 
+  응답.render('listpages.ejs', { 글목록 : result, 글모든정보 : results })
+  console.log(results)
 }) 
-
-app.get('/list/next/:id', async (요청, 응답) => {
-  let result = await db.collection('post').find({_id : {$gt : new ObjectId(요청.params.id) }}).limit(5)
-  응답.render('list.ejs', { 글목록 : result })
-}) 
-
 
 
 
