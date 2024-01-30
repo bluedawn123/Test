@@ -15,7 +15,7 @@
     
     <form class="form-box" action="/edit" method="POST">
         <h4>수정하기 </h4>
-         <input name="id" value="<%= urlResult._id %>" style="display: none;">
+         <input name="id" value="<%= urlResult._id %>" style="display: none;"> <!--id는 숨겨도 된다. 굳이 쓰는 이유는 server.js에서 updateOne에서 필요-->
          <input name="title" value="<%= urlResult.title %>">
          <input name="content" value="<%= urlResult.content %>">
          <button type="submit">수정</button>

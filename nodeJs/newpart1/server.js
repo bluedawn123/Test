@@ -121,12 +121,6 @@ app.get('/list/:id', async (요청, 응답) => {
 
 
 //news에 접속시 바로 꽂아넣는 방법. 
-app.get('/news', ()=>{
-  db.collection('post').insertOne({title : '어쩌구'})
-})
-app.get('/', function(요청, 응답) {
-    응답.sendFile(__dirname + '/index.html')
-}) 
-app.get('/time', (요청, 응답) => {
-    응답.render('time.ejs', { data : new Date() })
-  })
+app.get('/news', ()=>{db.collection('post').insertOne({title : '어쩌구'})})
+app.get('/', function(요청, 응답) {응답.sendFile(__dirname + '/index.html')}) 
+app.get('/time', (요청, 응답) => {응답.render('time.ejs', { data : new Date() })})
