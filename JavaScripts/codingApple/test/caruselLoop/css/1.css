@@ -1,0 +1,41 @@
+*{margin:0; padding: 0;}
+li{list-style: none;}
+
+.slide_wrapper{
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    height: 600px;
+    overflow: hidden;
+}
+
+.slides{
+    margin-top: 150px;
+    position: absolute;
+    left: 0; top:0;
+    /* width: 2650px; 슬라이드너비 정해주는걸로 */
+    /* transition: all 0.5s ease-in-out; */
+}
+
+.slides.animated{
+    transition: all 0.5s ease-in-out;
+}
+.slides li:not(:last-child) {
+    float: left;
+    margin-right: 30px;
+}
+
+.controls{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.controls span{
+    background: #333;
+    color: #fff;
+    padding : 10px 20px;
+    margin:  0 10px;
+    top : 50px;
+    transform: translateY(-50%);
+}
+
