@@ -1,0 +1,72 @@
+/* #0074e9 쓰이는파랑색*/
+/* #e7223d 쓰이는빨강색 */
+
+h1{text-align: center; margin: 50px auto 30px;}
+h1 a {}
+h1 a img{width: 200px;}
+
+main {width: 500px; margin: 0 auto;}
+main #loginfrm{border-bottom: 1px solid #ccc; margin-bottom: 20px; padding-bottom: 20px;}
+main #loginfrm fieldset{}
+
+main #loginfrm fieldset p{
+    font-size: 1.3rem; text-align: center; margin-bottom: 20px;}
+
+main #loginfrm fieldset ul p{
+    font-size: 1.0rem; text-align: left; color: rgb(0, 0, 0);
+    margin-bottom: 10px;
+}
+
+
+main #loginfrm fieldset ul{}
+main #loginfrm fieldset ul li{
+    border:1px solid #ccc; background: #fff;
+    display: flex; flex-flow:row nowrap;
+    margin-bottom: 10px;
+}
+main #loginfrm fieldset ul .error{
+    color: #e7223d; padding: 5px; font-size: 0.75rem; display: none;
+}
+main #loginfrm fieldset ul .id_error{}
+main #loginfrm fieldset ul .pw_error{}
+main #loginfrm fieldset ul li span{}
+main #loginfrm fieldset ul li .id_bg{
+    /* border-right: 1px solid #ccc;
+    padding: 20px; width: 50px;
+    background-color: #f5f5f5; */
+}
+main #loginfrm fieldset ul li .pw_bg{
+    /* border-right: 1px solid #ccc;
+    padding: 20px; width: 50px;
+    background-color: #f5f5f5; */
+}
+main #loginfrm fieldset ul li span input{width: 400px; height: 40px; border: 0; padding-left: 5px;}
+main #loginfrm fieldset ul li span input::placeholder{font-size: 0.9rem; color: #aaa;}
+main #loginfrm fieldset ul li span input[type=text]{}
+main #loginfrm fieldset ul li span input[type=password]{}
+main #loginfrm fieldset ul li .pw_show_hide{}
+
+main #loginfrm fieldset .btm{
+    display: flex; flex-flow:row nowrap;
+    justify-content: space-between; 
+    margin: 0 5px; padding: 15px 0; 
+}
+main #loginfrm fieldset .btm p {}
+main #loginfrm fieldset .btm p label{}
+main #loginfrm fieldset .btm p label input[name=login_y]{}
+main #loginfrm fieldset .btm p label span{}
+main #loginfrm fieldset .btm .idpw_search{color : #50585f;}
+main #loginfrm fieldset .btm .idpw_search::after{
+    content: '>'; display: inline-block;
+
+}
+
+
+main .join_link {
+    border: 1px solid #ccc; color: #eee;
+    display: block; text-align: center; background: #50585f;
+    padding :20px 0; 
+    box-shadow:0 2px 0  #b5b5b8ef;;
+}
+
+footer{color:#333; text-align: center; font-size: 0.85rem; margin-top: 20px;}
